@@ -11,6 +11,7 @@ Cart42 is released under the AGPL 3 license
 ## Requirements
 
 ASP.NET 4.5
+
 MS SQL Server 2005 or later
 
 ## Participate!
@@ -20,4 +21,5 @@ We believe in liberating online shopping cart software, providing a free platfor
 ## Contact
 
 http://www.cart42.com
+
 support@cart42.com
