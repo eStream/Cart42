@@ -1,0 +1,136 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.PageTemplatesIndexViewModel
+
+@{ ViewBag.Title = "Page Templates".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+                @if (User.HasAccess(OperatorRoles.TEMPLATES + OperatorRoles.WRITE))
+                {
+                    <a href="@Url.Action("Create")" class="btn btn-primary"><span class="fa fa-plus"></span>&nbsp;@Html.TA("Add Template")</a>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Installed Templates")</h5>
+    </div>
+    <div class="ibox-content">
+        @if (Model.Templates.Any())
+        {
+            <div class="row">
+                @foreach (var template in Model.Templates)
+                {
+                    <div class="col-lg-4">
+                        <div class="panel @(Model.SelectedTemplate == template.Name ? "panel-primary" : "panel-default")">
+                            <div class="panel-heading">
+                                @template.Name
+                            </div>
+                            <div class="panel-body">
+                                <img src="@template.Thumbnail" class="img-responsive img-thumbnail" />
+                            </div>
+                            <div class="panel-footer text-center">
+                                @if (Model.SelectedTemplate != template.Name)
+                                {
+                                    if (User.HasAccess(OperatorRoles.TEMPLATES + OperatorRoles.WRITE))
+                                    {
+                                        <a class="btn btn-primary" href="@Url.Action("Select", new {name = template.Name})">@Html.TA("Select")</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary" href="@Url.Action("Files", new {name = template.Name})"><span class="fa fa-files-o"></span> @Html.TA("Files")</a>
+                                    <a class="btn btn-primary" href="@Url.Action("Settings", new {name = template.Name})"><span class="fa fa-gears"></span> @Html.TA("Settings")</a>
+                                }
+                                <div class="dropdown pull-right">
+                                    <button class="btn btn-default btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <i class="fa fa-gear"></i>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                        @if (User.HasAccess(OperatorRoles.TEMPLATES + OperatorRoles.WRITE))
+                                        {
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="clone('@template.Name')"><span class="fa fa-copy"></span> @Html.TA("Clone")</a></li>
+                                        }
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Download", new { name = template.Name })"><span class="fa fa-download"></span> @Html.TA("Download")</a></li>
+                                        @if (Model.SelectedTemplate != template.Name)
+                                        {
+                                            <li role="presentation" class="divider"></li>
+                                            if (User.HasAccess(OperatorRoles.TEMPLATES + OperatorRoles.DELETE))
+                                            {
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="deleteTemplate('@template.Name')"><span class="fa fa-times"></span> @Html.TA("Delete")</a></li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div>@Html.TA("There are no templates installed. Add new template by clicking on the {0} button above", "<strong>" + @Html.TA("Add Template") + "</strong>") </div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="modalClone" tabindex="-1" role="dialog" aria-labelledby="modalCloneLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Html.TA("Close")</span></button>
+                <h4 class="modal-title" id="modalCloneLabel">@Html.TA("Clone Template")</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label col-md-2">@Html.TA("Name")</label>
+                    <div class="col-md-10">
+                        <input id="hidSourceName" type="hidden" />
+                        <input id="txtTargetName" type="text" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Html.TA("Close")</button>
+                <button type="button" class="btn btn-primary" onclick="clone($('#hidSourceName').val(), $('#txtTargetName').val())"><span class="fa fa-copy"></span> @Html.TA("Clone")</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function clone(name, newName) {
+        if (!newName) {
+            $('#hidSourceName').val(name);
+            $('#txtTargetName').val(name + ' Copy');
+            $('#modalClone').modal();
+        } else {
+            window.location.href = '@Url.Action("Clone")?name=' + encodeURIComponent(name) + '&newName=' + encodeURIComponent(newName);
+        }
+    }
+
+    function deleteTemplate(name) {
+        bootbox.confirm("Do you really want to delete this template?", function (result) {
+            if (result) {
+                window.location.href = '@Url.Action("Delete")?theme=' + encodeURIComponent(name);
+            }
+        });
+    }
+</script>

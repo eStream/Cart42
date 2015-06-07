@@ -1,0 +1,19 @@
+﻿@using Estream.Cart42.Web.Areas.Admin.Models
+@model OnCompleteActionType
+           
+@Html.HiddenFor(m => m)
+
+<div class="btn-group">
+    <button type="submit" class="btn btn-primary">@Model.DisplayName().TA()</button>
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">@Html.TA("Save options")</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        @foreach (OnCompleteActionType action in Enum.GetValues(typeof(OnCompleteActionType)))
+        {
+            if (action == Model) { continue; }
+            <li><a href="#" onclick="$('#@Html.IdFor(m => m)').val('@action'); $(this).closest('form').submit(); return false;  ">@action.DisplayName().TA()</a></li>
+        }
+    </ul>
+</div>

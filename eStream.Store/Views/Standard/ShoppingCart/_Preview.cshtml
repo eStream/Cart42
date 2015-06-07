@@ -1,0 +1,39 @@
+﻿@using Estream.Cart42.Web.Models
+@model ShoppingCartViewModel
+
+<div id="cart" class="clearfix">
+    <div class="heading media">
+        <div class="cart-inner media-body">
+            <span class="icon-cart"></span>
+            <h4>@Html.T("Shopping Cart")</h4>
+            <a data-toggle="dropdown"><span id="cart-total">@Model.Items.Count @Html.T("item(s)")</span></a>
+            <ul class="dropdown-menu">
+                @if (Model.Items.Count > 0)
+                {
+                    foreach (ShoppingCartItemViewModel item in Model.Items)
+                    {
+                        <li>
+                            <a href="@Url.Action("Details", "Product", new {id = item.ProductId})">
+                                <b>@item.ProductName</b>
+                                <span>
+                                    @("x" + item.Quantity)
+                                    @item.ItemPrice.ToCurrencyString()
+                                </span>
+                            </a>
+                        </li>
+                    }
+                    <li class="divider"></li>
+                    <li>
+                        <a href="@Url.Action("Index", "ShoppingCart")">@Html.T("Total"): @Model.Items.Sum(i => i.ItemTotal).ToCurrencyString()</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="empty">
+                        @Html.T("There are no items in your shopping cart.")
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

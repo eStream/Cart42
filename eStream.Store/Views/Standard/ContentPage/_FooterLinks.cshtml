@@ -1,0 +1,7 @@
+﻿@using Estream.Cart42.Web.Models
+@model IEnumerable<ContentPageLinksViewModel>
+
+@foreach (ContentPageLinksViewModel item in Model)
+{
+    <li><a href="@item.Url">@item.Title</a></li>
+}

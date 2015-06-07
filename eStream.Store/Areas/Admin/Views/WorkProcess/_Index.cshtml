@@ -1,0 +1,28 @@
+﻿@model Estream.Cart42.Web.Domain.WorkProcessType
+
+<div id="divJobs">
+    <div data-bind="foreach: $data">
+        <div data-bind="text: status"></div>
+        <div class="progress">
+            <div data-bind="text: Math.round(percentComplete()) + '%', attr: { ariaValuenow: percentComplete }, style: { width: percentComplete() + '%' }" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        var data = ko.observableArray();
+
+        var checkProgress = function(type) {
+            $.post('@Url.Action("Progress")', { type: type },
+                function (result) {
+                    ko.mapping.fromJS(result, {}, data);
+                    setTimeout(function() { checkProgress('@Model'); }, 1 * 1000);
+                }
+            );
+        };
+
+        ko.applyBindings(data, document.getElementById('divJobs'));
+        checkProgress('@Model');
+    });
+</script>

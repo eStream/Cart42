@@ -1,0 +1,24 @@
+﻿@using Estream.Cart42.Web.Domain
+@model Estream.Cart42.Web.Areas.Admin.Models.OrderViewModel
+
+<select onchange="updateOrderStatus(@Model.Id, this) ">
+    @foreach (OrderStatus status in Enum.GetValues(typeof (OrderStatus)))
+    {
+        <option value="@((int) status)" @(status == Model.Status ? "selected" : "")>@(status.DisplayName())</option>
+    }
+</select>
+
+<script type="text/javascript">
+    function updateOrderStatus(orderId, sender) {
+        var status = sender.value;
+        $.post("@Url.Action("UpdateStatus")", { orderId: orderId, status: status },
+                function(json) {
+                    alerts.success(json);
+                }, "json")
+            .error(function(data) {
+                if (data.responseJSON && data.responseJSON.errorMessage) {
+                    alerts.error(data.responseJSON.errorMessage);
+                }
+            });
+    }
+</script>

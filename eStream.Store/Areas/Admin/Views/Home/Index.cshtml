@@ -1,0 +1,34 @@
+﻿@using Estream.Cart42.Web.Areas.Admin.Controllers
+@{
+    ViewBag.Title = "Dashboard".TA();
+}
+<div class="row">
+    <div class="col-lg-3 partial" data-url="@Url.Action("SalesBox", "Report")">
+        <span class="fa fa-spinner fa-spin"></span> @Html.TA("Loading...")
+    </div>
+    <div class="col-lg-3 partial" data-url="@Url.Action("OrdersBox", "Report")">
+        <span class="fa fa-spinner fa-spin"></span> @Html.TA("Loading...")
+    </div>
+    <div class="col-lg-3 partial" data-url="@Url.Action("VisitsBox", "Report")">
+        <span class="fa fa-spinner fa-spin"></span> @Html.TA("Loading...")
+    </div>
+    <div class="col-lg-3 partial" data-url="@Url.Action("ReturnsBox", "Report")">
+        <span class="fa fa-spinner fa-spin"></span> @Html.TA("Loading...")
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 partial" data-url="@Url.Action("OrdersChartBox", "Report")">
+        <span class="fa fa-spinner fa-spin"></span> @Html.TA("Loading...")
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 partial" data-url="@Url.Action("TopCategoriesBox", "Report")">
+        <span class="fa fa-spinner fa-spin"></span> @Html.TA("Loading...")
+    </div>
+    <div class="col-lg-8 partial" data-url="@Url.Action("OrdersMapBox", "Report")">
+        <span class="fa fa-spinner fa-spin"></span> @Html.TA("Loading...")
+    </div>
+</div>
+<div class="row">
+    <small>@Html.TA("* Dashboard reports refresh every {0} minutes", ReportController.CACHE_DURATION / 3600)</small>
+</div>

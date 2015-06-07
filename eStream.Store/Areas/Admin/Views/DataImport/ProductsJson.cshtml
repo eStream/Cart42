@@ -1,0 +1,44 @@
+﻿@model string
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@Html.TA("Import Data")</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "DataImport")">@Html.TA("Data Import")</a>
+                </li>
+                <li class="active">
+                    <strong>@Html.TA("Import Products")</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>@Html.TA("Data Import")</h5>
+        </div>
+        <div class="ibox-content">
+            <p>
+                <label for="file">@Html.TA("JSON File:")</label>
+                <input type="file" name="file" id="file" />
+                <br/>
+                <button type="submit" class="btn btn-primary">@Html.TA("Upload")</button>
+            </p>
+
+            <p>
+                @Html.Raw(Model.NL2BR())
+            </p>
+        </div>
+    </div>
+</form>

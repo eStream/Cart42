@@ -1,0 +1,295 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.ProductsIndexViewModel
+
+@{ ViewBag.Title = "Products".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@Html.TA("Browse Products")</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+                @if (User.HasAccess(OperatorRoles.INVENTORY + OperatorRoles.WRITE))
+                {
+                    <a href="@Url.Action("Create")" class="btn btn-primary"><span class="fa fa-plus"></span>&nbsp;@Html.TA("Add Product")</a>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Products")</h5>
+    </div>
+    <div id="divProductsIndex" class="ibox-content" data-bind="with: products">
+        <!-- ko if: products().length > 0 -->
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-5">
+                <div class="input-group">
+                    <input id="txtKeywords" type="text" class="form-control input-sm" placeholder="find by keyword" data-bind="value: keywords">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary btn-outline btn-sm" type="button" data-bind="visible: keywords, click: clearKeywords"><span class="fa fa-times"></span></button>
+                        <button id="btnFindByKeywords" class="btn btn-primary btn-sm" type="button" data-bind="click: find">@Html.TA("Find")</button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <div class="btn-group">
+                        <button data-bind="click: goToPage.bind($data, page() - 1)" type="button" class="btn btn-primary btn-sm">«</button>
+                        <div class="btn-group">
+                            <button data-bind="text: 'Page ' + page() + ' of ' + totalPages()" type="button" class="btn btn-primary btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"></button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <!-- ko foreach: new Array(totalPages()) -->
+                                <li data-bind="text: $index()+1, click: $parent.goToPage.bind($data, $index()+1), css: { 'disabled btn-primary': $index()+1 == $parent.page() }" class="btn btn-primary btn-sm"></li>
+                                <!-- /ko -->
+                            </ul>
+                        </div>
+                        <button data-bind="click: goToPage.bind($data, page() + 1)" type="button" class="btn btn-primary btn-sm">»</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="input-group text-right">
+                    <button data-bind="text: pageSize() + ' per page'" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 20)">@Html.TA("20 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 50)">@Html.TA("50 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 100)">@Html.TA("100 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 200)">@Html.TA("200 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 500)">@Html.TA("500 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 1000)">@Html.TA("1000 per page")</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <table id="tableProducts" class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" /></th>
+                    <th data-bind="click: orderData.bind($data, 'sku')">
+                        @Html.TA("SKU")<span data-bind="visible: orderColumn() == 'sku', attr: { class: orderAsc() ? 'fa fa-angle-down' : 'fa fa-angle-up' }"></span>
+                    </th>
+                    <th data-bind="click: orderData.bind($data, 'name')">
+                        @Html.TA("Product")<span data-bind="visible: orderColumn() == 'name', attr: { class: orderAsc() ? 'fa fa-angle-down' : 'fa fa-angle-up' }"></span>
+                    </th>
+                    <th data-bind="click: orderData.bind($data, 'price')" class="text-right">
+                        @Html.TA("Price")
+                        <span data-bind="visible: orderColumn() == 'price', attr: { class: orderAsc() ? 'fa fa-angle-down' : 'fa fa-angle-up' }"></span>
+                    </th>
+                    <th data-bind="click: orderData.bind($data, 'quantity')" class="text-center">
+                        @Html.TA("Quantity")
+                        <span data-bind="visible: orderColumn() == 'quantity', attr: { class: orderAsc() ? 'fa fa-angle-down' : 'fa fa-angle-up' }"></span>
+                    </th>
+                    <th>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: products">
+                <tr>
+                    <td><input type="checkbox" data-bind="value: id" /></td>
+                    <td data-bind="text: sku"></td>
+                    <td>
+                        <img data-bind="attr: { src: '/Upload/View/?width=35&height=25&crop=true&productId=' + id() }" class="img-rounded" />
+                        <a data-bind="text: name, attr: { href: editProductUrlFormat.replace('_id_', id()) }"></a>
+                    </td>
+                    <td data-bind="text: formatCurrency(salePrice() || price())" class="text-right text-navy"></td>
+                    <td data-bind="text: quantity" class="text-center"></td>
+                    <td class="text-navy">
+                        <span data-bind="click: $parent.toggleFeatured, attr: { class: isFeatured() ? 'fa fa-star' : 'fa fa-star-o', title: isFeatured() ? 'Product is featured' : 'Product is not featured' }" style="cursor: pointer"></span>
+                        <span data-bind="click: $parent.toggleVisible, attr: { class: isVisible() ? 'fa fa-eye' : 'fa fa-eye-slash', title: isVisible() ? 'Product is visible on the site' : 'Product is hidden on the site' }" style="cursor: pointer"></span>
+                    </td>
+                    <td class="text-right">
+                        <div class="dropdown">
+                            <button class="btn btn-default btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                                <i class="fa fa-gear"></i>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" data-bind="attr: { href: viewProductUrlFormat.replace('_id_', id()) }" target="_blank">@Html.TA("View")</a></li>
+                                @if (User.HasAccess(OperatorRoles.INVENTORY + OperatorRoles.WRITE))
+                                {
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" data-bind="attr: { href: editProductUrlFormat.replace('_id_', id()) }">@Html.TA("Edit")</a></li>
+                                }
+                                <li role="presentation" class="divider"></li>
+                                @if (User.HasAccess(OperatorRoles.INVENTORY + OperatorRoles.DELETE))
+                                {
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" data-bind="attr: { href: deleteProductUrlFormat.replace('_id_', id()) }">@Html.TA("Delete")</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="input-group">
+                    <div class="dropdown">
+                        <button class="btn btn-default btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                            <i class="fa fa-gears"></i>&nbsp;@Html.TA("Batch Actions")
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            @if (User.HasAccess(OperatorRoles.INVENTORY + OperatorRoles.DELETE))
+                            {
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="deleteSelectedProducts()"><span class="fa fa-times"></span>&nbsp;@Html.TA("Delete Selected")</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <div class="btn-group">
+                        <button data-bind="click: goToPage.bind($data, page() - 1)" type="button" class="btn btn-primary btn-sm">«</button>
+                        <div class="btn-group">
+                            <button data-bind="text: 'Page ' + page() + ' of ' + totalPages()" type="button" class="btn btn-primary btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"></button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <!-- ko foreach: new Array(totalPages()) -->
+                                <li data-bind="text: $index()+1, click: $parent.goToPage.bind($data, $index()+1), css: { 'disabled btn-primary': $index()+1 == $parent.page() }" class="btn btn-primary btn-sm"></li>
+                                <!-- /ko -->
+                            </ul>
+                        </div>
+                        <button data-bind="click: goToPage.bind($data, page() + 1)" type="button" class="btn btn-primary btn-sm">»</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="input-group text-right">
+                    <button data-bind="text: pageSize() + ' per page'" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 20)">@Html.TA("20 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 50)">@Html.TA("50 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 100)">@Html.TA("100 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 200)">@Html.TA("200 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 500)">@Html.TA("500 per page")</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: setPageSize.bind($data, 1000)">@Html.TA("1000 per page")</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: products().length == 0 -->
+        <p>
+            <div class="alert alert-info" role="alert">@Html.TA("There are no products yet. Add new product by clicking on the {0} button above", "<strong>" + @Html.TA("Add Product") + "</strong>") </div>
+        </p>
+        <!-- /ko -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    var editProductUrlFormat = '@Html.Raw(Url.Action("Edit", "Product", new { id = "_id_" }))';
+    var viewProductUrlFormat = '@Html.Raw(Url.Action("Details", "Product", new { id = "_id_", area = "" }))';
+    var deleteProductUrlFormat = '@Html.Raw(Url.Action("Delete", "Product", new { ids = "_id_" }))';
+
+    $(function () {
+        var viewModel = ko.mapping.fromJS(@Html.Json(Model));
+
+        viewModel.toggleFeatured = function (product) {
+            var featured = !product.isFeatured();
+            product.isFeatured(featured);
+            $.post('@Url.Action("SetFeatured")', { productId: product.id(), featured: featured });
+        }
+
+        viewModel.toggleVisible = function (product) {
+            var visible = !product.isVisible();
+            product.isVisible(visible);
+            $.post('@Url.Action("SetVisible")', { productId: product.id(), visible: visible });
+        }
+
+        viewModel.goToPage = function (pageNum) {
+            if (pageNum < 1 || pageNum > viewModel.totalPages()) return;
+            viewModel.page(pageNum);
+            loadData(true);
+        }
+
+        viewModel.setPageSize = function (size) {
+            viewModel.pageSize(size);
+            loadData(true);
+        }
+
+        viewModel.find = function () {
+            loadData(true);
+        }
+
+        viewModel.clearKeywords = function () {
+            viewModel.keywords('');
+            loadData(true);
+        }
+
+        function loadData(addHistory) {
+            var params = {
+                page: viewModel.page(),
+                pageSize: viewModel.pageSize(),
+                orderColumn: viewModel.orderColumn(),
+                orderAsc: viewModel.orderAsc(),
+                keywords: viewModel.keywords(),
+            };
+
+            if (addHistory) {
+                history.pushState(params, '', '?page=' + params.page + '&pageSize=' + params.pageSize
+                    + '&orderColumn=' + params.orderColumn + '&orderAsc=' + params.orderAsc
+                    + '&keywords=' + params.keywords);
+            }
+
+            $.post('@Url.Action("List")', params,
+                function (data) {
+                    viewModel.products(ko.mapping.fromJS(data.products)());
+                    viewModel.page(data.page);
+                    viewModel.totalPages(data.totalPages);
+                    viewModel.totalItems(data.totalItems);
+                }, 'json');
+        }
+
+        viewModel.orderData = function (col) {
+            if (viewModel.orderColumn() == col) {
+                viewModel.orderAsc(!viewModel.orderAsc());
+            } else {
+                viewModel.orderAsc(true);
+            }
+            viewModel.orderColumn(col);
+            loadData(true);
+        }
+
+        window.ViewModel.products = viewModel;
+        //ko.applyBindings(viewModel, document.getElementById('divProductsIndex'));
+
+        window.addEventListener('popstate', function (event) {
+            if (event.state != null) {
+                viewModel.page(event.state.page);
+                viewModel.pageSize(event.state.pageSize);
+                loadData(false);
+            }
+        });
+
+        $('#txtKeywords').keyup(function (event) {
+            if (event.keyCode == 13) {
+                $('#btnFindByKeywords').click();
+            }
+        });
+    });
+
+    function deleteSelectedProducts() {
+        var ids = '?';
+        $('#tableProducts input:checked').each(function () {
+            var id = $(this).val();
+            if (!isNaN(id)) ids += 'ids=' + id + '&';
+        });
+        if (ids != '?')
+            window.location.href = '@Url.Action("Delete")' + ids;
+    }
+
+</script>

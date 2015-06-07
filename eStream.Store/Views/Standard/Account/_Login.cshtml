@@ -1,0 +1,22 @@
+﻿@model Estream.Cart42.Web.Models.LoginViewModel
+
+@using (Html.BeginForm("Login", "Account", new {ReturnUrl = Request.RawUrl}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.Email, new {@class = "form-control", placeholder = "Email".T()})
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <div class="form-group">
+        @Html.PasswordFor(m => m.Password, new {@class = "form-control", placeholder = "Password".T()})
+        @Html.ValidationMessageFor(m => m.Password)
+        <div class="checkbox small text-muted">
+            <label>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe)
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">@Html.T("Sign In")</button>
+}

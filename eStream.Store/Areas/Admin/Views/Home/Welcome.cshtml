@@ -1,0 +1,54 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Welcome".TA();
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="ibox-content">
+            <h2>@Html.TA("Welcome to your new online store!")</h2>
+            <p>
+                @Html.TA("Setting up an online store isn't just about reaching a new customer base - it's about revolutionizing the way your business works. An online store will open up your products to consumers 24 hours a day, 7 days a week. Consumers tend to shop at all times of the day, so your business becomes an organization that literally generates profit at all hours.")
+            </p>
+            <p>
+                @Html.TA("You are a few steps away from having your own personalized online store. We've outlined the basic steps in this to-do list. Click on each task to complete it. If you need assistance you can always contact us from the link below.")
+            </p>
+            <div class="hr-line-dashed"></div>
+            <a href="http://support.cart42.com/tickets/new" target="_blank"><span class="fa fa-envelope-o"></span> @Html.TA("Contact Support")</a>
+            <a href="@Url.Action("Remove")" class="pull-right"><span class="fa fa-times"></span> @Html.TA("Remove this page")</a>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="ibox-content">
+            <h2>@Html.TA("To-do list")</h2>
+            <ul class="todo-list m-t">
+                <li>
+                    <span class="fa @(Settings.Get<bool>(SettingField.ShowCategoryTutorial) ? "fa-square-o" : "fa-check-square-o")"></span>
+                    <span class="m-l-xs"><a href="@Url.Action("Create", "Category")">@Html.TA("Add product categories")</a></span>
+                    <small class="label label-danger pull-right">@Html.TA("important")</small>
+                </li>
+                <li>
+                    <span class="fa @(Settings.Get<bool>(SettingField.ShowOptionTutorial) ? "fa-square-o" : "fa-check-square-o")"></span>
+                    <span class="m-l-xs"><a href="@Url.Action("Create", "OptionCategory")">@Html.TA("Add product options")</a></span>
+                    <small class="label label-info pull-right">@Html.TA("optional")</small>
+                </li>
+                <li>
+                    <span class="fa @(Settings.Get<bool>(SettingField.ShowProductTutorial) ? "fa-square-o" : "fa-check-square-o")"></span>
+                    <span class="m-l-xs"><a href="@Url.Action("Create", "Product")">@Html.TA("Add products")</a></span>
+                    <small class="label label-danger pull-right">@Html.TA("important")</small>
+                </li>
+                <li>
+                    <span class="fa @(Settings.Get<bool>(SettingField.ShowTaxRateTutorial) ? "fa-square-o" : "fa-check-square-o")"></span>
+                    <span class="m-l-xs"><a href="@Url.Action("Index", "TaxRate")">@Html.TA("Review tax rates")</a></span>
+                    <small class="label label-warning pull-right">@Html.TA("recommended")</small>
+                </li>
+                <li>
+                    <span class="fa  @(Settings.Get<bool>(SettingField.ShowShippingRateTutorial) ? "fa-square-o" : "fa-check-square-o")"></span>
+                    <span class="m-l-xs"><a href="@Url.Action("Create", "ShippingMethod")">@Html.TA("Add shipping rates")</a></span>
+                    <small class="label label-warning pull-right">@Html.TA("recommended")</small>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

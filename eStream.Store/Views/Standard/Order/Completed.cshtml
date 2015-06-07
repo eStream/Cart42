@@ -1,0 +1,12 @@
+﻿@model Estream.Cart42.Web.Models.OrderCompletedViewModel
+
+@{
+    ViewBag.Title = "Order Completed".T();
+}
+<div class="container">
+    <h1>@Html.T("Order #{0} Completed", Model.OrderId)</h1>
+    <div class="wrapper hero-feature">
+        @Html.Raw(Model.Message.NL2BR())
+    </div>
+
+</div>

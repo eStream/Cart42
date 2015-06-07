@@ -1,0 +1,101 @@
+﻿@model Estream.Cart42.Web.Models.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart".T();
+}
+
+<section id="columns">
+    <div class="container">
+        <div class="row">
+            <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div id="content">
+                    <h1>
+                        @Html.T("Shopping Cart")
+                    </h1>
+
+                    <div class="checkout wrapper no-margin">
+                        @if (Model.Items.Any())
+                        {
+                            using (Html.BeginForm("Update", "ShoppingCart"))
+                            {
+                                <div class="cart-info table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <td class="hidden-xs">@Html.T("Image")</td>
+                                                <td>@Html.T("Product Name")</td>
+                                                <td>@Html.T("Options")</td>
+                                                <td class="td-qty">@Html.T("Quantity")</td>
+                                                <td>@Html.T("Unit Price")</td>
+                                                <td>@Html.T("Sub Total")</td>
+                                                <td>@Html.T("Remove")</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.Items.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td class="hidden-xs">
+                                                        @Html.HiddenFor(modelItem => Model.Items[i].Id)
+                                                        <img src="/Upload/View/?width=100&height=100&crop=true&productId=@Model.Items[i].ProductId" alt="@Model.Items[i].ProductName" title="" width="47" height="47" />
+                                                    </td>
+                                                    <td>
+                                                        @if (Model.Items[i].ProductSku != null)
+                                                        {
+                                                            <strong>[@Model.Items[i].ProductSku]</strong><br />
+                                                        }
+                                                        <a href="@Url.Action("Details", "Product", new { id = @Model.Items[i].ProductId })">@Model.Items[i].ProductName</a>
+                                                    </td>
+                                                    <td>
+                                                        @if (Model.Items[i].Options != null && Model.Items[i].Options.Length > 0)
+                                                        {
+                                                            foreach (string option in Model.Items[i].Options)
+                                                            {
+                                                                @Html.DisplayFor(modelItem => option)<br />
+                                                            }
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" id="@Html.IdFor(m => @Model.Items[i].Quantity)" name="@Html.NameFor(m => @Model.Items[i].Quantity)" value="@Model.Items[i].Quantity" class="form-control text-center" style="width: 5em!important" />
+                                                    </td>
+                                                    <td class="price">@Model.Items[i].ItemPrice.ToCurrencyString()</td>
+                                                    <td>@Model.Items[i].ItemTotal.ToCurrencyString()</td>
+                                                    <td class="text-center">
+                                                        <a href="@Url.Action("RemoveItem", new { itemId = Model.Items[i].Id })" class="remove_cart" rel="2">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                            <tr>
+                                                <td class="hidden-xs"></td>
+                                                <td colspan="5" align="right">Total</td>
+                                                <td class="total" colspan="2">
+                                                    <b>@Model.Items.Sum(item => item.ItemTotal).ToCurrencyString()</b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9">
+                                        <div class="buttons clearfix">
+                                            <button type="button" class="btn btn-theme-default" onclick="window.history.back()"><i class="fa fa-arrow-circle-left"></i> @Html.T("Continue Shopping")</button>
+                                            <button type="submit" class="btn btn-theme-default">@Html.T("Update Cart")</button>
+                                            <a href="@Url.Action("Checkout")" class="btn btn-theme-default">@Html.T("Checkout") <i class="fa fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div>@Html.T("Your shopping cart is empty!")</div>
+                        }
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

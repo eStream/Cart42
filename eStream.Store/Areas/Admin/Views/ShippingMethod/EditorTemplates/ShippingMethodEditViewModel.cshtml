@@ -1,0 +1,134 @@
+﻿@using Estream.Cart42.Web.Domain
+@using EnumHelper = System.Web.Mvc.Html.EnumHelper
+@model Estream.Cart42.Web.Areas.Admin.Models.ShippingMethodEditViewModel
+
+<div data-bind="with: shippingMethod">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShippingZoneId, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ShippingZoneId", null, "", new { @class = "form-control", data_bind = "value: shippingZoneId" })
+            @Html.ValidationMessageFor(model => model.ShippingZoneId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select id="@Html.IdFor(m => m.Type)" name="@Html.NameFor(m => m.Type)" class="form-control" data-bind="value: type">
+                @foreach (SelectListItem item in EnumHelper.GetSelectList(typeof(ShippingMethodType), Model.Type))
+                {
+                    <option value="@item.Value" @(item.Selected ? "selected" : "")>@item.Text.TA()</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div data-bind="visible: type() == @((int)ShippingMethodType.Free)">
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.FreeShippingMinTotal, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" data-bind="value: freeShippingMinTotal, attr: { id: '@Html.IdFor(m => m.FreeShippingMinTotal)', name: '@Html.NameFor(m => m.FreeShippingMinTotal)' }" class="form-control" />
+                @Html.ValidationMessageFor(model => model.FreeShippingMinTotal, "", new { @class = "text-danger" })
+             </div>
+        </div>
+
+    </div>
+    <div data-bind="visible: type() == @((int)ShippingMethodType.Flat)">
+        <div class="form-group">
+            @Html.LabelFor(model => model.FlatRateAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" data-bind="value: flatRateAmount, attr: { id: '@Html.IdFor(m => m.FlatRateAmount)', name: '@Html.NameFor(m => m.FlatRateAmount)' }" class="form-control" />
+            @Html.ValidationMessageFor(model => model.FlatRateAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FlatRatePerItem, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" data-bind="value: flatRatePerItem, attr: { id: '@Html.IdFor(m => m.FlatRatePerItem)', name: '@Html.NameFor(m => m.FlatRatePerItem)' }" />
+               @Html.ValidationMessageFor(model => model.FlatRatePerItem, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+            <div data-bind="visible: type() == @((int)ShippingMethodType.ByWeight)">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WeightRanges, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div data-bind="foreach: weightRanges">
+                            <div class="input-group input-group-row">
+                                <span class="input-group-addon">@Html.TA("From")</span>
+                                <input type="text" data-bind="value: from, attr: { id: '@(Html.IdFor(m => m.WeightRanges))[' + $index() + ']_From', name: '@(Html.NameFor(m => m.WeightRanges))[' + $index() + '].From' }" class="form-control" />
+                                <span class="input-group-addon">@Html.TA("To")</span>
+                                <input type="text" data-bind="value: to, attr: { id: '@(Html.IdFor(m => m.WeightRanges))[' + $index() + ']_To', name: '@(Html.NameFor(m => m.WeightRanges))[' + $index() + '].To' }" class="form-control" />
+                                <span class="input-group-addon">@Html.TA("Amount")</span>
+                                <input type="text" data-bind="value: amount, attr: { id: '@(Html.IdFor(m => m.WeightRanges))[' + $index() + ']_Amount', name: '@(Html.NameFor(m => m.WeightRanges))[' + $index() + '].Amount' }" class="form-control" />
+                                <div class="input-group-btn">
+                                    <button data-bind="click: $parent.removeWeightRange" class="btn btn-danger">@Html.TA("Remove")</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button data-bind="click: addWeightRange" class="btn btn-primary">@Html.TA("Add")</button>
+                    </div>
+                 </div>
+            </div>
+    <div data-bind="visible: type() == @((int)ShippingMethodType.ByTotal)">
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalRanges, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div data-bind="foreach: totalRanges">
+                    <div class="input-group input-group-row">
+                        <span class="input-group-addon">@Html.TA("From")</span>
+                        <input type="text" data-bind="value: from, attr: { id: '@(Html.IdFor(m => m.TotalRanges))[' + $index() + ']_From', name: '@(Html.NameFor(m => m.TotalRanges))[' + $index() + '].From' }" class="form-control" />
+                        <span class="input-group-addon">@Html.TA("To")</span>
+                        <input type="text" data-bind="value: to, attr: { id: '@(Html.IdFor(m => m.TotalRanges))[' + $index() + ']_To', name: '@(Html.NameFor(m => m.TotalRanges))[' + $index() + '].To' }" class="form-control" />
+                        <span class="input-group-addon">@Html.TA("Amount")</span>
+                        <input type="text" data-bind="value: amount, attr: { id: '@(Html.IdFor(m => m.TotalRanges))[' + $index() + ']_Amount', name: '@(Html.NameFor(m => m.TotalRanges))[' + $index() + '].Amount' }" class="form-control" />
+                        <div class="input-group-btn">
+                            <button data-bind="click: $parent.removeTotalRange" class="btn btn-danger">@Html.TA("Remove")</button>
+                        </div>
+                    </div>
+                </div>
+                <button data-bind="click: addTotalRange" class="btn btn-primary">@Html.TA("Add")</button>
+            </div>
+        </div>
+    </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                function shippingMethodEditViewModel(data) {
+                    var self = this;
+                    ko.mapping.fromJS(data, {}, self);
+
+                    self.addWeightRange = function () {
+                        self.weightRanges.push(ko.mapping.fromJS(@Html.Json(new ShippingByRange())));
+                    }
+
+                    self.removeWeightRange = function (range) {
+                        self.weightRanges.remove(range);
+                    }
+
+                    self.addTotalRange = function () {
+                        self.totalRanges.push(ko.mapping.fromJS(@Html.Json(new ShippingByRange())));
+                    }
+
+                    self.removeTotalRange = function (range) {
+                        self.totalRanges.remove(range);
+                    }
+
+                    return self;
+                };
+
+                var model = new shippingMethodEditViewModel(@Html.Json(Model));
+                window.ViewModel.shippingMethod = model;
+            });
+        </script>

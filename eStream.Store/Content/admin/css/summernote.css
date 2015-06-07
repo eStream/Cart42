@@ -1,0 +1,390 @@
+.note-editor {
+    border: 1px solid #a9a9a9;
+    position: relative;
+}
+
+.note-editor .note-dropzone {
+    background-color: white;
+    border: 2px dashed #87cefa;
+    color: #87cefa;
+    display: none;
+    opacity: .95;
+    pointer-event: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.note-editor .note-dropzone .note-dropzone-message {
+    display: table-cell;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle
+}
+
+.note-editor .note-dropzone.hover {
+    border: 2px dashed #098ddf;
+    color: #098ddf;
+}
+
+.note-editor.dragover .note-dropzone { display: table }
+
+.note-editor .note-toolbar {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #a9a9a9
+}
+
+.note-editor.fullscreen {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1050;
+}
+
+.note-editor.fullscreen .note-editable { background-color: white }
+
+.note-editor.fullscreen .note-resizebar { display: none }
+
+.note-editor.codeview .note-editable { display: none }
+
+.note-editor.codeview .note-codable { display: block }
+
+.note-editor .note-statusbar { background-color: #f5f5f5 }
+
+.note-editor .note-statusbar .note-resizebar {
+    border-top: 1px solid #a9a9a9;
+    cursor: ns-resize;
+    height: 8px;
+    width: 100%;
+}
+
+.note-editor .note-statusbar .note-resizebar .note-icon-bar {
+    border-top: 1px solid #a9a9a9;
+    margin: 1px auto;
+    width: 20px;
+}
+
+.note-editor .note-editable {
+    outline: 0;
+    overflow: auto;
+    padding: 10px;
+}
+
+.note-editor .note-editable[contenteditable="false"] { background-color: #e5e5e5 }
+
+.note-editor .note-codable {
+    -moz-border-radius: 0;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-border-radius: 0;
+    -webkit-box-sizing: border-box;
+    background-color: #222;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #ccc;
+    display: none;
+    font-family: Menlo, Monaco, monospace, sans-serif;
+    font-size: 14px;
+    margin-bottom: 0;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+}
+
+.note-air-editor { outline: 0 }
+
+.note-popover .popover { max-width: none }
+
+.note-popover .popover .popover-content a {
+    display: inline-block;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.note-popover .popover .arrow { left: 20px }
+
+.note-popover .popover .popover-content, .note-toolbar {
+    margin: 0;
+    padding: 0 0 5px 5px;
+}
+
+.note-popover .popover .popover-content > .btn-group, .note-toolbar > .btn-group {
+    margin-left: 0;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.note-popover .popover .popover-content .note-table .dropdown-menu, .note-toolbar .note-table .dropdown-menu {
+    min-width: 0;
+    padding: 5px
+}
+
+.note-popover .popover .popover-content .note-table .dropdown-menu .note-dimension-picker, .note-toolbar .note-table .dropdown-menu .note-dimension-picker { font-size: 18px }
+
+.note-popover .popover .popover-content .note-table .dropdown-menu .note-dimension-picker .note-dimension-picker-mousecatcher, .note-toolbar .note-table .dropdown-menu .note-dimension-picker .note-dimension-picker-mousecatcher {
+    cursor: pointer;
+    height: 10em;
+    position: absolute !important;
+    width: 10em;
+    z-index: 3;
+}
+
+.note-popover .popover .popover-content .note-table .dropdown-menu .note-dimension-picker .note-dimension-picker-unhighlighted, .note-toolbar .note-table .dropdown-menu .note-dimension-picker .note-dimension-picker-unhighlighted {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIj4+Pjp6ekKlAqjAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKhmnaJzPAAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+    height: 5em;
+    position: relative !important;
+    width: 5em;
+    z-index: 1;
+}
+
+.note-popover .popover .popover-content .note-table .dropdown-menu .note-dimension-picker .note-dimension-picker-highlighted, .note-toolbar .note-table .dropdown-menu .note-dimension-picker .note-dimension-picker-highlighted {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIjd6vvD2f9LKLW+AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKwNDEVT0AAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+    height: 1em;
+    position: absolute !important;
+    width: 1em;
+    z-index: 2;
+}
+
+.note-popover .popover .popover-content .note-style h1, .note-toolbar .note-style h1, .note-popover .popover .popover-content .note-style h2, .note-toolbar .note-style h2, .note-popover .popover .popover-content .note-style h3, .note-toolbar .note-style h3, .note-popover .popover .popover-content .note-style h4, .note-toolbar .note-style h4, .note-popover .popover .popover-content .note-style h5, .note-toolbar .note-style h5, .note-popover .popover .popover-content .note-style h6, .note-toolbar .note-style h6, .note-popover .popover .popover-content .note-style blockquote, .note-toolbar .note-style blockquote { margin: 0 }
+
+.note-popover .popover .popover-content .note-color .dropdown-toggle, .note-toolbar .note-color .dropdown-toggle {
+    padding-left: 5px;
+    width: 20px;
+}
+
+.note-popover .popover .popover-content .note-color .dropdown-menu, .note-toolbar .note-color .dropdown-menu { min-width: 290px }
+
+.note-popover .popover .popover-content .note-color .dropdown-menu .btn-group, .note-toolbar .note-color .dropdown-menu .btn-group { margin: 0 }
+
+.note-popover .popover .popover-content .note-color .dropdown-menu .btn-group:first-child, .note-toolbar .note-color .dropdown-menu .btn-group:first-child { margin: 0 5px }
+
+.note-popover .popover .popover-content .note-color .dropdown-menu .btn-group .note-palette-title, .note-toolbar .note-color .dropdown-menu .btn-group .note-palette-title {
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    margin: 2px 7px;
+    text-align: center;
+}
+
+.note-popover .popover .popover-content .note-color .dropdown-menu .btn-group .note-color-reset, .note-toolbar .note-color .dropdown-menu .btn-group .note-color-reset {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 5px;
+    padding: 0 3px;
+}
+
+.note-popover .popover .popover-content .note-color .dropdown-menu .btn-group .note-color-reset:hover, .note-toolbar .note-color .dropdown-menu .btn-group .note-color-reset:hover { background: #eee }
+
+.note-popover .popover .popover-content .note-para .dropdown-menu, .note-toolbar .note-para .dropdown-menu {
+    min-width: 216px;
+    padding: 5px
+}
+
+.note-popover .popover .popover-content .note-para .dropdown-menu > div:first-child, .note-toolbar .note-para .dropdown-menu > div:first-child { margin-right: 5px }
+
+.note-popover .popover .popover-content .dropdown-menu, .note-toolbar .dropdown-menu { min-width: 90px }
+
+.note-popover .popover .popover-content .dropdown-menu.right, .note-toolbar .dropdown-menu.right {
+    left: auto;
+    right: 0;
+}
+
+.note-popover .popover .popover-content .dropdown-menu.right::before, .note-toolbar .dropdown-menu.right::before {
+    left: auto !important;
+    right: 9px;
+}
+
+.note-popover .popover .popover-content .dropdown-menu.right::after, .note-toolbar .dropdown-menu.right::after {
+    left: auto !important;
+    right: 10px;
+}
+
+.note-popover .popover .popover-content .dropdown-menu li a i, .note-toolbar .dropdown-menu li a i {
+    color: deepskyblue;
+    visibility: hidden
+}
+
+.note-popover .popover .popover-content .dropdown-menu li a.checked i, .note-toolbar .dropdown-menu li a.checked i { visibility: visible }
+
+.note-popover .popover .popover-content .note-fontsize-10, .note-toolbar .note-fontsize-10 { font-size: 10px }
+
+.note-popover .popover .popover-content .note-color-palette, .note-toolbar .note-color-palette { line-height: 1 }
+
+.note-popover .popover .popover-content .note-color-palette div .note-color-btn, .note-toolbar .note-color-palette div .note-color-btn {
+    border: 1px solid #fff;
+    height: 17px;
+    margin: 0;
+    padding: 0;
+    width: 17px;
+}
+
+.note-popover .popover .popover-content .note-color-palette div .note-color-btn:hover, .note-toolbar .note-color-palette div .note-color-btn:hover { border: 1px solid #000 }
+
+.note-dialog > div { display: none }
+
+.note-dialog .note-image-dialog .note-dropzone {
+    border: 4px dashed lightgray;
+    color: lightgray;
+    font-size: 30px;
+    line-height: 4;
+    margin-bottom: 10px;
+    min-height: 100px;
+    text-align: center;
+}
+
+.note-dialog .note-help-dialog {
+    -khtml-opacity: .9;
+    -moz-opacity: .9;
+    -ms-filter: alpha(opacity=90);
+    -webkit-opacity: .9;
+    background: transparent;
+    background-color: #222 !important;
+    border: 0;
+    color: #ccc;
+    filter: alpha(opacity=90);
+    font-size: 12px;
+    opacity: .9;
+}
+
+.note-dialog .note-help-dialog .modal-content {
+    -moz-border-radius: 5px;
+    -moz-box-shadow: none;
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: none;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-shadow: none
+}
+
+.note-dialog .note-help-dialog a {
+    color: white;
+    font-size: 12px;
+}
+
+.note-dialog .note-help-dialog .title {
+    border-bottom: white 1px solid;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.note-dialog .note-help-dialog .modal-close {
+    color: #dd0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.note-dialog .note-help-dialog .note-shortcut-layout { width: 100% }
+
+.note-dialog .note-help-dialog .note-shortcut-layout td { vertical-align: top }
+
+.note-dialog .note-help-dialog .note-shortcut { margin-top: 8px }
+
+.note-dialog .note-help-dialog .note-shortcut th {
+    color: #dd0;
+    font-size: 13px;
+    text-align: left
+}
+
+.note-dialog .note-help-dialog .note-shortcut td:first-child {
+    color: #dd0;
+    font-family: "Courier New";
+    min-width: 110px;
+    padding-right: 10px;
+    text-align: right
+}
+
+.note-handle .note-control-selection {
+    border: 1px solid black;
+    display: none;
+    position: absolute;
+}
+
+.note-handle .note-control-selection > div { position: absolute }
+
+.note-handle .note-control-selection .note-control-selection-bg {
+    -khtml-opacity: .3;
+    -moz-opacity: .3;
+    -ms-filter: alpha(opacity=30);
+    -webkit-opacity: .3;
+    background-color: black;
+    filter: alpha(opacity=30);
+    height: 100%;
+    opacity: .3;
+    width: 100%;
+}
+
+.note-handle .note-control-selection .note-control-handle {
+    border: 1px solid black;
+    height: 7px;
+    width: 7px;
+}
+
+.note-handle .note-control-selection .note-control-holder {
+    border: 1px solid black;
+    height: 7px;
+    width: 7px;
+}
+
+.note-handle .note-control-selection .note-control-sizing {
+    background-color: white;
+    border: 1px solid black;
+    height: 7px;
+    width: 7px;
+}
+
+.note-handle .note-control-selection .note-control-nw {
+    border-bottom: 0;
+    border-right: 0;
+    left: -5px;
+    top: -5px;
+}
+
+.note-handle .note-control-selection .note-control-ne {
+    border-bottom: 0;
+    border-left: none;
+    right: -5px;
+    top: -5px;
+}
+
+.note-handle .note-control-selection .note-control-sw {
+    border-right: 0;
+    border-top: 0;
+    bottom: -5px;
+    left: -5px;
+}
+
+.note-handle .note-control-selection .note-control-se {
+    bottom: -5px;
+    cursor: se-resize;
+    right: -5px;
+}
+
+.note-handle .note-control-selection .note-control-selection-info {
+    -khtml-opacity: .7;
+    -moz-border-radius: 5px;
+    -moz-opacity: .7;
+    -ms-filter: alpha(opacity=70);
+    -webkit-border-radius: 5px;
+    -webkit-opacity: .7;
+    background-color: black;
+    border-radius: 5px;
+    bottom: 0;
+    color: white;
+    filter: alpha(opacity=70);
+    font-size: 12px;
+    margin: 5px;
+    opacity: .7;
+    padding: 5px;
+    right: 0;
+}

@@ -1,0 +1,130 @@
+﻿@using Estream.Cart42.Web.Domain
+@using Estream.Cart42.Web.Helpers
+@model List<Estream.Cart42.Web.Areas.Admin.Models.OrderViewModel>
+
+@{ ViewBag.Title = "Orders".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+                @if (User.HasAccess(OperatorRoles.ORDERS + OperatorRoles.WRITE))
+                {
+                    <a href="@Url.Action("Create")" class="btn btn-primary"><span class="fa fa-plus"></span>&nbsp;@Html.TA("Add Order")</a>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="ibox-content">
+        @if (Model.Any())
+        {
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>
+                        @Html.TA("Order #")
+                    </th>
+                    <th>
+                        @Html.TA("Date")
+                    </th>
+                    <th>
+                        @Html.TA("Customer")
+                    </th>
+                    <th class="text-right">
+                        @Html.TA("Total")
+                    </th>
+                    <th class="text-center">
+                        @Html.TA("Status")
+                    </th>
+                    <th></th>
+                </tr>
+
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    <tr>
+                        <td data-toggle="expand" style="cursor: pointer" class="text-navy"><i class="fa fa-plus-square"></i></td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = Model[i].Id })">
+                                #@Model[i].Id
+                            </a>
+                        </td>
+                        <td>
+                            @Model[i].DatePlaced
+                        </td>
+                        <td>
+                            @Model[i].BillingAddress.FirstName
+                            @Model[i].BillingAddress.LastName
+                        </td>
+                        <td class="text-right text-navy">
+                            @Model[i].Total.ToCurrencyString()
+                        </td>
+                        <td class="text-center">
+                            @Html.Partial("_StatusDropdown", Model[i])
+                        </td>
+                        <td>
+                            @if (User.HasAccess(OperatorRoles.SHIPMENTS))
+                            {
+                                if (Model[i].CanBeShipped)
+                                {
+                                    <a href="@Url.Action("Create", "Shipment", new {orderId = Model[i].Id})" class="btn btn-primary btn-sm">
+                                        <span class="fa fa-truck"></span>&nbsp;
+                                        @Html.TA("Ship Package")
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Index", "Shipment", new {orderId = Model[i].Id})" class="btn btn-primary btn-outline btn-sm">
+                                        <span class="fa fa-truck"></span>&nbsp;
+                                        @Html.TA("View Shipments")
+                                    </a>
+                                }
+                            }
+                    </td>
+                </tr>
+                    <tr style="display: none">
+                        <td colspan="42">
+                            @Html.DisplayFor(m => m[i])
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">@Html.TA("There are no option categories yet. Add new option category by clicking on the {0} button above", "<strong>" + @Html.TA("Add Order") + "</strong>")</div>
+        }
+    </div>
+</div>
+
+<script language="javascript">
+    $(function () {
+        $('*[data-toggle="expand"]').click(function () {
+            $(this).parent().next('tr').toggle();
+
+            if ($(this).data('expanded') != true) {
+                $(this).data('expanded', true);
+                $(this).html('<i class="fa fa-minus-square"></i>');
+            } else {
+                $(this).data('expanded', false);
+                $(this).html('<i class="fa fa-plus-square"></i>');
+            }
+        });
+    });
+</script>

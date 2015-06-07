@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12">
+            <div id="column-left" class="sidebar">
+                <div class="box account highlights">
+                    <div class="box-heading">@Html.T("My Account")</div>
+                    <div class="box-content">
+                        <ul class="box-account box-panel">
+                            <li><a href="@Url.Action("Index", "Account")">@Html.T("My Orders")</a></li>
+                            <li><a href="@Url.Action("Manage", "Account")">@Html.T("Change Password")</a></li>
+                            <li><a href="@Url.Action("LogOff", "Account")">@Html.T("Sign out")</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix visible-sm"></div>
+        @RenderBody()
+    </div>
+</div>

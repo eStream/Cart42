@@ -1,0 +1,49 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.ShippingMethodsDeleteViewModel
+
+@{ ViewBag.Title = "Delete Shipping Method".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "ShippingMethod")">@Html.TA("Shipping Method")</a>
+                </li>
+                <li class="active">
+                    <strong>@Html.TA("Delete")</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Please review and confirm the deletion of the listed shipping methods")</h5>
+    </div>
+    <div class="ibox-content">
+        <ul>
+            @foreach (var shippingMethod in Model.ShippingMethods)
+            {
+                <li>@shippingMethod.Name</li>
+            }
+        </ul>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Index")" class="btn btn-default">@Html.TA("Cancel")</a>
+                <button type="submit" class="btn btn-danger">@Html.TA("Delete")</button>
+            </div>
+        }
+    </div>
+</div>

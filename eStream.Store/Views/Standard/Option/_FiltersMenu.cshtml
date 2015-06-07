@@ -1,0 +1,44 @@
+﻿@using System.Linq
+@model Estream.Cart42.Web.Models.OptionsFilterViewModel
+
+@if (Model.Categories.Any())
+{
+    <div class="box filter">
+        <div class="box-heading">
+            <span>Refine Search</span>
+            <em class="line"></em>
+        </div>
+        <div class="box-content">
+            @foreach (var category in Model.Categories)
+            {
+                if (category.Options.Any())
+                {
+                    <ul class="box-filter clearfix">
+                        <li>
+                            <span id="filter-group1">@category.Name</span>
+                            <ul class="clearfix">
+                                @foreach (var option in category.Options.OrderByDescending(o => o.Count))
+                                {
+                                    if (option.ActiveFilter)
+                                    {
+                                        <li>
+                                            <input id="filter@(option.Id)" type="checkbox" checked="checked" onclick="window.location.href = '@Url.RemoveParam("opt", option.Id.ToString())'" />
+                                            <label for="filter@(option.Id)">@option.Name (@option.Count)</label>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <input id="filter@(option.Id)" type="checkbox" onclick="window.location.href = '@Url.AddParam("opt", option.Id.ToString())'" />
+                                            <label for="filter@(option.Id)">@option.Name (@option.Count)</label>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                }
+            }
+        </div>
+    </div>
+}

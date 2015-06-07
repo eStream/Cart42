@@ -1,0 +1,148 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.ProductSkusEditViewModel
+
+<div data-bind="with: $root.skus">
+    <table class="table" data-bind="if: skus().length > 0">
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" />
+                </th>
+                <th>@Html.TA("Sku")</th>
+                <th>@Html.TA("Options")</th>
+                <th class="col-md-2">@Html.TA("Price")</th>
+                <th class="col-md-2">@Html.TA("Quantity")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: skus">
+            <tr>
+                <td>
+                    <input data-bind="attr: { id: '@(Html.IdFor(m => m.Skus))[' + $index() + ']_ID', name: '@(Html.NameFor(m => m.Skus))[' + $index() + '].Id' }, value: id" type="hidden" />
+                    <input data-bind="attr: { id: '@(Html.IdFor(m => m.Skus))[' + $index() + ']_OptionIds', name: '@(Html.NameFor(m => m.Skus))[' + $index() + '].OptionIds' }, value: optionIds" type="hidden" />
+                    <input data-bind="attr: { id: '@(Html.IdFor(m => m.Skus))[' + $index() + ']_UploadIds', name: '@(Html.NameFor(m => m.Skus))[' + $index() + '].UploadIds' }, value: uploadIds" type="hidden" />
+                    <input id="cbSku" data-bind="value: id" type="checkbox" />
+                </td>
+                <td>
+                    <input data-bind="attr: { id: '@(Html.IdFor(m => m.Skus))[' + $index() + ']_Sku', name: '@(Html.NameFor(m => m.Skus))[' + $index() + '].Sku' }, value: sku" type="text" class="form-control input-sm" />
+                </td>
+                <td data-bind="html: $parent.formatOptions(options())"></td>
+                <td>
+                    <div class="input-group">
+                        @if (!string.IsNullOrEmpty(Settings.Get<string>(SettingField.CurrencyPrefix)))
+                        {
+                            <span class="input-group-addon">@(Settings.Get<string>(SettingField.CurrencyPrefix))</span>
+                        }
+                        <input data-bind="attr: { id: '@(Html.IdFor(m => m.Skus))[' + $index() + ']_Price', name: '@(Html.NameFor(m => m.Skus))[' + $index() + '].Price' }, value: price" type="text" class="form-control input-sm" />
+                        @if (!string.IsNullOrEmpty(Settings.Get<string>(SettingField.CurrencySuffix)))
+                        {
+                            <span class="input-group-addon">@(Settings.Get<string>(SettingField.CurrencySuffix))</span>
+                        }
+                    </div>
+                </td>
+                <td>
+                    <input data-bind="attr: { id: '@(Html.IdFor(m => m.Skus))[' + $index() + ']_Quantity', name: '@(Html.NameFor(m => m.Skus))[' + $index() + '].Quantity' }, value: quantity" type="number" class="form-control input-sm" />
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-default btn-outline btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                            <i class="fa fa-gear"></i>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li role="presentation"><a role="menuitem" href="#" tabindex="-1" data-bind="click: $parent.remove">@Html.TA("Delete")</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-lg-7">
+            <button data-toggle="modal" data-target="#generateSkuModal" type="button" class="btn btn-default btn-outline"><span class="fa fa-list"></span>&nbsp;@Html.TA("Generate Skus")</button>
+        </div>
+        <div class="text-right" data-bind="if: skus().length > 0">
+            <button data-bind="click: deleteSelected" class="btn btn-default btn-danger"><span class="fa fa-times"></span>&nbsp;@Html.TA("Delete selected")</button>
+        </div>
+    </div>
+    <div class="modal fade" id="generateSkuModal" tabindex="-1" role="dialog" aria-labelledby="generateSkuModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Html.TA("Close")</span></button>
+                    <h4 class="modal-title" id="generateSkuModalLabel">@Html.TA("Add Skus")</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">@Html.TA("Prefix")</label>
+                        <div class="col-md-4">
+                            <input id="txtSkuPrefix" type="text" class="form-control" value="SKU-" />
+                        </div>
+                    </div>
+                    <div id="divGenerateSkusOptions" data-bind="foreach: $root.options.categories">
+                        <!-- ko if: anySelected() -->
+                        <div data-bind="text: name"></div>
+                        <div data-bind="foreach: selectedOptions()">
+                            <label><input type="checkbox" data-bind="value: id" />&nbsp;<!-- ko text: name --><!-- /ko --></label>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">@Html.TA("Close")</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-bind="click: generate">@Html.TA("Generate")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        function productSkuEditViewModel(data) {
+            var self = this;
+
+            ko.mapping.fromJS(data, {}, self);
+
+            self.generate = function () {
+                $('#generateSkuModal').modal('hide');
+                var optionIds = $('#divGenerateSkusOptions input[type=checkbox]:checked').map(function () {
+                    return $(this).val();
+                }).get();
+                var prefix = $('#txtSkuPrefix').val();
+
+                $.post('@Url.Action("GenerateSkus")', { model: { skus: self.skus(), optionIds: optionIds, prefix: prefix } },
+                    function (result) {
+                        ko.mapping.fromJS(result, {}, self.skus);
+                    });
+            }
+
+            self.remove = function (row) {
+                self.skus.remove(row);
+            }
+
+            self.formatOptions = function (optionsJson) {
+                if (!optionsJson) return 'n/a';
+                var options = JSON.parse(optionsJson);
+                var result = '';
+                for (var i = 0; i < options.length; i++) {
+                    result += '<strong>' + options[i].category + '</strong>: ' + options[i].option + ' ';
+                }
+                return result;
+            }
+
+            self.deleteSelected = function () {
+                var removeSkus = [];
+                $('#cbSku[type=checkbox]').each(function (index) {
+                    if ($(this).is(':checked'))
+                        removeSkus.push(self.skus()[index]);
+                });
+                self.skus.removeAll(removeSkus);
+            }
+
+            return self;
+        };
+
+        var model = new productSkuEditViewModel(@Html.Json(Model));
+        window.ViewModel.skus = model;
+    });
+</script>

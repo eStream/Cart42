@@ -1,0 +1,133 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.OrdersChartBoxViewModel
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Orders and Sales At a Glance")</h5>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-xs btn-white active">@Html.TA("Last 30 days")</button>
+                <button type="button" class="btn btn-xs btn-white">@Html.TA("Last 90 days")</button>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="ordersChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/Content/admin/js/flot/jquery.flot.js"></script>
+<script src="/Content/admin/js/flot/jquery.flot.tooltip.min.js"></script>
+<script src="/Content/admin/js/flot/jquery.flot.spline.js"></script>
+<script src="/Content/admin/js/flot/jquery.flot.resize.js"></script>
+<script src="/Content/admin/js/flot/jquery.flot.pie.js"></script>
+<script src="/Content/admin/js/flot/jquery.flot.symbol.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        var salesJson = @Html.Json(Model.SalesData);
+
+        var salesData = [];
+        for (var i = 0; i < salesJson.length; i++) {
+            salesData.push([salesJson[i].date.getTime(), salesJson[i].value]);
+        }
+
+        var ordersJson = @Html.Json(Model.OrdersData);
+
+        var ordersData = [];
+        for (var i = 0; i < ordersJson.length; i++) {
+            ordersData.push([ordersJson[i].date.getTime(), ordersJson[i].value]);
+        }
+
+        var dataset = [
+            {
+                label: "@Html.TA("Number of orders")",
+                data: ordersData,
+                color: "#1ab394",
+                bars: {
+                    show: true,
+                    align: "center",
+                    barWidth: 24 * 60 * 60 * 600,
+                    lineWidth: 0
+                }
+
+            }, {
+                label: "@Html.TA("Amount of sales")",
+                data: salesData,
+                yaxis: 2,
+                color: "#464f88",
+                lines: {
+                    lineWidth: 1,
+                    show: true,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                            opacity: 0.2
+                        }, {
+                            opacity: 0.2
+                        }]
+                    }
+                },
+                splines: {
+                    show: false,
+                    tension: 0.6,
+                    lineWidth: 1,
+                    fill: 0.1
+                },
+            }
+        ];
+
+
+        var options = {
+            xaxis: {
+                mode: "time",
+                tickSize: [3, "day"],
+                tickLength: 0,
+                axisLabel: "Date",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Arial',
+                axisLabelPadding: 10,
+                color: "#838383"
+            },
+            yaxes: [{
+                position: "left",
+                min: 0,
+                color: "#838383",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Arial',
+                axisLabelPadding: 3
+            }, {
+                position: "right",
+                min: 0,
+                clolor: "#838383",
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: ' Arial',
+                axisLabelPadding: 67,
+                tickFormatter: function(val) {
+                    return window.formatCurrency(val);
+                },
+            }
+            ],
+            legend: {
+                noColumns: 1,
+                labelBoxBorderColor: "#000000",
+                position: "sw",
+            },
+            grid: {
+                hoverable: false,
+                borderWidth: 0,
+                color: '#838383'
+            }
+        };
+
+        $.plot($("#ordersChart"), dataset, options);
+    });
+</script>

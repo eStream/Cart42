@@ -1,0 +1,57 @@
+﻿@{ ViewBag.Title = "Add Template".TA(); }
+
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "PageTemplate")">@Html.TA("Page Templates")</a>
+                </li>
+                <li class="active">
+                    <strong>@Html.TA("Add")</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Template Details")</h5>
+    </div>
+    <div class="ibox-content">
+        @using (Html.BeginForm("Create", "PageTemplate", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-2">@Html.TA("Template Name")</label>
+                    <div class="col-md-10">
+                        <input type="text" name="name" class="form-control" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">@Html.TA("Template File")</label>
+                    <div class="col-md-10">
+                        <input type="file" name="file" class="form-control" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-primary"><span class="fa fa-upload"></span> @Html.TA("Upload")</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

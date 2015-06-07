@@ -1,0 +1,20 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.VisitsBoxViewModel
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <span class="label label-primary pull-right">@Html.TA("Today")</span>
+        <h5>@Html.TA("Vistits")</h5>
+    </div>
+    <div class="ibox-content">
+        <h1 class="no-margins">@Model.Number.ToString("N0")</h1>
+        @if (Model.Difference > 0)
+        {
+            <div class="stat-percent font-bold text-navy">@Model.Difference% <i class="fa fa-level-up"></i></div>
+        }
+        else if (Model.Difference < 0)
+        {
+            <div class="stat-percent font-bold text-danger">@Model.Difference% <i class="fa fa-level-down"></i></div>
+        }
+        <small>@Html.TA("New visits")</small>
+    </div>
+</div>

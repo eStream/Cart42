@@ -1,0 +1,34 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.TopCategoriesBoxViewModel
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Top Categories")</h5>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <table class="table table-hover margin bottom">
+                <thead>
+                    <tr>
+                        <th style="width: 1%" class="text-center">@Html.TA("No.")</th>
+                        <th>@Html.TA("Category")</th>
+                        <th class="text-center">@Html.TA("Orders")</th>
+                        <th class="text-center">@Html.TA("Total")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.CategoriesData.Count; i++)
+                    {
+                        <tr>
+                            <td class="text-center">@(i+1)</td>
+                            <td>
+                                @Model.CategoriesData[i].Name
+                            </td>
+                            <td class="text-center small">@Model.CategoriesData[i].Orders</td>
+                            <td class="text-center"><span class="label label-primary">@Model.CategoriesData[i].Total.ToCurrencyString()</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+.pav-categoryproducts ul,
+.pav-categoryproducts ol{
+	list-style: none;
+}
+.pav-categoryproducts ul li a{
+    display: block;
+    cursor: pointer;
+}
+
+.pav-categoryproducts ul li a span{
+    cursor: text;
+}
+.pav-categoryproducts .product-grid .row{
+    padding: 0;
+}
+.pav-categoryproducts .tab-pane{
+	position: relative;
+    display: block;
+}
+/* .pav-categoryproducts .carousel-controls{
+    position: absolute;    
+    top: -29px;
+} */
+.pav-categoryproducts{
+	position: relative;
+    margin-top: 50px;
+    background: #fff;
+    border-radius: 4px;
+}
+.pav-categoryproducts .tab-nav{
+	width: 24.5%;
+}
+.box-wapper{
+    border-radius: 0 9px 0 0;
+    border-top: 2px solid #FF6346;
+}
+.box-wapper .box-heading > span {
+	background-color: #FF6346;
+    position: absolute;
+    top: -30px;
+    z-index: 1000;
+}

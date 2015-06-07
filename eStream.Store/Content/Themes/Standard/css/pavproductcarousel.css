@@ -1,0 +1,21 @@
+.box-products {
+	position:relative;
+}
+.productcarousel .carousel-control{
+	z-index:10
+}
+.productcarousel .nav{
+	padding:0;
+	margin:0
+}	
+.productcarousel .tab-content, 
+.producttabs .box-product{
+	overflow:inherit
+}
+/* .productcarousel .carousel-control.left{
+	left: -19px;
+}
+.productcarousel .carousel-control.right{
+	right: -19px;
+}
+ */

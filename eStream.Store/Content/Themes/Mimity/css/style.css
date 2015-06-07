@@ -1,0 +1,293 @@
+*{
+	-moz-border-radius: 0!important;
+	-webkit-border-radius: 0!important;
+	-ms-border-radius: 0!important;
+	-o-border-radius: 0!important;
+	border-radius: 0!important;
+	outline: 0;
+}
+.btn:active,.btn:focus,a:active,a:focus{outline: 0}
+.no-border-right{border-right: 0!important}
+.no-border-left{border-left: 0!important}
+.no-padding{padding: 0!important}
+.hero-spacer {margin-top: 50px}
+.hero-feature{margin-bottom: 30px}
+select{border:1px solid #ddd;padding:3px}
+@font-face {
+    font-family: 'open_sanscondensed_light';
+    src: url('../fonts/OpenSansCondLight.eot');
+    src: url('../fonts/OpenSansCondLight.woff') format('woff'),
+         url('../fonts/OpenSansCondLight.ttf') format('truetype'),
+         url('../fonts/OpenSansCondLight.svg#open_sanscondensed_light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DroidSansRegular';
+    src: url('../fonts/DroidSans-webfont.eot');
+    src: url('../fonts/DroidSans-webfontd41d.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/DroidSans-webfont.woff') format('woff'),
+         url('../fonts/DroidSans-webfont.ttf') format('truetype'),
+         url('../fonts/DroidSans-webfont.svg#DroidSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+	color:#333;
+}
+.main-container{
+	padding-top: 20px;
+    min-height: 300px;
+}
+header{
+	padding-top: 10px;
+}
+header .well{
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+	padding: 0;
+	padding-top: 20px;
+	border: 0;
+	background: transparent;
+}
+header .logo{
+	padding: 0;
+}
+header .logo a{
+	color: #333;
+	font-size: 35px;
+	font-family: 'open_sanscondensed_light';
+}
+header .logo a span{
+	color: #428bca;
+}
+header .logo a:hover{
+	text-decoration: none;
+}
+.slider{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	margin-bottom: 20px;
+}
+ul.bxslider {
+	list-style: none;
+}
+.bx-wrapper .bx-viewport {
+	top: 0;
+	left: 0;
+}
+.bx-wrapper img {
+	width: 100%;
+}
+.bx-viewport {
+	max-height: 500px!important;
+}
+.input-search{
+	position: relative;
+	z-index: 1;
+}
+.btn-group-cart,.btn-group-cart .btn{
+	width: 100%;
+}
+.btn-group-cart .btn{
+	text-align: center;
+}
+.btn-group-cart .dropdown-menu{
+	z-index: 1001;
+	left: inherit;
+	right: 0;
+}
+.btn-group-cart .icon-cart{
+	margin-right: 5px;
+}
+ul.cart-content{
+	min-width: 250px;
+}
+ul.cart-content b{
+	font-weight: normal;
+	display: block;
+	font-family: 'DroidSansRegular';
+	/*font-size: 16px;*/
+	color: #428BCA;
+}
+.link-p{
+	display: block;
+	min-height: 250px;
+	height: auto;
+	width: 100%;
+	max-width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.link-ps{
+	display: block;
+	min-height: 150px;
+	height: auto;
+	width: 100%;
+	max-width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.first-p{
+	min-height: 169px;
+}
+.def-img{
+	position: inherit!important;
+	width: auto!important;
+	height: inherit!important;
+	max-width: inherit!important;
+	max-height: inherit!important;
+	left: inherit!important;
+	top: inherit!important;
+}
+.prod-caption{
+	background: #fbfbfb;
+	border-top: 1px solid #ddd;
+}
+.prod-caption h4{
+	font-size: 16px;
+	height: 40px;
+	overflow: hidden;
+}
+span.title{
+	display: block;
+	font-size: 20px;
+	border-bottom: 3px solid #eee;
+	padding-bottom: 8px;
+	margin-bottom: 20px;
+	font-family: 'open_sanscondensed_light';
+	font-size: 22px;
+	color: #4c7ed3;
+    text-transform: uppercase;
+}
+footer{
+	color: #eee;
+}
+footer h4{
+	border-bottom: 1px solid #5d5d5d;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 16px;
+}
+footer .column ul{
+	font-size: 13px;
+	list-style: none;
+	padding: 0;
+	line-height: 22px;
+}
+footer .column ul a{
+	color: #a09f9f;
+}
+footer .copyright{
+	padding: 10px;
+	color: #ccc;
+}
+.navbar{
+	margin-bottom: 0;
+}
+@media (min-width: 768px) {
+	.navbar-nav > li > a {
+		padding-top: 17px;
+		padding-bottom: 17px;
+	}
+}
+.navbar li a{
+	font-family: 'open_sanscondensed_light';
+	font-size: 20px;
+	text-transform: uppercase;
+	-ms-transition: all 100ms ease-in-out 0s ;
+	-moz-transition: all 100ms ease-in-out 0s ;
+	-webkit-transition: all 100ms ease-in-out 0s ;
+	-o-transition: all 100ms ease-in-out 0s ;
+	transition: all 100ms ease-in-out 0s ;
+}
+.navbar li.nav-dropdown .caret{
+	border-top-color: #fff;
+	border-bottom-color: #fff;
+}
+@media (min-width: 768px) {
+	.navbar li.nav-dropdown ul li a{
+		font-family: Arial;
+		font-size: 15px;
+		color: #333!important;
+		text-transform: inherit;
+	}
+	.navbar li.nav-dropdown ul li a:hover{
+		background-color: #f1f1f1!important;
+	}
+}
+.list-categ a{
+	font-family: 'DroidSansRegular';
+	background: #fbfbfb;
+	-ms-transition: all 100ms ease-in-out 0s ;
+	-moz-transition: all 100ms ease-in-out 0s ;
+	-webkit-transition: all 100ms ease-in-out 0s ;
+	-o-transition: all 100ms ease-in-out 0s ;
+	transition: all 100ms ease-in-out 0s ;
+}
+.list-categ a:hover{
+	background: #fff;
+	color: #428bca;
+}
+.thumbnail:hover{
+	box-shadow: 0 0 10px 1px #f1f1f1;
+}
+.catalogue-pagination{
+	margin: 0;
+	margin-bottom: 40px;
+	font-family: 'open_sanscondensed_light';
+}
+.catalogue-pagination li.disabled:hover a{
+	cursor: default;
+}
+.catalogue-pagination li a{
+	-ms-transition: all 100ms ease-in-out 0s ;
+	-moz-transition: all 100ms ease-in-out 0s ;
+	-webkit-transition: all 100ms ease-in-out 0s ;
+	-o-transition: all 100ms ease-in-out 0s ;
+	transition: all 100ms ease-in-out 0s ;
+	padding: 3px 12px;
+}
+.back-top{
+	display: none;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 30px;
+	background: #555;
+	color: #fff;
+	height: 23px;
+}
+.back-top:hover, .back-top:focus, .back-top:active{
+	color: #fff;
+}
+.back-top:hover{
+	-ms-transition: all 100ms ease-in-out 0s ;
+	-moz-transition: all 100ms ease-in-out 0s ;
+	-webkit-transition: all 100ms ease-in-out 0s ;
+	-o-transition: all 100ms ease-in-out 0s ;
+	transition: all 100ms ease-in-out 0s ;
+	background: #333;
+}
+.tbl-cart thead{
+	background: #f8f8f8
+}
+.tbl-cart .td-qty{
+	white-space: normal !important;
+	width: 130px;
+}
+.btns-cart .btn{
+	margin-right: 3px;
+}
+.tbl-checkout tbody tr td:nth-child(odd){
+	background: #f8f8f8;
+}
+.input-qty-detail .bootstrap-touchspin{
+	float: left;
+	margin-right: 5px;
+	width: 130px;
+}

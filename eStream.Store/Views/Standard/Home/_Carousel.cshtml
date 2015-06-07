@@ -1,0 +1,59 @@
+﻿<div class="slider">
+    <ul class="bxslider">
+        @if (string.IsNullOrEmpty(Setting("carousel_image_1"))
+                    && string.IsNullOrEmpty(Setting("carousel_image_2"))
+                    && string.IsNullOrEmpty(Setting("carousel_image_3"))
+                    && string.IsNullOrEmpty(Setting("carousel_image_4")))
+        {
+            // Show sample
+            <li>
+                <a href="#">
+                    <img src="/Content/Themes/@ViewBag.Theme/images/banner_slider-1.jpg" alt="" />
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/Content/Themes/@ViewBag.Theme/images/banner_slider-2.jpg" alt="" />
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="/Content/Themes/@ViewBag.Theme/images/banner_slider-3.jpg" alt="" />
+                </a>
+            </li>
+        }
+
+        @if (!string.IsNullOrEmpty(Setting("carousel_image_1")))
+        {
+            <li>
+                <a href="@Setting("carousel_url_1")">
+                    <img src="/Api/Upload/@Setting("carousel_image_1")" alt="" />
+                </a>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(Setting("carousel_image_2")))
+        {
+            <li>
+                <a href="@Setting("carousel_url_2")">
+                    <img src="/Api/Upload/@Setting("carousel_image_2")" alt="" />
+                </a>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(Setting("carousel_image_3")))
+        {
+            <li>
+                <a href="@Setting("carousel_url_3")">
+                    <img src="/Api/Upload/@Setting("carousel_image_3")" alt="" />
+                </a>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(Setting("carousel_image_4")))
+        {
+            <li>
+                <a href="@Setting("carousel_url_4")">
+                    <img src="/Api/Upload/@Setting("carousel_image_4")" alt="" />
+                </a>
+            </li>
+        }
+    </ul>
+</div>

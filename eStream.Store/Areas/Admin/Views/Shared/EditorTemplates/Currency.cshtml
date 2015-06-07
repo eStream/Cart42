@@ -1,0 +1,13 @@
+﻿@model decimal?
+           
+<div class="input-group">
+    @if (!string.IsNullOrEmpty(Settings.Get<string>(SettingField.CurrencyPrefix)))
+    {
+        <span class="input-group-addon">@(Settings.Get<string>(SettingField.CurrencyPrefix))</span>
+    }
+    @Html.TextBoxFor(m => m, new { @class = "form-control" } )
+    @if (!string.IsNullOrEmpty(Settings.Get<string>(SettingField.CurrencySuffix)))
+    {
+        <span class="input-group-addon">@(Settings.Get<string>(SettingField.CurrencySuffix))</span>
+    }
+</div>

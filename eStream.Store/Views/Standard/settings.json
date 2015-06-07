@@ -1,0 +1,430 @@
+﻿{
+    "sections": [
+        {
+            "name": "Colors",
+            "items": [
+                {
+                    "key": "outer_background_color",
+                    "description": "Outer background color",
+                    "descriptionТ": { "bg": "Външен фонов цвят" },
+                    "default": "f5f5f5",
+                    "type": "color"
+                },
+                {
+                    "key": "topbar_background_color",
+                    "description": "Topbar background color",
+                    "descriptionT": { "bg": "Фонов цвят на горната лента" },
+                    "default": "353d41",
+                    "type": "color"
+                },
+                {
+                    "key": "categories_header_background_color",
+                    "description": "Categories Header background color",
+                    "descriptionT": { "bg": "Фонов цвят на хедър на категориите" },
+                    "default": "5e90af",
+                    "type": "color"
+                },
+                {
+                    "key": "navbar_text_color",
+                    "description": "Navigation bar text color",
+                    "descriptionT": { "bg": "Цвят на текст в навигационната лента" },
+                    "default": "353d41",
+                    "type": "color"
+                },
+                {
+                    "key": "navbar_texthover_color",
+                    "description": "Navigation bar text hover color",
+                    "descriptionT": { "bg": "Цвят на активен текст в навигационната лента" },
+                    "default": "ff6346",
+                    "type": "color"
+                },
+                {
+                    "key": "navbar_texthover_border_color",
+                    "description": "Navigation bar text hover border color",
+                    "descriptionT": { "bg": "Цвят на рамка на активен текст в навигационната лента" },
+                    "default": "ff6346",
+                    "type": "color"
+                },
+                {
+                    "key": "footer_background_color",
+                    "description": "Footer background color",
+                    "descriptionT": { "bg": "Фонов цвят на фуутър" },
+                    "default": "202020",
+                    "type": "color"
+                } /*,
+                {
+                    "key": "text_color",
+                    "description": "Text color",
+                    "default": "555555",
+                    "type": "color"
+                },
+                {
+                    "key": "link_color",
+                    "description": "Link color",
+                    "default": "f45b4f",
+                    "type": "color"
+                }*/
+            ]
+        },
+        /*        {
+            "name": "Fonts",
+            "items": [
+                {
+                    "key": "base_font",
+                    "description": "Base Font",
+                    "default": "Helvetica",
+                    "type": "dropdown",
+                    "options": [
+                        { "value": "Helvetica", "description": "Helvetica/Arial" },
+                        { "value": "Helvetica", "description": "Helvetica/Arial" }
+                    ]
+                },
+                {
+                    "key": "heading_font",
+                    "description": "Heading Font",
+                    "default": "Helvetica",
+                    "type": "dropdown",
+                    "options": [
+                        { "value": "Helvetica", "description": "Helvetica/Arial" },
+                        { "value": "Helvetica", "description": "Helvetica/Arial" }
+                    ]
+                }
+            ]
+        },
+*/
+        {
+            "name": "Header",
+            "items": [
+                {
+                    "key": "logo_file",
+                    "description": "Store logo",
+                    "descriptionT": { "bg": "Лого на магазина" },
+                    "hint": "Should be less than 220 pixels wide",
+                    "hintT": { "bg": "Трябва да е по-малко от 220 пиксела на широчина" },
+                    "type": "upload"
+                },
+                {
+                    "key": "favicon_file",
+                    "description": "Favicon",
+                    "descriptionT": { "bg": "браузърна иконка" },
+                    "hint": "Must be 16x16 in ico format",
+                    "hintT": { "bg": "Трябва да е 16х16 в ico формат" },
+                    "type": "upload"
+                },
+                {
+                    "key": "shipping_label",
+                    "description": "Shipping Label",
+                    "descriptionT": { "bg": "Надпис на доставка" },
+                    "default": "free shipping",
+                    "defaultT": { "bg": "безплатна доставка" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "shipping_hint",
+                    "description": "Shipping Hint",
+                    "descriptionT": { "bg": "Информация за доставка" },
+                    "default": "all order over €50",
+                    "defaultT": { "bg": "всички поръчки над 50лв." },
+                    "type": "textbox"
+                },
+                {
+                    "key": "return_label",
+                    "description": "Return Label",
+                    "descriptionT": { "bg": "Надпис на рекламация" },
+                    "default": "Return & Exchange",
+                    "defaultT": { "bg": "Връщане и замяна" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "return_hint",
+                    "description": "Return Hint",
+                    "descriptionT": { "bg": "Информация за рекламация" },
+                    "default": "in 3 working days",
+                    "defaultT": { "bg": "до 3 работни дни" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "phone_label",
+                    "description": "Phone Label",
+                    "descriptionT": { "bg": "Надпис на телефон" },
+                    "default": "(+084) 0123 456 789",
+                    "type": "textbox"
+                },
+                {
+                    "key": "phone_hint",
+                    "description": "Phone Hint",
+                    "descriptionT": { "bg": "Информация за телефон" },
+                    "default": "Sed ullamcorper mattis",
+                    "defaultT": { "bg": "Телефон за връзка" },
+                    "type": "textbox"
+                }
+            ]
+        },
+        {
+            "name": "Social Links",
+            "items": [
+                {
+                    "key": "twitter_url",
+                    "description": "Twitter Link",
+                    "descriptionT": { "bg": "Линк към Twitter" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "facebook_url",
+                    "description": "Facebook Link",
+                    "descriptionT": { "bg": "Линк към Facebook" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "googleplus_url",
+                    "description": "Google+ Link",
+                    "descriptionT": { "bg": "Линк към Google+" },
+                    "type": "textbox"
+                }
+            ]
+        },
+        {
+            "name": "Footer",
+            "items": [
+                {
+                    "key": "contact_address",
+                    "description": "Contact Address",
+                    "descriptionT": { "bg": "Адрес за връзка" },
+                    "default": "12345 Street name, California, USA",
+                    "defaultT": { "bg": "ул.Борисова, 7000, Русе, България" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "contact_phone",
+                    "description": "Contact Phone",
+                    "descriptionT": { "bg": "Телефон за връзка" },
+                    "default": "(+084) 0123 456 789",
+                    "type": "textbox"
+                },
+                {
+                    "key": "contact_email",
+                    "description": "Contact Email",
+                    "descriptionT": { "bg": "Е-мейл за връзка" },
+                    "default": "email@company.com",
+                    "type": "textbox"
+                },
+                {
+                    "key": "about_us_text",
+                    "description": "About Us Text",
+                    "descriptionT": { "bg": "Поле \"За нас\"" },
+                    "type": "multiline"
+                },
+                {
+                    "key": "links_column1_title",
+                    "description": "Links Column 1 Title",
+                    "descriptionT": { "bg": "Заглавие на линк колона 1" },
+                    "default": "Why buy from us",
+                    "defaultT": { "bg": "Защо да пазарувате от нас" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link1_column1_title",
+                    "description": "Column 1 Link 1 Title",
+                    "descriptionT": { "bg": "Колона 1 линк 1 заглавие" },
+                    "default": "Product Recall",
+                    "defaultT": { "bg": "Връщане на продукт" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link1_column1_url",
+                    "description": "Column 1 Link 1 Url",
+                    "descriptionT": { "bg": "Колона 1 линк 1 адрес" },
+                    "default": "#",
+                    "type": "textbox"
+                },
+                {
+                    "key": "link2_column1_title",
+                    "description": "Column 1 Link 2 Title",
+                    "descriptionT": { "bg": "Колона 1 линк 2 заглавие" },
+                    "default": "Gift Vouchers",
+                    "defaultT": { "bg": "Ваучери за подарък" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link2_column1_url",
+                    "description": "Column 1 Link 2 Url",
+                    "descriptionT": { "bg": "Колона 1 линк 2 адрес" },
+                    "default": "#",
+                    "type": "textbox"
+                },
+                {
+                    "key": "link3_column1_title",
+                    "description": "Column 1 Link 3 Title",
+                    "descriptionT": { "bg": "Колона 1 линк 3 заглавие" },
+                    "default": "Returns and Exchanges",
+                    "defaultT": { "bg": "Връщане и замяна" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link3_column1_url",
+                    "description": "Column 1 Link 3 Url",
+                    "descriptionT": { "bg": "Колона 1 линк 3 адрес" },
+                    "default": "#",
+                    "type": "textbox"
+                },
+                {
+                    "key": "link4_column1_title",
+                    "description": "Column 1 Link 4 Title",
+                    "descriptionT": { "bg": "Колона 1 линк 4 заглавие" },
+                    "default": "Shipping Options",
+                    "defaultT": { "bg": "Опции за доставка" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link4_column1_url",
+                    "description": "Column 1 Link 4 Url",
+                    "descriptionT": { "bg": "Колона 1 линк 4 адрес" },
+                    "default": "#",
+                    "type": "textbox"
+                },
+                {
+                    "key": "links_column2_title",
+                    "description": "Links Column 2 Title",
+                    "descriptionT": { "bg": "Заглавие на линк колона 2" },
+                    "default": "Userful links",
+                    "defaultT": { "bg": "Полезни линкове" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link1_column2_title",
+                    "description": "Column 2 Link 1 Title",
+                    "descriptionT": { "bg": "Колона 2 линк 1 заглавие" },
+                    "default": "Pricing Policy",
+                    "defaultT": { "bg": "Ценова политика" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link1_column2_url",
+                    "description": "Column 2 Link 1 Url",
+                    "descriptionT": { "bg": "Колона 2 линк 1 адрес" },
+                    "default": "#",
+                    "type": "textbox"
+                },
+                {
+                    "key": "link2_column2_title",
+                    "description": "Column 2 Link 2 Title",
+                    "descriptionT": { "bg": "Колона 2 линк 2 заглавие" },
+                    "default": "Shipping Policy",
+                    "defaultT": { "bg": "Информация за доставка" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link2_column2_url",
+                    "description": "Column 2 Link 2 Url",
+                    "descriptionT": { "bg": "Колона 2 линк 2 адрес" },
+                    "default": "#",
+                    "type": "textbox"
+                },
+                {
+                    "key": "link3_column2_title",
+                    "description": "Column 2 Link 3 Title",
+                    "descriptionT": { "bg": "Колона 2 линк 3 заглавие" },
+                    "default": "Payment Methods",
+                    "defaultT": { "bg": "Методи за плащане" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link3_column2_url",
+                    "description": "Column 2 Link 3 Url",
+                    "descriptionT": { "bg": "Колона 2 линк 3 адрес" },
+                    "default": "#",
+                    "type": "textbox"
+                },
+                {
+                    "key": "link4_column2_title",
+                    "description": "Column 2 Link 4 Title",
+                    "descriptionT": { "bg": "Колона 2 линк 4 заглавие" },
+                    "default": "Site Information",
+                    "defaultT": { "bg": "Информация за сайта" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "link4_column2_url",
+                    "description": "Column 2 Link 4 Url",
+                    "descriptionT": { "bg": "Колона 2 линк 4 адрес" },
+                    "default": "#",
+                    "type": "textbox"
+                }
+
+            ]
+        },
+
+        {
+            "name": "Carousel",
+            "items": [
+                {
+                    "key": "show_carousel",
+                    "description": "Show carousel?",
+                    "descriptionT": { "bg": "Покажи слайдшоу?" },
+                    "default": "true",
+                    "type": "checkbox"
+                },
+                {
+                    "key": "carousel_image_1",
+                    "description": "Image 1",
+                    "descriptionT": { "bg": "Снимка 1" },
+                    "type": "upload"
+                },
+                {
+                    "key": "carousel_url_1",
+                    "description": "Image 1 links to",
+                    "descriptionT": { "bg": "Сминка 1 е линк към" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "carousel_image_2",
+                    "description": "Image 2",
+                    "descriptionT": { "bg": "Снимка 2" },
+                    "type": "upload"
+                },
+                {
+                    "key": "carousel_url_2",
+                    "description": "Image 2 links to",
+                    "descriptionT": { "bg": "Сминка 2 е линк към" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "carousel_image_3",
+                    "description": "Image 3",
+                    "descriptionT": { "bg": "Снимка 3" },
+                    "type": "upload"
+                },
+                {
+                    "key": "carousel_url_3",
+                    "description": "Image 3 links to",
+                    "descriptionT": { "bg": "Сминка 3 е линк към" },
+                    "type": "textbox"
+                },
+                {
+                    "key": "carousel_image_4",
+                    "description": "Image 4",
+                    "descriptionT": { "bg": "Снимка 4" },
+                    "type": "upload"
+                },
+                {
+                    "key": "carousel_url_4",
+                    "description": "Image 4 links to",
+                    "descriptionT": { "bg": "Сминка 4 е линк към" },
+                    "type": "textbox"
+                }
+            ]
+        },
+        {
+            "name": "Product Page",
+            "items": [
+                {
+                    "key": "show_qty_box",
+                    "description": "Show quantity box?",
+                    "descriptionT": { "bg": "Покажи избор на количество?" },
+                    "default": "true",
+                    "type": "checkbox"
+                }
+            ]
+        }
+    ]
+}

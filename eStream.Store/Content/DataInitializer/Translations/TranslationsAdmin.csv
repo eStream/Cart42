@@ -1,0 +1,558 @@
+LanguageCode,Key,Value
+bg,Dashboard,Табло
+bg,Loading...,Зарежда...
+bg,* Dashboard reports refresh every {0} minutes,* Данните се опресняват на {0} минути
+bg,Reports,Доклади
+bg,Inventory,Инвентар
+bg,Categories,Категории
+bg,Products,Продукти
+bg,Options,Опции
+bg,Orders,Поръчки
+bg,View Orders,Виж поръчки
+bg,View Shipments,Виж доставки
+bg,Customers,Клиенти
+bg,View Customers,Виж клиенти
+bg,Site Configuration,Конфигурация на сайта
+bg,Site Settings,Настройки на сайта
+bg,Tax Settings,Данъчни настройки
+bg,Edit Tax Zones,Данъчни зони
+bg,Edit Tax Classes,Данъчни класове
+bg,Edit Tax Rates,Данъчни ставки
+bg,Shipping Settings,Настройки за доставка
+bg,Edit Shipping Zones,Зони за доставка
+bg,Content Management,Управление на съдържанието
+bg,Edit Page Templates,Редактирай основни страници
+bg,Edit Email Templates,Редактирай email шаблони
+bg,Edit Content Pages,Редактирай допълнителни страници
+bg,Database,База данни
+bg,Import Data,Качване на данни
+bg,Export Data,Смъкване на данни
+bg,Welcome to {0} Administrative Panel.,Добре дошли в административния панел на {0}.
+bg,Log out,Изход
+bg,Today,Днес
+bg,Vistits,Посещения
+bg,New visits,Нови посещения
+bg,Orders Worldwide,Поръчки по света
+bg,All time,Общо
+bg,Return Rate,Процент върнати
+bg,Returned orders,Върнати поръчки
+bg,Monthly,Месечно
+bg,Compared to last month average,Спрямо предния месец
+bg,New orders for {0},Нови поръчки за {0}
+bg,Orders and Sales At a Glance,Поръчки и продажби
+bg,Last 30 days,Последни 30 дни
+bg,Last 90 days,Последни 90 дни
+bg,Number of orders,Брой поръчки
+bg,Amount of sales,Сума продажби
+bg,Sales,Продажби
+bg,Percentage of last month sales,Процент от продажбите за предния месец
+bg,This month,Този месец
+bg,Top Categories,Топ категории
+bg,No.,№
+bg,Category,Категория
+bg,Total,Общо
+bg,Tax Zones,Данъчни зони
+bg,Countries,Държави
+bg,Add Tax Zone,Добави данъчни зони
+bg,button above,бутона отгоре
+bg,Edit,Редактирай
+bg,Batch Actions,Действия
+bg,Set Active,Направи активни
+bg,Set Inactive,Направи неактивни
+bg,Home,Начало
+bg,Home,Начало
+bg,NOTE: The dashboard currently displays sample data. It will display the actual data after the first order placed on your store,ЗАБЕЛЕЖКА: Таблото показва примерни данни. След първата приета поръчка ще се показват действителните данни
+bg,Product Categories,Продуктови категории
+bg,Add Category,Добави категория
+bg,Category Details,Информация за категорията
+bg,Parent Category,Главна категория
+bg,Visible in menu,Видимо в менюто
+bg,Yes,Да
+bg,Sort order,Ред при сортиране
+bg,Save options,Запази Опции
+en,Parent Category,Parent Category
+en,Visible in menu,Visible in menu
+en,Sort order,Sort order
+bg,"Category ""{0}"" has been added","Категорията ""{0}"" бе добавена"
+bg,Name,Име
+bg,(incl child),(вкл. вложени)
+bg,Visible,Видимо в менюто
+bg,in menu,в менюто
+bg,Delete,Изтрий
+bg,Delete Selected,Изтрий избраните
+bg,Edit Category,Редактирай категория
+bg,"Category ""{0}"" has been updated","Категорията ""{0}"" бе обновена"
+bg,The selected categories have been deleted,Избраната категория бе изтрита
+bg,20 per page,20 на страница
+bg,50 per page,50 на страница
+bg,100 per page,100 на страница
+bg,200 per page,200 на страница
+bg,500 per page,500 на страница
+bg,1000 per page,1000 на страница
+bg,SKU,Код
+bg,Product,Продукт
+bg,Price,Цена
+bg,Quantity,Количество
+bg,View,Виж
+bg,Browse Products,Разгледай продукти
+bg,Add Product,Добави продукт
+bg,Product Details,Информация за продукта
+bg,Details,Информация
+bg,Skus,Кодове
+bg,Media,Медия
+bg,Select categories,Избери категории
+bg,Category Selector,Избор на категории
+bg,Close,Затвори
+bg,inclusive of tax,вкл. ДДС
+bg,Cost Price,Доставна цена
+bg,Retail Price,Препоръчителна цена
+bg,Sale Price,Промоционална цена
+bg,Tax Class,Данъчен клас
+bg,kg,кг
+bg,Featured,Избрани
+bg,Additional sections,Допълнителни секции
+bg,Add section,Добави секция
+bg,Edit Section,Промени секция
+bg,Title,Заглавие
+bg,Text,Текст
+bg,Remove,Премахни
+bg,Select options,Избери опции
+bg,Option Selector,Избор на опции
+bg,Sku,Код
+bg,Generate Skus,Генерирай кодове
+bg,Delete selected,Изтрий избраните
+bg,Add Skus,Добави кодове
+bg,Prefix,Префикс
+bg,Generate,Генерирай
+bg,Images,Снимки
+bg,EDIT,ПРОМЕНИ
+bg,DELETE,ИЗТРИЙ
+bg,"Product ""{0}"" has been added","Продукт ""{0}"" бе добавен"
+bg,Data Import Source,Качване на данни
+bg,Import Products,Качване на продукти
+bg,Import Translations,Качване на преводи
+bg,Data Import,Качване на данни
+bg,CSV Translations File:,CSV файл с преводи:
+bg,Upload,Качване
+bg,Import Texts,Качване на текст
+bg,Edit Product,Редактирай продукти
+bg,Delete Products,Изтрий продукти
+bg,Please review and confirm the deletion of the listed products,"Моля предгледайте и потвърдете изтриването на изброените продукти  "
+bg,Cancel,Отказ
+bg,Option Categories,Категории за опции
+bg,Add Option Category,Добави категория за опции
+bg,There are no option categories yet. Add new option category by clicking on the {0} button above,Все още няма категории за опции. Добавате нова категория за опции като натиснете бутона {0}
+bg,Product Option Categories,Категории за опции
+bg,Option Category Details,Информация за категория за опции
+bg,Include in filters,Добави към филтри
+bg,Option category,Категори за опции
+bg,"Option category ""{0}"" has been added","Категории за опции ""{0}"" бе добавена"
+bg,Description,Описание
+bg,Type,Тип
+bg,Edit Option Category,Редактирай категория за опции
+bg,Save,Запиши
+bg,Option,Опции
+bg,Add Option,Добави опции
+bg,Export Products,Смъкни продукти
+bg,Export Translations,Смъкни превод
+bg,JSON File:,JSON файл:
+bg,Delete Categories,Изтрий категории
+bg,Please review and confirm the deletion of the listed categories,Моля предгледайте и потвърдете изтриването на изброените категории
+bg,WARNING!,ВНИМАНИЕ!
+bg,Deleting product category will also delete all child categories. All products that do not belong to any other category will be deleted as well.,Изтриването на продуктова категория ще изтрие и всички под категории. Всички продукти които не принадлежат на други категории ще бъдат изтрити.
+bg,Deleting those categories will also remove the following products:,Изтриването на тези категории ще премахне и следните продукти:
+bg,There are no categories yet. Add new category by clicking on the {0} button above,"Все още няма категории. Добавате нова категория като натиснете бутона {0} "
+bg,Find,Намери
+bg,Please select at least one category,Моля изберете поне една категория
+bg,Weight,Тегло
+bg,Keywords,Ключови думи
+bg,close,затвори
+bg,"Product ""{0}"" have been updated","Продукта ""{0}"" бе обновен"
+bg,The selected products have been deleted,Избрания продукт бе изтрит
+bg,"Option category ""{0}"" has been updated","Категория за опции ""{0}"" бе обновена"
+bg,Existing exports,Съществуващи експорти
+bg,Export,Експорт
+bg,Data backup has been initiated,Започва архивирането на данни
+bg,Data Export,Експорт на данни
+bg,Save and add another,Запази и добави ново
+bg,Save and copy to another,Запази и добави копие
+bg,There are no products yet. Add new product by clicking on the {0} button above,"Все още няма продукти. Добавате нов продукт като натиснете бутона {0} "
+bg,Delete Option Category,Изтрий категории за опции
+bg,Please review and confirm the deletion of the listed option category,Моля предгледайте и потвърдете изтриването на изброените категории за опции
+bg,Deleting option category will also delete all options within that category. Those options will be removed from all products that use them. Any option specific SKUs will also be removed,"Изтриването на категорията ще изтрие и всички опции в нея. Тези опции ще бъдат премахнати от всички продукти които ги използват. Всякакви продуктови кодове свързани с тези опции ще бъдат изтрити "
+bg,Country Details,Информация за държавата
+bg,Code,Код
+bg,Name is already used,Името вече е използвано
+bg,Is Active,Активно
+bg,Regions,Региони
+bg,Regions in,Региони в
+bg,Add Region,Добави регион
+bg,There are no regions yet. Add new region by clicking on the {0} button above,Все още няма региони. Добавете нов регион като натиснете бутона {0}
+bg,Region Details,Информация за региона
+bg,Add Order,Добави поръчка
+bg,Shipments,Пратки
+bg,Ship Package,Изпрати пратка
+bg,There are no shipments yet. Add new shipments by using the {0} button above,Все още няма пратки. Добавете нова пратка като натиснете бутона {0}
+bg,Order Details,Информация за поръчка
+bg,Customer Details,Информация за клиент
+bg,Order Items,Съдържание на поръчка
+bg,Customer Email,Клиентски Е-майл
+bg,Billing Address,Адрес за фактура
+bg,First Name,Име
+bg,Last Name,Фамилия
+bg,Address,Адрес
+bg,Address 2,Адрес 2
+bg,Country,Държава
+bg,Region,Регион
+bg,Zip/Postal Code,Пощенски код
+bg,Shipping Address,Адрес за доставка
+bg,Same as billing address,Същия адрес
+bg,Subtotal,Цена
+bg,Discount,Отстъпка
+bg,Tax,Данък
+bg,Add,Добави
+bg,More than one SKU matches your selection. Please select the required options,Повече от един код отговаря на избраните критерии. Моля изберете опциите
+bg,Content Pages,Статични страници
+bg,Add Content Page,Добави статични страници
+bg,There are no content pages yet. Add new content page by clicking on the {0} button above,Все още няма статични страници. Добавете нова статична страница като натиснете бутона {0}
+bg,Email Templates,Е-майл шаблони
+bg,Page Templates,Дизайн шаблони
+bg,Installed Templates,Инсталирани шаблони
+bg,Select,Избери
+bg,Clone,Копирай
+bg,Download,Изтегли
+bg,Clone Template,Копирай шаблон
+bg,Add Template,Добави шаблон
+bg,Edit Shipping Methods,Редактирай метод за доставка
+bg,Regional Settings,Регионални настройки
+bg,Edit Countries,Редактирай държави
+bg,Settings,Настройки
+bg,Все още няма региони. Добавете нов регион като натиснете бутона {0},Данъчни ставки
+bg,Add Tax Rate,Добави данъчна ставка
+bg,There are no tax rates yet. Add new tax rate by clicking on the {0} button above,Все още няма данъчни ставки. Добавете нова данъчна ставка като натиснете бутона {0}
+bg,Tax Rate Details,Информация за данъчна ставка
+bg,Tax Zone,Данъчна зона
+bg,Default Rate,Стандартна ставка
+bg,There are no tax zones yet. Add new tax zone by clicking on the {0} button above,Все още няма данъчни зони. Добавете нова данъчна зона като натиснете бутона {0}
+bg,Tax Zone Details,Информация за данъчна зона
+bg,"The tax zone ""{0}"" has been added","Данъчната зона ""{0}"" бе добавена"
+bg,Edit Tax Zone,Редактирай данъчна зона
+bg,"The tax zone ""{0}"" has been updated","Данъчната зона ""{0}"" бе обновена"
+bg,"The tax rate ""{0}"" has been added","Данъчната ставка ""{0}"" бе добавена"
+bg,Edit Tax Rate,Редактирай данъчна ставка
+bg,"The tax rate ""{0}"" has been updated","Данъчната ставка ""{0}"" бе обновена"
+bg,Delete Tax Rate,Изтрий данъчна ставка
+bg,Please review and confirm the deletion of the listed tax rate,"Моля предгледайте и потвърдете изтриването на изброените данъчни ставки  "
+bg,Tax Rate,Данъчна ставка
+bg,The tax rate has been deleted,Данъчната ставка бе изтрита
+bg,Tax Classes,Данъчен клас
+bg,Add Tax Class,Добави данъчен клас
+bg,There are no tax classes yet. Add new tax class by clicking on the {0} button above,Все още няма данъчни класове. Добавете нов данъчен клас като натиснете бутона {0}
+bg,Tax Class Details,Информация за данъчен клас
+bg,"Tax class ""{0}"" has been added","Данъчен клас ""{0}"" бе добавен"
+bg,{0} Rate,{0} ставка
+bg,Shipping Zones,Доставни зони
+bg,Add Shipping Zone,Добави доставна зона
+bg,There are no shipping zones yet. Add new shipping zone by clicking on the {0} button above,Все още няма доставни зони. Добавете нова доставна зона като натиснете бутона {0}
+bg,Shipping Zone Details,Информация за доставна зона
+bg,Shipping Zone,Доставна зона
+bg,Files,Файлове
+bg,Template Settings,Настройки на шаблон
+bg,Tax Rates,Данъчни ставки
+bg,Email,Е-мейл
+bg,Phone,Тел.
+bg,Registered,Регистриран
+bg,Last Orders,Последни поръчки
+bg,from,от
+bg,for,до
+bg,Browse Customers,Разгледай клиенти
+bg,Add Customer,Добави клиент
+bg,Welcome,Добре дошли
+bg,Blogs,Блог
+bg,Add Blog,Добави блог
+bg,There are no blogs yet. Add new blog by clicking on the {0} button above,Все още няма блогове. Добавате нов блог като натиснете бутона {0}
+bg,Blog Details,Информация за блога
+bg,Approve Comments,Одобри коментари
+bg,"The blog ""{0}"" has been added","Блогът ""{0}"" бе добавен"
+bg,ApproveComments,ApproveComments
+bg,Edit Blog,Редактирай блог
+bg,"The blog ""{0}"" has been updated","Блогът ""{0}"" бе обновен"
+bg,"Blogs ",Блогове
+bg,Manage Blog,Редактиране на блог
+bg,Manage Blog Posts,Редактиране на блог постове
+bg,Moderate Comments,Преглед на коментари
+bg,Access Control,Контрол на достъп
+bg,Delete Blog,Изтрий блог
+bg,Please review and confirm the deletion of the listed blogs,"Сигурен ли сте, че искате да изтриете избрания блог "
+bg,Blog,Блог
+bg,The blog has been deleted,Блогът бе изтрит
+bg,Please specify option value,Моля въведете опция
+bg,{PropertyName} is required!,Моля въведете {PropertyName}
+bg,title,заглавие
+bg,Select valid parent category,Избери валидна главна категория
+bg,SortOrder,SortOrder
+bg,ParentId,ParentId
+bg,CategoryIds,CategoryIds
+bg,Site Operators,Оператори
+bg,Active,Активно
+bg,Are you sure?,Сигурни ли сте?
+bg,Add Operator,Добави оператор
+bg,At least one product is required,Нужен е поне един продукт
+bg,UserEmail,Е-мейл
+bg,Please specify valid email!,Моля въведете валиден е-мейл!
+bg,Company,Фирма
+bg,City,Град
+bg,Items,Продукти
+bg,BillingAddress,Адрес за фактура
+bg,FirstName,Име
+bg,LastName,Фамилия
+bg,Address1,Адрес
+bg,CountryCode,Държава
+bg,RegionOther,Регион
+bg,ShippingAddress,Адрес за доставка
+bg,New Password,Нова парола
+bg,"Customer ""{0} {1}"" has been added","Клиентът ""{0} {1}"" бе добавен"
+bg,Edit Customer,Редактирай клиент
+bg,"Customer ""{0} {1}"" has been updated","Клиентът ""{0} {1}"" бе обновен"
+bg,Delete Customers,Изтрий клиенти
+bg,Please review and confirm the deletion of the listed customers,Моля предгледайте и потвърдете изтриването на изброените клиенти
+bg,Deleting a customer will also delete all related information such as the customer orders.,Изтриването на клиент ще изтрие всичката свързана информация като поръчките за този клиент
+bg,The site settings have been updated,Настройките на сайта бяха обновени
+bg,Edit Template Settings,"Редактирай настройки на шаблона "
+bg,Reset Defaults,Възстанови стандарни настройки
+bg,Template settings have been updated,"Настройките за шаблона бяха обновени "
+bg,Template Details,Информация за шаблон
+bg,Template Name,Име на шаблон
+bg,Template File,Файл на шаблон
+bg,Edit Email Template,Редактирай е-мейл шаблон
+bg,Email Template Details,Информация за е-мейл шаблон
+bg,"Template ""{0}"" has been updated","Шаблон ""{0}"" бе обновен"
+bg,Link text,Текс на линка
+bg,Header link position,Позиция на линк в хедъра
+bg,Footer link position,Позиция на линк във вутъра
+bg,Redirect url,Адрес за пренасочване
+bg,Content Page Details,Информация за статична страница
+bg,no link,без линк
+bg,Meta description tag,Meta description таг
+bg,Meta keywords tag,Meta keywords таг
+bg,"Content page ""{0}"" has been added","Статична страница ""{0}"" бе добавена"
+bg,Edit Content Page,Редактирай статична страница
+bg,"Content page ""{0}"" has been updated","Статична страница ""{0}"" бе обновена"
+bg,Delete Content Page,Изтрий статична страница
+bg,Please review and confirm the deletion of the listed content page,"Сигурен ли сте, че искате да изтриете избраната статична страница? "
+bg,"Content page ""{0}"" has been deleted","Статична страница ""{0}"" бе изтрита"
+bg,Blog Posts,Блог пост
+bg,Allow Comments,Разреши коментари
+bg,Publish Date,Дата на публикуване
+bg,Add Blog Post,Добави блог пост
+bg,Edit Blog Post,Редактирай блог пост
+bg,Content,Съдържание
+bg,PublishDate,Дата на публикуване
+en,PublishDate,PublishDate
+bg,There are no comments waiting approval,Няма коментари които да чакат одобрение
+bg,NewPassword,Нова парола
+bg,Read Access,Достъп за четене
+bg,Write Access,Достъп за писане
+bg,Delete Access,Достъп за изтриване
+bg,Templates,Шаблони
+bg,Operators,Оператори
+bg,Last Login,Последно на линия
+bg,"Operator ""{0} {1}"" has been added","Оператор ""{0} {1}"" бе добавен"
+bg,Edit Operator,Редактирай оператор
+bg,"Operator ""{0} {1}"" has been updated","Оператор ""{0} {1}"" бе обновен"
+bg,'{PropertyName}' is required!,Моля въведете '{PropertyName}'!
+bg,'{PropertyName}' must be between '{MinLength}' and '{MaxLength} characters,'{PropertyName}' трябва да е между '{MinLength}' и '{MaxLength} символа
+bg,Store name,Име на магазина
+bg,General,Общи
+bg,Down for maintenance,Затворен за подръжка
+bg,Catalog Only,Само каталог
+bg,Products per page,Продукти на страница
+bg,Frontend,Интерфейс
+bg,Currency code,Валутен код
+bg,Currency,Валута
+bg,Currency prefix,Валутен префикс
+bg,Currency suffix,Валутен суфикс
+bg,Tax Label,Име на данък
+bg,Prices inclusive of tax,Цените включват данък
+bg,Use metric system,Изпозвай метрична система
+bg,Regional,Регионални
+bg,Default administrator email,Администраторски е-мейл
+bg,Order invoices CC address,Адрес за копия на фактури
+bg,Email sender address,Адрес за изпращане на е-мейли
+bg,SMTP server address,SMTP сървърен адрес
+bg,SMTP server uses SSL,SMTP сървъра използва SSL
+bg,SMTP username,SMTP потребителско име
+bg,SMTP password,SMTP парола
+bg,SMTP server port,SMTP сървърен порт
+bg,Subject,Заглавие
+bg,Body,Съдържание
+bg,Current password,Текуща парола
+bg,New password,Нова парола
+bg,Confirm new password,Потвърдете новата парола
+bg,Product Name,Име на продукт
+bg,Item Price,"Цена на продуктка "
+bg,Item Total,Общо
+bg,Payment Methods,Методи за плащане
+bg,Domain Settings,Настройки на домейна
+bg,Edit Tax Class,Редактирай данъчен клас
+bg,"Tax class ""{0}"" has been updated","Данъчния клас ""{0}"" бе обновен"
+bg,Delete Tax Class,Изтрий данъчен клас
+bg,Please review and confirm the deletion of the listed tax class,Моля потвърдете изтриването на изброените данъчни класове
+bg,The class will be removed from all products that use it. Any class specific rates will also be removed,Класът ще бъде премахнат от всички продукти които го използват. Всички ставки за този клас също ще бъдат изтрити
+bg,Tax class has been deleted,Данъчния клас бе изтрит
+bg,Order,Поръчка
+bg,TaxZoneId,TaxZoneId
+bg,Edit Shipping Zone,Редактирай зона за доставка
+bg,"The shipping zone ""{0}"" has been updated","Зоната за доставка ""{0}"" бе обновена"
+bg,"The shipping zone ""{0}"" has been added","Зоната за доставка ""{0}"" бе добавена"
+bg,Delete Shipping Zone,Изтрий зона за доставка
+bg,Please review and confirm the deletion of the listed shipping zones,Моля потвърдете изтриването на изпроените зони за доставка
+bg,The shipping zones has been deleted,Зоните за доставка бяха изтрити
+bg,Shipping Methods,Методи за доставка
+bg,Add Shipping Method,Добави метод за доставка
+bg,The selected customers have been deleted,Избраните клиенти бяха изтрити
+bg,Option category has been deleted,Категория за опции беше изтрита
+bg,Delete Tax Zone,Изтрий данъчна зона
+bg,Please review and confirm the deletion of the listed tax zone,Моля потвърдете изтриването на изброените данъчни зони
+bg,All tax rates defined for this zone will be deleted as well,Всички данъчни ставки дефинирани за тази зона ще бъдат изтрити
+bg,The selected tax zones have been deleted,Ибраните данъчни зони бяха изтрити
+bg,Please select a tax zone,Моля изберете данъчна зона
+bg,Amount,Количество
+bg,Edit Payment Method,Редактирай метод на плащане
+bg,Payment Method Details,Информация за метод на плащане
+bg,Display Name,Име
+bg,Payment method has been updated,Метода на плащане бе обновен
+bg,{PropertyName}' is required!,Моля въведете '{PropertyName}'!
+bg,{PropertyName}' must be between '{MinLength}' and '{MaxLength} characters,{PropertyName}' трябва да е между '{MinLength}' и '{MaxLength} символа
+bg,Shipping Method Details,Информация за метод на доставка
+bg,Minimum order total,"Минимална сума на поръчка "
+bg,Flat Rate,Фиксирана сума
+bg,Rate is per Item,Цената е на бройка
+bg,From,от
+bg,To,до
+bg,FreeShippingMinTotal,Минимална сума за безплатна доставка
+bg,WeightRanges,Тегло
+bg,TotalRanges,Суми
+bg,FlatRateAmount,Фиксирана сума
+bg,"The shipping method ""{0}"" has been added","Метода на доставка ""{0}"" бе добавен"
+bg,Delete Shipping Method,Изтрий метод на доставка
+bg,Please review and confirm the deletion of the listed shipping methods,Моля потвърдете изтриването на изброените методи на доставка
+bg,Shipping Method,Метод на доставка
+bg,The shipping method has been deleted,Метода на доставка бе изтрит
+bg,ShippingZoneId,Зона за доставка
+bg,Edit Shipping Method,Редактирай метод на доставка
+bg,"The shipping method ""{0}"" has been updated","Метод на доставка ""{0}"" бе обновен"
+bg,Free Shipping,Безплатна доставка
+bg,Flat Rate Shipping,Фиксирана доставка
+bg,Calculate by Weight,Изчисли според теглото
+bg,Calculate by Order Total,Изчисли спрямо сумата
+bg,Weight Ranges,Тегло
+bg,Total Ranges,Суми
+bg,"Details for country ""{0}"" have been updated","Държавата ""{0}"" бе обновена"
+bg,"The selected countries has been marked as {0} ","Избраните държави  {0} бяха маркирани като "
+bg,active,активни
+bg,inactive,неактивни
+bg,The region has been added,Регионът бе добавен
+bg,Edit Region,Редактирай регион
+bg,The region has been updated,Регионът бе обновен
+bg,Delete Region,Изтрий регион
+bg,Please review and confirm the deletion of the listed region,Моля потвърдете изтриването на изброените региони
+bg,The selected regions have been deleted,Избраните региони бяха изтрити
+bg,"The blog post ""{0}"" has been added","Публикацията ""{0}"" бе добавен"
+bg,"The blog post ""{0}"" has been updated","Публикацията ""{0}"" бе обновена"
+bg,Please review and confirm the deletion of the listed blog posts,Моля потвърдете изтриването на изброените публикации
+bg,The blog post has been deleted,Публикацията бе изтрита
+bg,Poster,Публикувал
+bg,Message,Съобщение
+bg,Date Posted,Дата на публикуване
+bg,Approve,Одобри
+bg,Approve Selected,Одобри избраните
+bg,View All Comments,Виж всички коментари
+bg,Comments,Коментари
+bg,Back,Назад
+bg,The comment has been approved,Коментарът бе одобрен
+bg,Delete Comment,Изтрий коментар
+bg,The comment has been deleted,Коментарът бе изтрит
+bg,Access,Достъп
+bg,The selected operator have been deleted,Избрания оператор бе изтрит
+bg,Edit Comment,Редактирай
+bg,"The comment ""{0}"" has been updated","Коментарът ""{0}"" бе редактиран"
+bg,ProductId,ProductId
+bg,ItemPrice,ItemPrice
+bg,Order created successfully,Поръчката е създадена успешно
+bg,Order #,Поръчка №
+bg,Date,Дата
+bg,Customer,Customer
+bg,Status,Status
+bg,Billing,Billing
+bg,Shipping,Shipping
+bg,Add Shipment,Добави пратка
+bg,Shipment Details,Информация за пратка
+bg,Ship Quantity,Ship Quantity
+bg,Tracking Number,Номер за проследяване
+bg,Order Status,Статус на поръчка
+bg,Add Shipment for Order #{0},"Добави пратка за поръчка № ""{0}"""
+bg,"Shipment ""{0}"" has been added","Пратка ""{0}"" бе добавена"
+bg,Shipment #,Пратка №
+bg,Tracking #,Номер за проследяване
+bg,Shipped Items,Изпратени продукти
+bg,You have subscribed successfully,Абонирахте се  успешно
+bg,Settings have been reset,Настройките са възстановени
+bg,Password,Парола
+bg,Remember me?,Запомни ме?
+bg,Log in,Влез
+bg,Login,Влез
+bg,Dropdown,Падащо меню
+bg,Checkbox,Чекбокс
+bg,Radiobutton,Радио бутон
+bg,Boxes,Кутийки
+bg,Colors,Цветове
+bg,Welcome to your new online store!,Добре дошли във Вашия онлайн магазин!
+bg,"Setting up an online store isn't just about reaching a new customer base - it's about revolutionizing the way your business works. An online store will open up your products to consumers 24 hours a day, 7 days a week. Consumers tend to shop at all times of the day, so your business becomes an organization that literally generates profit at all hours.","Създаването на онлайн магазин е добър ход за революциониране на Вашият бизнес и за достигане до нови клиенти. Клиентите обичат да пазаруват по всяко време на денонощието и онлайн магазинът е отворен 24 часа на ден, 7 дни в седмицата. Крайният резултат е повече продажби и повече печалби."
+bg,You are a few steps away from having your own personalized online store. We've outlined the basic steps in this to-do list. Click on each task to complete it. If you need assistance you can always contact us from the link below.,"Остават няколко крачки до завършването на Вашият собствен онлайн магазин. В този списък сме добавили основните задачки, които трябва да се свършат. Кликнете на всяка от тях. Ако имате нужда от помощ ние винаги сме на разположение."
+bg,Contact Support,Свържи се с поддръжка
+bg,Remove this page,Махни тази страница
+bg,To-do list,Списък със задачи
+bg,Add product categories,Добави продуктови категории
+bg,important,важно
+bg,Add product options,Добави продуктови опции
+bg,optional,по желание
+bg,Add products,Добави продукти
+bg,Review tax rates,Прегледай данъчни ставки
+bg,recommended,препоръчано
+bg,Add shipping rates,Добави цени за доставка
+bg,Product categories are used to group your products so that they are easier to manage and find.,Продуктови категории се използват да групират вашите продукти за да са по-лесни за управление и намиране .
+bg,"Enter your first category name - e.g. Clothes, Books, Phones, etc.","Въведете името на първата ви категория - примерно Дрехи, Книги, Телефони и др."
+bg,That's all the info needed to create a category. Save it,Това е цялата информация нужна за създаване на категория. Запишете я
+bg,Product options can add selectable properties to your products. Let's add one,Продуктови опции. Нека да добавим една
+bg,"Enter the option category name - e.g. Color, Size, etc.","Добавете име на категорията за опции - примерно Цвят, Размер и др."
+bg,Select the type of the option and how users would select it,Изберете тип опция и как ще бъде виждана от потребителя
+bg,Now let's switch to the options tab and add a few options,Да превключим към опциите и да добавим някоя друга опция
+bg,"Add two options for a start - e.g. Red, Blue, Small, Large, XS, etc","Добавете две опции за начало - примерно Червен, Син, Малък, Голям, XS и тн."
+bg,That's all the info needed to create an option category. Save it,Това е цялата информация нужна за създаване на категория за опции. Запишете я
+bg,Here's the real deal - adding your products. The page may look big and complex but it's actually quite easy to use,"Тази странница може да изглежда голяма и сложна но всъщност е лесна за използване  "
+bg,"SKU comes from ""stock keeping unit"" and is basically a unique code for the product - e.g. ABC123.",SKU е уникалед код за продукта - примерно ABC123.
+bg,Select one or more categories for your product,Изберете една или повече категории за вашия продукт
+bg,Enter the product name as it would appear on the store page,Въведете името на продукта както ще бъде показано на страницата
+bg,Enter the product price,Въведете цена на продукта
+bg,Enter the product shipping weight. You can skip this field if you plan to offer free or flat rate shipping,Въведете тегло за доставка. Можете да пропуснете това ако предлагате фиксирана или безплатна доставка
+bg,"That covers the basic product fields. You can save the product now or play with the other fields. The tabs above offer the ability select product options, generate option-specific SKUs and upload product photos","С това покриваме основните полета за продукта. Може да запазите продукта сега или да си поиграете с останалите полета. Табовете горе дават възможност за избиране на продуктови опции, генериране на продуктови варианти, както и за качване на снимки."
+bg,"SKU comes from \""stock keeping unit\"" and is basically a unique code for the product - e.g. ABC123.",SKU е уникалед код за продукта - примерно ABC123.
+bg,Order Successful,Поръчката бе успешна
+bg,Your order has been received successfully,Вашата поръчка бе приета успешно
+bg,Default,По подразбиране
+bg,About Us,За нас
+bg,"Edit this page contents from the ""Edit Content Pages"" section in the admin tool","Редактирайте съдържанието на тази страница от секцията ""Редактирай допълнителни страници"" в административния панел"
+bg,Contact Us,Контакти
+bg,Terms & Conditions,Условия за ползване
+bg,Privacy Policy,Лични данни
+bg,Orders and Returns,Поръчки и рекламации
+bg,News,Новини
+bg,Store created,Магазинът бе създаден
+bg,You can use the blog functionality to post updates for your users...,Можете да използвате блог функциата за да публикувате новини за вашите потребители
+bg,Bank Deposit,Банков превод
+bg,Cash on Delivery,Наложен платеж
+bg,Check,Чек
+bg,Money Order,Платежно нареждане
+bg,Pay in Store,Взимане оп магазина
+bg,Paypal Website Payments (Standard),Paypal

@@ -1,0 +1,106 @@
+﻿@model Estream.Cart42.Web.Models.AddressViewModel
+
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.Type)
+@Html.HiddenFor(m => m.IsPrimary)
+           
+<div class="form-group">
+    @Html.LabelFor(m => m.FirstName, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.LastName, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Company, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(m => m.Company, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Company, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Address1, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(m => m.Address1, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Address2, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(m => m.Address2, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.City, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(m => m.City, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.CountryCode, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("CountryCode", new SelectList(ViewBag.Countries, "Code", "Name", Model.CountryCode), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CountryCode, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.RegionId, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.RegionId, new SelectListItem[0], new { @class = "form-control" })
+        @Html.EditorFor(m => m.RegionOther, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.RegionId, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(m => m.RegionOther, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.ZipPostal, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(m => m.ZipPostal, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.ZipPostal, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        function loadRegions(selectRegion, country, selectedRegion) {
+            $.post("/Region/List", { countryCode: country },
+                function (json) {
+                    selectRegion.html("<option></option>");
+                    if (json.length > 0) {
+                        for (var i = 0; i < json.length; i++) {
+                            var selected = selectedRegion == json[i].id ? " selected" : "";
+                            selectRegion.append("<option value=\"" + json[i].id + "\"" + selected + ">" +
+                                json[i].name + "</option>");
+                        }
+                        selectRegion.show();
+                        selectRegion.next('input').hide();
+                    } else {
+                        selectRegion.hide();
+                        selectRegion.next('input').show();
+                    }
+                }, "json");
+        }
+
+        $('#@Html.IdFor(m => m.CountryCode)').change(function () {
+            loadRegions($('#@Html.IdFor(m => m.RegionId)'), $(this).val());
+        });
+        loadRegions($('#@Html.IdFor(m => m.RegionId)'), $('#@Html.IdFor(m => m.CountryCode)').val(), '@Model.RegionId');
+    });
+</script>

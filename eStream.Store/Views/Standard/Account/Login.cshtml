@@ -1,0 +1,48 @@
+﻿@model Estream.Cart42.Web.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Log in".T();
+}
+<div class="container">
+    <div id="content">        
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                <h1>@Html.T("Log In")</h1>
+                @using (Html.BeginForm(new { ViewBag.ReturnUrl }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="box wrapper">
+                        <div class="content-wrap">
+                            <fieldset>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email".T() })
+                                    @Html.ValidationMessageFor(m => m.Email)
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password".T() })
+                                    @Html.ValidationMessageFor(m => m.Password)
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                            @Html.LabelFor(m => m.RememberMe)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-xs-12"><input type="submit" value="@Html.T("Log in")" class="btn btn-theme-default" /></div>
+                                    <div class="col-md-8 col-xs-12 text-right">
+                                        <div class="form-control-static">@Html.T("{0} if you don't have an account.", Html.ActionLink("Register".T(), "Register"))</div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

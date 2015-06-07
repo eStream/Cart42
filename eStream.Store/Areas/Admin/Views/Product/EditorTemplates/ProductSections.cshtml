@@ -1,0 +1,100 @@
+﻿@using Estream.Cart42.Web.Areas.Admin.Models
+@using Estream.Cart42.Web.Domain
+@model List<ProductSectionEditViewModel>
+
+<div id="divSections" data-bind="with: $root.sections">
+    <ul class="list-group" data-bind="visible: any(), template: { name: 'section-template', foreach: items }"></ul>
+
+    <button type="button" class="btn btn-default btn-outline" data-bind="click: add">@Html.TA("Add section")</button>
+
+    <div id="modalProductSection" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-bind="with: currentItem">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Html.TA("Close")</span></button>
+                    <h4 class="modal-title">@Html.TA("Edit Section")</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">@Html.TA("Title")</label>
+                        <div class="col-md-10">
+                            <input type="text" data-bind="value: title" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">@Html.TA("Text")</label>
+                        <div class="col-md-10">
+                            <input type="text" data-bind="value: text" class="form-control" data-summernote="1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">@Html.TA("Close")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="section-template">
+    <li class="list-group-item">
+        <input data-bind="attr: { name: $parent.getNamePrefix($index()) + '.Id' }, value: id" type="hidden" />
+        <input data-bind="attr: { name: $parent.getNamePrefix($index()) + '.Type' }, value: type" type="hidden" />
+        <input data-bind="attr: { name: $parent.getNamePrefix($index()) + '.Position' }, value: position" type="hidden" />
+        <input data-bind="attr: { name: $parent.getNamePrefix($index()) + '.Title' }, value: title" type="hidden" />
+        <input data-bind="attr: { name: $parent.getNamePrefix($index()) + '.Text' }, value: text" type="hidden" />
+        <span data-bind="text: title"></span>
+        <div class="pull-right">
+            <button type="button" class="btn btn-default btn-xs" data-bind="click: $parent.edit">@Html.TA("Edit")</button>
+            <button type="button" class="btn btn-danger btn-xs" data-bind="click: $parent.remove">@Html.TA("Remove")</button>
+        </div>
+    </li>
+</script>
+
+<script language="javascript">
+
+    var ProductSectionsViewModel = function () {
+        var self = this;
+        self.items = ko.mapping.fromJS(@Html.Json(Model));
+        self.currentItem = ko.observable(ko.mapping.fromJS(@Html.Json(new ProductSectionEditViewModel())));
+
+        self.any = ko.computed(function () {
+            return self.items().length > 0;
+        }).extend({ rateLimit: 100 });
+
+        self.add = function () {
+            var item = ko.mapping.fromJS(@Html.Json(new ProductSectionEditViewModel()));
+            self.items.push(item);
+            self.edit(item);
+        }
+
+        self.edit = function (item) {
+            self.currentItem(item);
+            $('#modalProductSection').modal();
+            if (item.type() == '@ProductSectionType.Text') {
+                $('[data-summernote="1"]').summernote({
+                    height: 200,
+                    onChange: function(contents, $editable) {
+                        self.currentItem().text($editable);
+                    }
+                }).code(self.currentItem().text());
+            }
+        }
+
+        self.remove = function (item) {
+            self.items.remove(item);
+        }
+
+        self.getNamePrefix = function(index) {
+            return '@Html.NameFor(m => m[0])'.replace('[0]', '[' + index + ']');
+        }
+    }
+
+    $(function () {
+        var model = new ProductSectionsViewModel();
+        $('#modalProductSection').on('hidden.bs.modal', model.save);
+        window.ViewModel.sections = model;
+        //ko.applyBindings(model, document.getElementById('divSections'));
+    });
+
+</script>

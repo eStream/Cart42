@@ -1,0 +1,1705 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{29DFC088-62DA-4558-812F-6A584A7CA2D2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Estream.Cart42.Web</RootNamespace>
+    <AssemblyName>Estream.Cart42.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BundleTransformer.Core, Version=1.9.52.0, Culture=neutral, PublicKeyToken=973c344c93aac60d, processorArchitecture=MSIL">
+      <HintPath>..\packages\BundleTransformer.Core.1.9.52\lib\net40\BundleTransformer.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.13.0.0\lib\net40-client\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elmah.MVC.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC5.5.6.2.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Forloop.HtmlHelpers">
+      <HintPath>..\packages\Forloop.HtmlHelpers.1.2.0.0\lib\net45\Forloop.HtmlHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Ado">
+      <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.AspNet">
+      <HintPath>..\packages\Glimpse.AspNet.1.9.2\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.EF6">
+      <HintPath>..\packages\Glimpse.EF6.1.6.5\lib\net45\Glimpse.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5">
+      <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\packages\LinqKit.1.1.2\lib\net45\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MaxMind.Db">
+      <HintPath>..\packages\MaxMind.Db.1.0.1.0\lib\net40\MaxMind.Db.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.7.0\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.1.5.154\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.3.1.5.154\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Web">
+      <HintPath>..\packages\structuremap.web.3.1.5.154\lib\net40\StructureMap.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="App_Start\SiteInit.cs" />
+    <Compile Include="App_Start\ValidatorConfig.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminAlertController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogPostCommentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogPostController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentPageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CountryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DataExportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DataImportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmailTemplateController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OperatorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PageTemplateController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PaymentMethodController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RegionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShipmentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShippingMethodController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShippingZoneController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaxClassController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaxRateController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaxZoneController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TranslationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WorkProcessController.cs" />
+    <Compile Include="Areas\Admin\Models\BaseEditViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\BlogPostCommentViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\BlogPostViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\BlogViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CategoryViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\CountryViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\CustomerViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\OperatorViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\OptionCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\OptionViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\OrderViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\PageTemplateViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\PaymentMethodViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductSectionViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\RegionViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\ReportViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\SettingViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\ShipmentViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\ShippingMethodViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ShippingZoneViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TaxClassViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\TaxRateViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TranslationViewModels.cs" />
+    <Compile Include="Areas\Admin\Views\BaseViewPage.cs" />
+    <Compile Include="Controllers\NewsletterSubscriptionController.cs" />
+    <Compile Include="Controllers\Api\UploadController.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OptionCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Models\ProductViewModels.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContentPageController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OptionController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PaymentMethodController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Controllers\ViewScriptController.cs" />
+    <Compile Include="Controllers\VisitorController.cs" />
+    <Compile Include="DAL\DataContext.cs" />
+    <Compile Include="DAL\DataInitializer.cs" />
+    <Compile Include="DependencyResolution\ActionFilterRegistry.cs" />
+    <Compile Include="DependencyResolution\ContainerPerRequestExtensions.cs" />
+    <Compile Include="DependencyResolution\ControllerConvention.cs" />
+    <Compile Include="DependencyResolution\CurrentUser.cs" />
+    <Compile Include="DependencyResolution\Filters\AccessAuthorizeAttribute.cs" />
+    <Compile Include="DependencyResolution\Filters\AdminAuthorizeAttribute.cs" />
+    <Compile Include="DependencyResolution\IoC.cs" />
+    <Compile Include="DependencyResolution\PaymentMethodRegistry.cs" />
+    <Compile Include="DependencyResolution\ModelMetadata\ExtensibleModelMetadataProvider.cs" />
+    <Compile Include="DependencyResolution\ModelMetadata\Filters\DescriptionTranslateFilter.cs" />
+    <Compile Include="DependencyResolution\ModelMetadata\IModelMetadataFilter.cs" />
+    <Compile Include="DependencyResolution\ModelMetadata\ModelMetadataRegistry.cs" />
+    <Compile Include="DependencyResolution\PaymentMethods\IPaymentMethod.cs" />
+    <Compile Include="DependencyResolution\PaymentMethods\IPaymentMethodSettings.cs" />
+    <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
+    <Compile Include="DependencyResolution\StructureMapFilterProvider.cs" />
+    <Compile Include="DependencyResolution\StructureMapValidatorFactory.cs" />
+    <Compile Include="DependencyResolution\Tasks\TaskRegistry.cs" />
+    <Compile Include="DependencyResolution\MvcRegistry.cs" />
+    <Compile Include="DependencyResolution\ControllerRegistry.cs" />
+    <Compile Include="DependencyResolution\DefaultRegistry.cs" />
+    <Compile Include="DependencyResolution\ValidationRegistry.cs" />
+    <Compile Include="Domain\Blog.cs" />
+    <Compile Include="Domain\BlogPost.cs" />
+    <Compile Include="Domain\BlogPostComment.cs" />
+    <Compile Include="Domain\NewsletterSubscription.cs" />
+    <Compile Include="Domain\ProductSection.cs" />
+    <Compile Include="Domain\ProductSKU.cs" />
+    <Compile Include="Domain\Return.cs" />
+    <Compile Include="Domain\ReturnItem.cs" />
+    <Compile Include="Domain\TemplateSetting.cs" />
+    <Compile Include="Domain\Visitor.cs" />
+    <Compile Include="Domain\WorkProcess.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AlertHelpers.cs" />
+    <Compile Include="Helpers\CacheHelpers.cs" />
+    <Compile Include="Helpers\CurrencyHelper.cs" />
+    <Compile Include="Helpers\CustomModelBinder.cs" />
+    <Compile Include="Helpers\EfHelpers.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Helpers\GlobalizeUrls.cs" />
+    <Compile Include="Helpers\JsonHelpers.cs" />
+    <Compile Include="Helpers\MiscHelpers.cs" />
+    <Compile Include="Helpers\OptionHelper.cs" />
+    <Compile Include="Helpers\OrderHelper.cs" />
+    <Compile Include="Helpers\PaymentHelper.cs" />
+    <Compile Include="Helpers\DataHelper.cs" />
+    <Compile Include="Helpers\HtmlHelper.cs" />
+    <Compile Include="Helpers\ImageHelpers.cs" />
+    <Compile Include="Helpers\RazorTemplateBase.cs" />
+    <Compile Include="Helpers\RolesHelper.cs" />
+    <Compile Include="Helpers\ScreenshotHelper.cs" />
+    <Compile Include="Helpers\TranslationHelper.cs" />
+    <Compile Include="Helpers\UrlHelpers.cs" />
+    <Compile Include="Helpers\ValidatorHelpers.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BlogViewModels.cs" />
+    <Compile Include="Models\IPageableViewModel.cs" />
+    <Compile Include="Models\ISortableViewModel.cs" />
+    <Compile Include="Models\NewsletterSubscriptionViewModel.cs" />
+    <Compile Include="Services\BlogPostCommentService.cs" />
+    <Compile Include="Services\BlogPostService.cs" />
+    <Compile Include="Services\BlogService.cs" />
+    <Compile Include="Services\CacheService.cs" />
+    <Compile Include="Services\CategoryDeleter.cs" />
+    <Compile Include="Services\CountryService.cs" />
+    <Compile Include="Services\INewsletterSubscriptionService.cs" />
+    <Compile Include="Services\IOperatorService.cs" />
+    <Compile Include="Services\IPaymentMethodService.cs" />
+    <Compile Include="Services\IVisitorService.cs" />
+    <Compile Include="Services\NewsletterSubscriptionService.cs" />
+    <Compile Include="Services\OperatorService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\DataExportService.cs" />
+    <Compile Include="Services\GeoService.cs" />
+    <Compile Include="Services\IBlogPostCommentService.cs" />
+    <Compile Include="Services\IBlogPostService.cs" />
+    <Compile Include="Services\IBlogService.cs" />
+    <Compile Include="Services\ICacheService.cs" />
+    <Compile Include="Services\ICategoryDeleter.cs" />
+    <Compile Include="Services\ICountryService.cs" />
+    <Compile Include="Services\IGeoService.cs" />
+    <Compile Include="Services\IOptionCategoryService.cs" />
+    <Compile Include="Services\IOrderService.cs" />
+    <Compile Include="Services\IProductSkuService.cs" />
+    <Compile Include="Services\IShipmentService.cs" />
+    <Compile Include="Services\IOptionService.cs" />
+    <Compile Include="Services\IDeleterService.cs" />
+    <Compile Include="Services\ICustomerService.cs" />
+    <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\IRegionService.cs" />
+    <Compile Include="Services\IShippingMethodService.cs" />
+    <Compile Include="Services\IShippingService.cs" />
+    <Compile Include="Services\IShippingZoneService.cs" />
+    <Compile Include="Services\ITaxClassService.cs" />
+    <Compile Include="Services\ITaxRateService.cs" />
+    <Compile Include="Services\ITaxService.cs" />
+    <Compile Include="Services\ITaxZoneService.cs" />
+    <Compile Include="Services\ITemplateSettingService.cs" />
+    <Compile Include="Services\IUploadService.cs" />
+    <Compile Include="Services\IWorkProcessService.cs" />
+    <Compile Include="Services\OptionCategoryService.cs" />
+    <Compile Include="Services\OptionService.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\DeleterService.cs" />
+    <Compile Include="Services\PaymentMethodService.cs" />
+    <Compile Include="Services\ProductFinder.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\IProductFinder.cs" />
+    <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Integrations\Payments\PayPalStandard.cs" />
+    <Compile Include="Integrations\Payments\EPayBgButton.cs" />
+    <Compile Include="Integrations\Payments\IPaymentMethod.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Domain\Address.cs" />
+    <Compile Include="Models\AddressViewModels.cs" />
+    <Compile Include="Domain\Category.cs" />
+    <Compile Include="Domain\ContentPage.cs" />
+    <Compile Include="Models\ContentPageViewModels.cs" />
+    <Compile Include="Domain\Country.cs" />
+    <Compile Include="Domain\EmailTemplate.cs" />
+    <Compile Include="Models\NavigationViewModels.cs" />
+    <Compile Include="Domain\Option.cs" />
+    <Compile Include="Domain\OptionCategory.cs" />
+    <Compile Include="Models\OptionViewModels.cs" />
+    <Compile Include="Domain\Order.cs" />
+    <Compile Include="Models\OrderViewModels.cs" />
+    <Compile Include="Domain\ShipmentItem.cs" />
+    <Compile Include="Domain\OrderItem.cs" />
+    <Compile Include="Domain\Payment.cs" />
+    <Compile Include="Domain\PaymentMethod.cs" />
+    <Compile Include="Domain\Product.cs" />
+    <Compile Include="Models\ProductViewModels.cs" />
+    <Compile Include="Domain\Region.cs" />
+    <Compile Include="Models\SearchViewModels.cs" />
+    <Compile Include="Domain\Setting.cs" />
+    <Compile Include="Domain\Shipment.cs" />
+    <Compile Include="Domain\ShippingMethod.cs" />
+    <Compile Include="Domain\ShippingZone.cs" />
+    <Compile Include="Domain\ShoppingCart.cs" />
+    <Compile Include="Domain\ShoppingCartItems.cs" />
+    <Compile Include="Models\ShoppingCartViewModels.cs" />
+    <Compile Include="Domain\TaxClass.cs" />
+    <Compile Include="Domain\TaxClassRate.cs" />
+    <Compile Include="Domain\TaxRate.cs" />
+    <Compile Include="Domain\TaxZone.cs" />
+    <Compile Include="Domain\Translation.cs" />
+    <Compile Include="Domain\Uploads.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Areas\Admin\Models\TaxZoneViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ISettingService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ProductSkuService.cs" />
+    <Compile Include="Services\RegionService.cs" />
+    <Compile Include="Services\SettingService.cs" />
+    <Compile Include="Services\ShipmentService.cs" />
+    <Compile Include="Services\ShippingMethodService.cs" />
+    <Compile Include="Services\ShippingService.cs" />
+    <Compile Include="Services\ShippingZoneService.cs" />
+    <Compile Include="Services\TaxClassService.cs" />
+    <Compile Include="Services\TaxRateService.cs" />
+    <Compile Include="Services\TaxService.cs" />
+    <Compile Include="Services\TaxZoneService.cs" />
+    <Compile Include="Services\TemplateSettingService.cs" />
+    <Compile Include="Services\UploadService.cs" />
+    <Compile Include="Services\VisitorService.cs" />
+    <Compile Include="Services\WorkProcessService.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Engines\ThemeableViewEngine.cs" />
+    <Compile Include="Views\BaseViewPage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ContentPage\EditorTemplates\ContentPage.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\StripHtml.cshtml" />
+    <Content Include="Areas\Admin\Views\EmailTemplate\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\EmailTemplate\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxZone\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxZone\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxZone\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxZone\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\DisplayTemplates\OrderViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\DisplayTemplates\AddressViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\_StatusDropdown.cshtml" />
+    <Content Include="Areas\Admin\Views\Country\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Country\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Region\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Region\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Region\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Region\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\EditorTemplates\ProductSections.cshtml" />
+    <Content Include="Areas\Admin\Views\DataImport\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DataImport\IT4Profit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxClass\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxClass\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxClass\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxClass\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxRate\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxRate\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxZone\EditorTemplates\TaxZoneEditViewModel.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Views\TaxRate\EditorTemplates\TaxRateEditViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxRate\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaxRate\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\EditorTemplates\CustomerViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\EditorTemplates\AddressViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\DataExport\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DataExport\ProductsJson.cshtml" />
+    <Content Include="Areas\Admin\Views\WorkProcess\_Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\OnCompleteActionType.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\EditorTemplates\SKUs.cshtml" />
+    <Content Include="Areas\Admin\Views\DataImport\ProductsJson.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\_SalesBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\_OrdersBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\_VisitsBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\_ReturnsBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\_OrdersChartBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\_OrdersMapBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\_TopCategoriesBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\EditorTemplates\OrderEditViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\EditorTemplates\AddressViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\_Options.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingZone\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingZone\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingZone\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingZone\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingZone\EditorTemplates\ShippingZoneEditViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipment\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipment\EditorTemplates\ShipmentEditViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipment\DisplayTemplates\AddressViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shipment\DisplayTemplates\ShipmentIndexViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PageTemplate\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PageTemplate\Files.cshtml" />
+    <Content Include="Areas\Admin\Views\PageTemplate\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingMethod\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingMethod\EditorTemplates\ShippingMethodEditViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingMethod\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingMethod\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ShippingMethod\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminAlert\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DataImport\TranslationsCsv.cshtml" />
+    <Content Include="Areas\Admin\Views\Translation\LanguageSelector.cshtml" />
+    <Content Include="Areas\Admin\Views\PageTemplate\Settings.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Welcome.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Operator\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Operator\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Operator\EditorTemplates\OperatorViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Operator\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\OperatorWelcome.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPost\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPost\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPost\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPost\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPost\EditorTemplates\BlogPostViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPostComment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPostComment\ForApproval.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPostComment\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogPostComment\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentMethod\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentMethod\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DataImport\Solytron.cshtml" />
+    <Content Include="Content\admin\css\animate.css" />
+    <Content Include="Content\admin\css\gallery.css" />
+    <Content Include="Content\admin\css\images\gritter-light.png" />
+    <Content Include="Content\admin\css\images\gritter-long.png" />
+    <Content Include="Content\admin\css\images\gritter.png" />
+    <Content Include="Content\admin\css\images\ie-spacer.gif" />
+    <Content Include="Content\admin\css\introjs.css" />
+    <Content Include="Content\admin\css\jquery.gritter.css" />
+    <Content Include="Content\admin\css\patterns\congruent_pentagon.png" />
+    <Content Include="Content\admin\css\patterns\header-profile-skin-1.png" />
+    <Content Include="Content\admin\css\patterns\header-profile-skin-2.png" />
+    <Content Include="Content\admin\css\patterns\header-profile-skin-3.png" />
+    <Content Include="Content\admin\css\patterns\header-profile.png" />
+    <Content Include="Content\admin\css\patterns\otis_redding.png" />
+    <Content Include="Content\admin\css\patterns\shattered.png" />
+    <Content Include="Content\admin\css\patterns\triangular.png" />
+    <Content Include="Content\admin\css\pick-a-color.css" />
+    <Content Include="Content\admin\css\style.css" />
+    <Content Include="Content\admin\css\summernote-bs3.css" />
+    <Content Include="Content\admin\css\summernote.css" />
+    <Content Include="Content\admin\css\typeaheadjs.css" />
+    <Content Include="Content\admin\js\ace\ace.js" />
+    <Content Include="Content\admin\js\ace\ext-beautify.js" />
+    <Content Include="Content\admin\js\ace\ext-chromevox.js" />
+    <Content Include="Content\admin\js\ace\ext-elastic_tabstops_lite.js" />
+    <Content Include="Content\admin\js\ace\ext-emmet.js" />
+    <Content Include="Content\admin\js\ace\ext-error_marker.js" />
+    <Content Include="Content\admin\js\ace\ext-keybinding_menu.js" />
+    <Content Include="Content\admin\js\ace\ext-language_tools.js" />
+    <Content Include="Content\admin\js\ace\ext-linking.js" />
+    <Content Include="Content\admin\js\ace\ext-modelist.js" />
+    <Content Include="Content\admin\js\ace\ext-old_ie.js" />
+    <Content Include="Content\admin\js\ace\ext-searchbox.js" />
+    <Content Include="Content\admin\js\ace\ext-settings_menu.js" />
+    <Content Include="Content\admin\js\ace\ext-spellcheck.js" />
+    <Content Include="Content\admin\js\ace\ext-split.js" />
+    <Content Include="Content\admin\js\ace\ext-static_highlight.js" />
+    <Content Include="Content\admin\js\ace\ext-statusbar.js" />
+    <Content Include="Content\admin\js\ace\ext-textarea.js" />
+    <Content Include="Content\admin\js\ace\ext-themelist.js" />
+    <Content Include="Content\admin\js\ace\ext-whitespace.js" />
+    <Content Include="Content\admin\js\ace\keybinding-emacs.js" />
+    <Content Include="Content\admin\js\ace\keybinding-vim.js" />
+    <Content Include="Content\admin\js\ace\mode-abap.js" />
+    <Content Include="Content\admin\js\ace\mode-actionscript.js" />
+    <Content Include="Content\admin\js\ace\mode-ada.js" />
+    <Content Include="Content\admin\js\ace\mode-apache_conf.js" />
+    <Content Include="Content\admin\js\ace\mode-applescript.js" />
+    <Content Include="Content\admin\js\ace\mode-asciidoc.js" />
+    <Content Include="Content\admin\js\ace\mode-assembly_x86.js" />
+    <Content Include="Content\admin\js\ace\mode-autohotkey.js" />
+    <Content Include="Content\admin\js\ace\mode-batchfile.js" />
+    <Content Include="Content\admin\js\ace\mode-c9search.js" />
+    <Content Include="Content\admin\js\ace\mode-cirru.js" />
+    <Content Include="Content\admin\js\ace\mode-clojure.js" />
+    <Content Include="Content\admin\js\ace\mode-cobol.js" />
+    <Content Include="Content\admin\js\ace\mode-coffee.js" />
+    <Content Include="Content\admin\js\ace\mode-coldfusion.js" />
+    <Content Include="Content\admin\js\ace\mode-csharp.js" />
+    <Content Include="Content\admin\js\ace\mode-css.js" />
+    <Content Include="Content\admin\js\ace\mode-curly.js" />
+    <Content Include="Content\admin\js\ace\mode-c_cpp.js" />
+    <Content Include="Content\admin\js\ace\mode-d.js" />
+    <Content Include="Content\admin\js\ace\mode-dart.js" />
+    <Content Include="Content\admin\js\ace\mode-diff.js" />
+    <Content Include="Content\admin\js\ace\mode-django.js" />
+    <Content Include="Content\admin\js\ace\mode-dockerfile.js" />
+    <Content Include="Content\admin\js\ace\mode-dot.js" />
+    <Content Include="Content\admin\js\ace\mode-eiffel.js" />
+    <Content Include="Content\admin\js\ace\mode-ejs.js" />
+    <Content Include="Content\admin\js\ace\mode-erlang.js" />
+    <Content Include="Content\admin\js\ace\mode-forth.js" />
+    <Content Include="Content\admin\js\ace\mode-ftl.js" />
+    <Content Include="Content\admin\js\ace\mode-gcode.js" />
+    <Content Include="Content\admin\js\ace\mode-gherkin.js" />
+    <Content Include="Content\admin\js\ace\mode-gitignore.js" />
+    <Content Include="Content\admin\js\ace\mode-glsl.js" />
+    <Content Include="Content\admin\js\ace\mode-golang.js" />
+    <Content Include="Content\admin\js\ace\mode-groovy.js" />
+    <Content Include="Content\admin\js\ace\mode-haml.js" />
+    <Content Include="Content\admin\js\ace\mode-handlebars.js" />
+    <Content Include="Content\admin\js\ace\mode-haskell.js" />
+    <Content Include="Content\admin\js\ace\mode-haxe.js" />
+    <Content Include="Content\admin\js\ace\mode-html.js" />
+    <Content Include="Content\admin\js\ace\mode-html_ruby.js" />
+    <Content Include="Content\admin\js\ace\mode-ini.js" />
+    <Content Include="Content\admin\js\ace\mode-jack.js" />
+    <Content Include="Content\admin\js\ace\mode-jade.js" />
+    <Content Include="Content\admin\js\ace\mode-java.js" />
+    <Content Include="Content\admin\js\ace\mode-javascript.js" />
+    <Content Include="Content\admin\js\ace\mode-json.js" />
+    <Content Include="Content\admin\js\ace\mode-jsoniq.js" />
+    <Content Include="Content\admin\js\ace\mode-jsp.js" />
+    <Content Include="Content\admin\js\ace\mode-jsx.js" />
+    <Content Include="Content\admin\js\ace\mode-julia.js" />
+    <Content Include="Content\admin\js\ace\mode-latex.js" />
+    <Content Include="Content\admin\js\ace\mode-less.js" />
+    <Content Include="Content\admin\js\ace\mode-liquid.js" />
+    <Content Include="Content\admin\js\ace\mode-lisp.js" />
+    <Content Include="Content\admin\js\ace\mode-livescript.js" />
+    <Content Include="Content\admin\js\ace\mode-logiql.js" />
+    <Content Include="Content\admin\js\ace\mode-lsl.js" />
+    <Content Include="Content\admin\js\ace\mode-lua.js" />
+    <Content Include="Content\admin\js\ace\mode-luapage.js" />
+    <Content Include="Content\admin\js\ace\mode-lucene.js" />
+    <Content Include="Content\admin\js\ace\mode-makefile.js" />
+    <Content Include="Content\admin\js\ace\mode-markdown.js" />
+    <Content Include="Content\admin\js\ace\mode-matlab.js" />
+    <Content Include="Content\admin\js\ace\mode-mel.js" />
+    <Content Include="Content\admin\js\ace\mode-mushcode.js" />
+    <Content Include="Content\admin\js\ace\mode-mysql.js" />
+    <Content Include="Content\admin\js\ace\mode-nix.js" />
+    <Content Include="Content\admin\js\ace\mode-objectivec.js" />
+    <Content Include="Content\admin\js\ace\mode-ocaml.js" />
+    <Content Include="Content\admin\js\ace\mode-pascal.js" />
+    <Content Include="Content\admin\js\ace\mode-perl.js" />
+    <Content Include="Content\admin\js\ace\mode-pgsql.js" />
+    <Content Include="Content\admin\js\ace\mode-php.js" />
+    <Content Include="Content\admin\js\ace\mode-plain_text.js" />
+    <Content Include="Content\admin\js\ace\mode-powershell.js" />
+    <Content Include="Content\admin\js\ace\mode-praat.js" />
+    <Content Include="Content\admin\js\ace\mode-prolog.js" />
+    <Content Include="Content\admin\js\ace\mode-properties.js" />
+    <Content Include="Content\admin\js\ace\mode-protobuf.js" />
+    <Content Include="Content\admin\js\ace\mode-python.js" />
+    <Content Include="Content\admin\js\ace\mode-r.js" />
+    <Content Include="Content\admin\js\ace\mode-razor.js" />
+    <Content Include="Content\admin\js\ace\mode-rdoc.js" />
+    <Content Include="Content\admin\js\ace\mode-rhtml.js" />
+    <Content Include="Content\admin\js\ace\mode-ruby.js" />
+    <Content Include="Content\admin\js\ace\mode-rust.js" />
+    <Content Include="Content\admin\js\ace\mode-sass.js" />
+    <Content Include="Content\admin\js\ace\mode-scad.js" />
+    <Content Include="Content\admin\js\ace\mode-scala.js" />
+    <Content Include="Content\admin\js\ace\mode-scheme.js" />
+    <Content Include="Content\admin\js\ace\mode-scss.js" />
+    <Content Include="Content\admin\js\ace\mode-sh.js" />
+    <Content Include="Content\admin\js\ace\mode-sjs.js" />
+    <Content Include="Content\admin\js\ace\mode-smarty.js" />
+    <Content Include="Content\admin\js\ace\mode-snippets.js" />
+    <Content Include="Content\admin\js\ace\mode-soy_template.js" />
+    <Content Include="Content\admin\js\ace\mode-space.js" />
+    <Content Include="Content\admin\js\ace\mode-sql.js" />
+    <Content Include="Content\admin\js\ace\mode-stylus.js" />
+    <Content Include="Content\admin\js\ace\mode-svg.js" />
+    <Content Include="Content\admin\js\ace\mode-tcl.js" />
+    <Content Include="Content\admin\js\ace\mode-tex.js" />
+    <Content Include="Content\admin\js\ace\mode-text.js" />
+    <Content Include="Content\admin\js\ace\mode-textile.js" />
+    <Content Include="Content\admin\js\ace\mode-toml.js" />
+    <Content Include="Content\admin\js\ace\mode-twig.js" />
+    <Content Include="Content\admin\js\ace\mode-typescript.js" />
+    <Content Include="Content\admin\js\ace\mode-vala.js" />
+    <Content Include="Content\admin\js\ace\mode-vbscript.js" />
+    <Content Include="Content\admin\js\ace\mode-velocity.js" />
+    <Content Include="Content\admin\js\ace\mode-verilog.js" />
+    <Content Include="Content\admin\js\ace\mode-vhdl.js" />
+    <Content Include="Content\admin\js\ace\mode-xml.js" />
+    <Content Include="Content\admin\js\ace\mode-xquery.js" />
+    <Content Include="Content\admin\js\ace\mode-yaml.js" />
+    <Content Include="Content\admin\js\ace\snippets\abap.js" />
+    <Content Include="Content\admin\js\ace\snippets\actionscript.js" />
+    <Content Include="Content\admin\js\ace\snippets\ada.js" />
+    <Content Include="Content\admin\js\ace\snippets\apache_conf.js" />
+    <Content Include="Content\admin\js\ace\snippets\applescript.js" />
+    <Content Include="Content\admin\js\ace\snippets\asciidoc.js" />
+    <Content Include="Content\admin\js\ace\snippets\assembly_x86.js" />
+    <Content Include="Content\admin\js\ace\snippets\autohotkey.js" />
+    <Content Include="Content\admin\js\ace\snippets\batchfile.js" />
+    <Content Include="Content\admin\js\ace\snippets\c9search.js" />
+    <Content Include="Content\admin\js\ace\snippets\cirru.js" />
+    <Content Include="Content\admin\js\ace\snippets\clojure.js" />
+    <Content Include="Content\admin\js\ace\snippets\cobol.js" />
+    <Content Include="Content\admin\js\ace\snippets\coffee.js" />
+    <Content Include="Content\admin\js\ace\snippets\coldfusion.js" />
+    <Content Include="Content\admin\js\ace\snippets\csharp.js" />
+    <Content Include="Content\admin\js\ace\snippets\css.js" />
+    <Content Include="Content\admin\js\ace\snippets\curly.js" />
+    <Content Include="Content\admin\js\ace\snippets\c_cpp.js" />
+    <Content Include="Content\admin\js\ace\snippets\d.js" />
+    <Content Include="Content\admin\js\ace\snippets\dart.js" />
+    <Content Include="Content\admin\js\ace\snippets\diff.js" />
+    <Content Include="Content\admin\js\ace\snippets\django.js" />
+    <Content Include="Content\admin\js\ace\snippets\dockerfile.js" />
+    <Content Include="Content\admin\js\ace\snippets\dot.js" />
+    <Content Include="Content\admin\js\ace\snippets\eiffel.js" />
+    <Content Include="Content\admin\js\ace\snippets\ejs.js" />
+    <Content Include="Content\admin\js\ace\snippets\erlang.js" />
+    <Content Include="Content\admin\js\ace\snippets\forth.js" />
+    <Content Include="Content\admin\js\ace\snippets\ftl.js" />
+    <Content Include="Content\admin\js\ace\snippets\gcode.js" />
+    <Content Include="Content\admin\js\ace\snippets\gherkin.js" />
+    <Content Include="Content\admin\js\ace\snippets\gitignore.js" />
+    <Content Include="Content\admin\js\ace\snippets\glsl.js" />
+    <Content Include="Content\admin\js\ace\snippets\golang.js" />
+    <Content Include="Content\admin\js\ace\snippets\groovy.js" />
+    <Content Include="Content\admin\js\ace\snippets\haml.js" />
+    <Content Include="Content\admin\js\ace\snippets\handlebars.js" />
+    <Content Include="Content\admin\js\ace\snippets\haskell.js" />
+    <Content Include="Content\admin\js\ace\snippets\haxe.js" />
+    <Content Include="Content\admin\js\ace\snippets\html.js" />
+    <Content Include="Content\admin\js\ace\snippets\html_ruby.js" />
+    <Content Include="Content\admin\js\ace\snippets\ini.js" />
+    <Content Include="Content\admin\js\ace\snippets\jack.js" />
+    <Content Include="Content\admin\js\ace\snippets\jade.js" />
+    <Content Include="Content\admin\js\ace\snippets\java.js" />
+    <Content Include="Content\admin\js\ace\snippets\javascript.js" />
+    <Content Include="Content\admin\js\ace\snippets\json.js" />
+    <Content Include="Content\admin\js\ace\snippets\jsoniq.js" />
+    <Content Include="Content\admin\js\ace\snippets\jsp.js" />
+    <Content Include="Content\admin\js\ace\snippets\jsx.js" />
+    <Content Include="Content\admin\js\ace\snippets\julia.js" />
+    <Content Include="Content\admin\js\ace\snippets\latex.js" />
+    <Content Include="Content\admin\js\ace\snippets\less.js" />
+    <Content Include="Content\admin\js\ace\snippets\liquid.js" />
+    <Content Include="Content\admin\js\ace\snippets\lisp.js" />
+    <Content Include="Content\admin\js\ace\snippets\livescript.js" />
+    <Content Include="Content\admin\js\ace\snippets\logiql.js" />
+    <Content Include="Content\admin\js\ace\snippets\lsl.js" />
+    <Content Include="Content\admin\js\ace\snippets\lua.js" />
+    <Content Include="Content\admin\js\ace\snippets\luapage.js" />
+    <Content Include="Content\admin\js\ace\snippets\lucene.js" />
+    <Content Include="Content\admin\js\ace\snippets\makefile.js" />
+    <Content Include="Content\admin\js\ace\snippets\markdown.js" />
+    <Content Include="Content\admin\js\ace\snippets\matlab.js" />
+    <Content Include="Content\admin\js\ace\snippets\mel.js" />
+    <Content Include="Content\admin\js\ace\snippets\mushcode.js" />
+    <Content Include="Content\admin\js\ace\snippets\mysql.js" />
+    <Content Include="Content\admin\js\ace\snippets\nix.js" />
+    <Content Include="Content\admin\js\ace\snippets\objectivec.js" />
+    <Content Include="Content\admin\js\ace\snippets\ocaml.js" />
+    <Content Include="Content\admin\js\ace\snippets\pascal.js" />
+    <Content Include="Content\admin\js\ace\snippets\perl.js" />
+    <Content Include="Content\admin\js\ace\snippets\pgsql.js" />
+    <Content Include="Content\admin\js\ace\snippets\php.js" />
+    <Content Include="Content\admin\js\ace\snippets\plain_text.js" />
+    <Content Include="Content\admin\js\ace\snippets\powershell.js" />
+    <Content Include="Content\admin\js\ace\snippets\praat.js" />
+    <Content Include="Content\admin\js\ace\snippets\prolog.js" />
+    <Content Include="Content\admin\js\ace\snippets\properties.js" />
+    <Content Include="Content\admin\js\ace\snippets\protobuf.js" />
+    <Content Include="Content\admin\js\ace\snippets\python.js" />
+    <Content Include="Content\admin\js\ace\snippets\r.js" />
+    <Content Include="Content\admin\js\ace\snippets\razor.js" />
+    <Content Include="Content\admin\js\ace\snippets\rdoc.js" />
+    <Content Include="Content\admin\js\ace\snippets\rhtml.js" />
+    <Content Include="Content\admin\js\ace\snippets\ruby.js" />
+    <Content Include="Content\admin\js\ace\snippets\rust.js" />
+    <Content Include="Content\admin\js\ace\snippets\sass.js" />
+    <Content Include="Content\admin\js\ace\snippets\scad.js" />
+    <Content Include="Content\admin\js\ace\snippets\scala.js" />
+    <Content Include="Content\admin\js\ace\snippets\scheme.js" />
+    <Content Include="Content\admin\js\ace\snippets\scss.js" />
+    <Content Include="Content\admin\js\ace\snippets\sh.js" />
+    <Content Include="Content\admin\js\ace\snippets\sjs.js" />
+    <Content Include="Content\admin\js\ace\snippets\smarty.js" />
+    <Content Include="Content\admin\js\ace\snippets\snippets.js" />
+    <Content Include="Content\admin\js\ace\snippets\soy_template.js" />
+    <Content Include="Content\admin\js\ace\snippets\space.js" />
+    <Content Include="Content\admin\js\ace\snippets\sql.js" />
+    <Content Include="Content\admin\js\ace\snippets\stylus.js" />
+    <Content Include="Content\admin\js\ace\snippets\svg.js" />
+    <Content Include="Content\admin\js\ace\snippets\tcl.js" />
+    <Content Include="Content\admin\js\ace\snippets\tex.js" />
+    <Content Include="Content\admin\js\ace\snippets\text.js" />
+    <Content Include="Content\admin\js\ace\snippets\textile.js" />
+    <Content Include="Content\admin\js\ace\snippets\toml.js" />
+    <Content Include="Content\admin\js\ace\snippets\twig.js" />
+    <Content Include="Content\admin\js\ace\snippets\typescript.js" />
+    <Content Include="Content\admin\js\ace\snippets\vala.js" />
+    <Content Include="Content\admin\js\ace\snippets\vbscript.js" />
+    <Content Include="Content\admin\js\ace\snippets\velocity.js" />
+    <Content Include="Content\admin\js\ace\snippets\verilog.js" />
+    <Content Include="Content\admin\js\ace\snippets\vhdl.js" />
+    <Content Include="Content\admin\js\ace\snippets\xml.js" />
+    <Content Include="Content\admin\js\ace\snippets\xquery.js" />
+    <Content Include="Content\admin\js\ace\snippets\yaml.js" />
+    <Content Include="Content\admin\js\ace\theme-ambiance.js" />
+    <Content Include="Content\admin\js\ace\theme-chaos.js" />
+    <Content Include="Content\admin\js\ace\theme-chrome.js" />
+    <Content Include="Content\admin\js\ace\theme-chrome_razor.js" />
+    <Content Include="Content\admin\js\ace\theme-clouds.js" />
+    <Content Include="Content\admin\js\ace\theme-clouds_midnight.js" />
+    <Content Include="Content\admin\js\ace\theme-cobalt.js" />
+    <Content Include="Content\admin\js\ace\theme-crimson_editor.js" />
+    <Content Include="Content\admin\js\ace\theme-dawn.js" />
+    <Content Include="Content\admin\js\ace\theme-dreamweaver.js" />
+    <Content Include="Content\admin\js\ace\theme-eclipse.js" />
+    <Content Include="Content\admin\js\ace\theme-github.js" />
+    <Content Include="Content\admin\js\ace\theme-idle_fingers.js" />
+    <Content Include="Content\admin\js\ace\theme-katzenmilch.js" />
+    <Content Include="Content\admin\js\ace\theme-kr.js" />
+    <Content Include="Content\admin\js\ace\theme-kr_theme.js" />
+    <Content Include="Content\admin\js\ace\theme-kuroir.js" />
+    <Content Include="Content\admin\js\ace\theme-merbivore.js" />
+    <Content Include="Content\admin\js\ace\theme-merbivore_soft.js" />
+    <Content Include="Content\admin\js\ace\theme-monokai.js" />
+    <Content Include="Content\admin\js\ace\theme-mono_industrial.js" />
+    <Content Include="Content\admin\js\ace\theme-pastel_on_dark.js" />
+    <Content Include="Content\admin\js\ace\theme-solarized_dark.js" />
+    <Content Include="Content\admin\js\ace\theme-solarized_light.js" />
+    <Content Include="Content\admin\js\ace\theme-terminal.js" />
+    <Content Include="Content\admin\js\ace\theme-textmate.js" />
+    <Content Include="Content\admin\js\ace\theme-tomorrow.js" />
+    <Content Include="Content\admin\js\ace\theme-tomorrow_night.js" />
+    <Content Include="Content\admin\js\ace\theme-tomorrow_night_blue.js" />
+    <Content Include="Content\admin\js\ace\theme-tomorrow_night_bright.js" />
+    <Content Include="Content\admin\js\ace\theme-tomorrow_night_eighties.js" />
+    <Content Include="Content\admin\js\ace\theme-twilight.js" />
+    <Content Include="Content\admin\js\ace\theme-vibrant_ink.js" />
+    <Content Include="Content\admin\js\ace\theme-xcode.js" />
+    <Content Include="Content\admin\js\ace\worker-coffee.js" />
+    <Content Include="Content\admin\js\ace\worker-css.js" />
+    <Content Include="Content\admin\js\ace\worker-html.js" />
+    <Content Include="Content\admin\js\ace\worker-javascript.js" />
+    <Content Include="Content\admin\js\ace\worker-json.js" />
+    <Content Include="Content\admin\js\ace\worker-lua.js" />
+    <Content Include="Content\admin\js\ace\worker-php.js" />
+    <Content Include="Content\admin\js\ace\worker-xquery.js" />
+    <Content Include="Content\admin\js\flot\curvedLines.js" />
+    <Content Include="Content\admin\js\flot\excanvas.min.js" />
+    <Content Include="Content\admin\js\flot\jquery.flot.js" />
+    <Content Include="Content\admin\js\flot\jquery.flot.pie.js" />
+    <Content Include="Content\admin\js\flot\jquery.flot.resize.js" />
+    <Content Include="Content\admin\js\flot\jquery.flot.spline.js" />
+    <Content Include="Content\admin\js\flot\jquery.flot.symbol.js" />
+    <Content Include="Content\admin\js\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Content\admin\js\intro.min.js" />
+    <Content Include="Content\admin\js\jquery.gritter.min.js" />
+    <Content Include="Content\admin\js\jquery.metisMenu.js" />
+    <Content Include="Content\admin\js\jvectormap\jquery-jvectormap-1.2.2.css" />
+    <Content Include="Content\admin\js\jvectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Content\admin\js\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Content\admin\js\misc.js" />
+    <Content Include="Content\admin\js\pace.min.js" />
+    <Content Include="Content\admin\js\pick-a-color.js" />
+    <Content Include="Content\admin\js\pick-a-color.min.js" />
+    <Content Include="Content\admin\js\style.js" />
+    <Content Include="Content\admin\js\summernote.min.js" />
+    <Content Include="Content\admin\js\tinycolor.min.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\cart42footer.png" />
+    <Content Include="Content\img\cart42icon.png" />
+    <Content Include="Content\img\cart42logo.png" />
+    <Content Include="Content\img\no-img.jpg" />
+    <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\Themes\Default\css\style.css" />
+    <Content Include="Content\DataInitializer\Regional\Countries.json" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\img\btn-attach.png" />
+    <Content Include="Content\img\btn-setting.png" />
+    <Content Include="Content\img\btn-shuffle.png" />
+    <Content Include="Content\img\btn-tool.png" />
+    <Content Include="Content\img\contact-img.png" />
+    <Content Include="Content\img\contact-img2.png" />
+    <Content Include="Content\img\contact-profile.png" />
+    <Content Include="Content\img\datatables\back_disabled.png" />
+    <Content Include="Content\img\datatables\back_enabled.png" />
+    <Content Include="Content\img\datatables\back_enabled_hover.png" />
+    <Content Include="Content\img\datatables\forward_disabled.png" />
+    <Content Include="Content\img\datatables\forward_enabled.png" />
+    <Content Include="Content\img\datatables\forward_enabled_hover.png" />
+    <Content Include="Content\img\datatables\sort_asc.png" />
+    <Content Include="Content\img\datatables\sort_asc_disabled.png" />
+    <Content Include="Content\img\datatables\sort_both.png" />
+    <Content Include="Content\img\datatables\sort_desc.png" />
+    <Content Include="Content\img\datatables\sort_desc_disabled.png" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\img\ico-arrow-black.png" />
+    <Content Include="Content\img\ico-gallery-edit.png" />
+    <Content Include="Content\img\ico-gallery-trash.png" />
+    <Content Include="Content\img\ico-mail.png" />
+    <Content Include="Content\img\ico-phone.png" />
+    <Content Include="Content\img\ico-table-delete.png" />
+    <Content Include="Content\img\ico-table-edit.png" />
+    <Content Include="Content\img\ico-table-new.png" />
+    <Content Include="Content\img\lens.png" />
+    <Content Include="Content\img\logo-white.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\maintenance.png" />
+    <Content Include="Content\img\new-gallery-img.png" />
+    <Content Include="Content\img\no-img-gallery.png" />
+    <Content Include="Content\img\personal-info.png" />
+    <Content Include="Content\img\select-bg.png" />
+    <Content Include="Content\img\select2\select2.png" />
+    <Content Include="Content\img\select2\select2x2.png" />
+    <Content Include="Content\img\select2\spinner.gif" />
+    <Content Include="Content\img\skin-nav-bullets.png" />
+    <Content Include="Content\img\table-icons.png" />
+    <Content Include="Content\img\table-img.png" />
+    <Content Include="Content\img\uniform\bg-input-focus.png" />
+    <Content Include="Content\img\uniform\bg-input.png" />
+    <Content Include="Content\img\uniform\sprite.png" />
+    <Content Include="Content\Themes\Default\css\magnific-popup.css" />
+    <Content Include="Content\Themes\Default\screenshot.png" />
+    <Content Include="Content\Themes\Mimity\css\jquery.bxslider.css" />
+    <Content Include="Content\Themes\Mimity\css\magnific-popup.css" />
+    <Content Include="Content\Themes\Mimity\css\style.css" />
+    <Content Include="Content\Themes\Mimity\fonts\DroidSans-webfont.svg" />
+    <Content Include="Content\Themes\Mimity\fonts\fontawesome-webfontba72.svg" />
+    <Content Include="Content\Themes\Mimity\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Themes\Mimity\fonts\OpenSansCondLight.png" />
+    <Content Include="Content\Themes\Mimity\images\banner_slider-1.jpg" />
+    <Content Include="Content\Themes\Mimity\images\banner_slider-2.jpg" />
+    <Content Include="Content\Themes\Mimity\images\banner_slider-3.jpg" />
+    <Content Include="Content\Themes\Mimity\images\bx_loader.gif" />
+    <Content Include="Content\Themes\Mimity\images\controls.png" />
+    <Content Include="Content\Themes\Mimity\js\bootstrap.touchspin.js" />
+    <Content Include="Content\Themes\Mimity\js\jquery.blImageCenter.js" />
+    <Content Include="Content\Themes\Mimity\js\jquery.bxslider.js" />
+    <Content Include="Content\Themes\Mimity\js\jquery.bxslider.min.js" />
+    <Content Include="Content\Themes\Mimity\js\jquery.magnific-popup.js" />
+    <Content Include="Content\Themes\Mimity\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\Themes\Mimity\js\mimity.js" />
+    <Content Include="Content\Themes\Mimity\screenshot.png" />
+    <Content Include="Content\Themes\Standard\css\animation.css" />
+    <Content Include="Content\Themes\Standard\css\carousel.css" />
+    <Content Include="Content\Themes\Standard\css\jquery.bxslider.css" />
+    <Content Include="Content\Themes\Standard\css\pavblog.css" />
+    <Content Include="Content\Themes\Standard\css\pavcarousel.css" />
+    <Content Include="Content\Themes\Standard\css\pavdeals.css" />
+    <Content Include="Content\Themes\Standard\css\pavmap.css" />
+    <Content Include="Content\Themes\Standard\css\pavmegamenu.css" />
+    <Content Include="Content\Themes\Standard\css\pavproductcarousel.css" />
+    <Content Include="Content\Themes\Standard\css\pavproducts.css" />
+    <Content Include="Content\Themes\Standard\css\pavproducttabs.css" />
+    <Content Include="Content\Themes\Standard\css\pavreassurance.css" />
+    <Content Include="Content\Themes\Standard\css\slideshow.css" />
+    <Content Include="Content\Themes\Standard\css\stylesheet.css" />
+    <Content Include="Content\Themes\Standard\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Themes\Standard\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Themes\Standard\fonts\museo300-regular-webfont.svg" />
+    <Content Include="Content\Themes\Standard\images\add.png" />
+    <Content Include="Content\Themes\Standard\images\arrow-down.png" />
+    <Content Include="Content\Themes\Standard\images\arrows.png" />
+    <Content Include="Content\Themes\Standard\images\attention.png" />
+    <Content Include="Content\Themes\Standard\images\bullet-1.png" />
+    <Content Include="Content\Themes\Standard\images\bullet.png" />
+    <Content Include="Content\Themes\Standard\images\bullets.png" />
+    <Content Include="Content\Themes\Standard\images\button-next.png" />
+    <Content Include="Content\Themes\Standard\images\button-previous.png" />
+    <Content Include="Content\Themes\Standard\images\button.png" />
+    <Content Include="Content\Themes\Standard\images\bx_loader.gif" />
+    <Content Include="Content\Themes\Standard\images\cart-add.png" />
+    <Content Include="Content\Themes\Standard\images\close.png" />
+    <Content Include="Content\Themes\Standard\images\controls.png" />
+    <Content Include="Content\Themes\Standard\images\default\icon-cart.png" />
+    <Content Include="Content\Themes\Standard\images\default\icon-grid-list.png" />
+    <Content Include="Content\Themes\Standard\images\default\icon-menu.png" />
+    <Content Include="Content\Themes\Standard\images\default\logo.png" />
+    <Content Include="Content\Themes\Standard\images\download.png" />
+    <Content Include="Content\Themes\Standard\images\icon-minus.png" />
+    <Content Include="Content\Themes\Standard\images\icon-plus.png" />
+    <Content Include="Content\Themes\Standard\images\icon-vmenu.png" />
+    <Content Include="Content\Themes\Standard\images\info.png" />
+    <Content Include="Content\Themes\Standard\images\klarna_green_full.png" />
+    <Content Include="Content\Themes\Standard\images\klarna_green_middle.png" />
+    <Content Include="Content\Themes\Standard\images\klarna_nld_banner.png" />
+    <Content Include="Content\Themes\Standard\images\label_customize.png" />
+    <Content Include="Content\Themes\Standard\images\loading.gif" />
+    <Content Include="Content\Themes\Standard\images\paypal.png" />
+    <Content Include="Content\Themes\Standard\images\paypal_express_mobile.png" />
+    <Content Include="Content\Themes\Standard\images\remove-small.png" />
+    <Content Include="Content\Themes\Standard\images\remove.png" />
+    <Content Include="Content\Themes\Standard\images\reorder.png" />
+    <Content Include="Content\Themes\Standard\images\return.png" />
+    <Content Include="Content\Themes\Standard\images\banner_slider-1.jpg" />
+    <Content Include="Content\Themes\Standard\images\banner_slider-2.jpg" />
+    <Content Include="Content\Themes\Standard\images\banner_slider-3.jpg" />
+    <Content Include="Content\Themes\Standard\images\split.png" />
+    <Content Include="Content\Themes\Standard\images\stars-0.png" />
+    <Content Include="Content\Themes\Standard\images\stars-1.png" />
+    <Content Include="Content\Themes\Standard\images\stars-2.png" />
+    <Content Include="Content\Themes\Standard\images\stars-3.png" />
+    <Content Include="Content\Themes\Standard\images\stars-4.png" />
+    <Content Include="Content\Themes\Standard\images\stars-5.png" />
+    <Content Include="Content\Themes\Standard\images\success.png" />
+    <Content Include="Content\Themes\Standard\images\tab.png" />
+    <Content Include="Content\Themes\Standard\images\update.png" />
+    <Content Include="Content\Themes\Standard\images\warning.png" />
+    <Content Include="Content\Themes\Standard\js\common.js" />
+    <Content Include="Content\Themes\Standard\js\elevatezoom.js" />
+    <Content Include="Content\Themes\Standard\js\jquery.bxslider.js" />
+    <Content Include="Content\Themes\Standard\js\jquery.bxslider.min.js" />
+    <Content Include="Content\Themes\Standard\js\tabs.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Icon.png" />
+    <Content Include="Maintenance.htm" />
+    <Content Include="Scripts\alerts.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OptionCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OptionCategory\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OptionCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OptionCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\EditorTemplates\CategoriesSelector.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\EditorTemplates\ProductEditViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\EditorTemplates\CategoryEditViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\OptionCategory\EditorTemplates\OptionCategoryEditViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\RichTextEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\EditorTemplates\ImageUploader.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\EditorTemplates\OptionsSelector.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentPage\EditorTemplates\LinkPosition.cshtml" />
+    <Content Include="Content\Themes\Default\css\style.less" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\DataInitializer\Regional\australia.json" />
+    <Content Include="Content\DataInitializer\Regional\brazil.json" />
+    <Content Include="Content\DataInitializer\Regional\canada.json" />
+    <Content Include="Content\DataInitializer\Regional\china.json" />
+    <Content Include="Content\DataInitializer\Regional\france.json" />
+    <Content Include="Content\DataInitializer\Regional\germany.json" />
+    <Content Include="Content\DataInitializer\Regional\hong-kong.json" />
+    <Content Include="Content\DataInitializer\Regional\hungary.json" />
+    <Content Include="Content\DataInitializer\Regional\india.json" />
+    <Content Include="Content\DataInitializer\Regional\indonesia.json" />
+    <Content Include="Content\DataInitializer\Regional\malaysia.json" />
+    <Content Include="Content\DataInitializer\Regional\mexico.json" />
+    <Content Include="Content\DataInitializer\Regional\new-zealand.json" />
+    <Content Include="Content\DataInitializer\Regional\south-africa.json" />
+    <Content Include="Content\DataInitializer\Regional\thailand.json" />
+    <Content Include="Content\DataInitializer\Regional\united-kingdom.json" />
+    <Content Include="Content\DataInitializer\Regional\united-states.json" />
+    <Content Include="Content\DataInitializer\TaxRates\vat.json" />
+    <Content Include="Export\Web.config" />
+    <Content Include="Import\Web.config" />
+    <Content Include="Content\Themes\Mimity\fonts\DroidSans-webfont.eot" />
+    <Content Include="Content\Themes\Mimity\fonts\DroidSans-webfont.ttf" />
+    <Content Include="Content\Themes\Mimity\fonts\DroidSans-webfont.woff" />
+    <Content Include="Content\Themes\Mimity\fonts\DroidSans-webfontd41d.eot" />
+    <Content Include="Content\Themes\Mimity\fonts\fontawesome-webfontba72.eot" />
+    <Content Include="Content\Themes\Mimity\fonts\fontawesome-webfontba72.ttf" />
+    <Content Include="Content\Themes\Mimity\fonts\fontawesome-webfontba72.woff" />
+    <Content Include="Content\Themes\Mimity\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Content\Themes\Mimity\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Themes\Mimity\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Themes\Mimity\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Themes\Mimity\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Content\Themes\Mimity\fonts\OpenSansCondLight.eot" />
+    <Content Include="Content\Themes\Mimity\fonts\OpenSansCondLight.ttf" />
+    <Content Include="Content\Themes\Mimity\fonts\OpenSansCondLight.woff" />
+    <Content Include="Content\Themes\Standard\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Themes\Standard\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Themes\Standard\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Themes\Standard\fonts\FontAwesome.otf" />
+    <Content Include="Content\Themes\Standard\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Themes\Standard\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Themes\Standard\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Themes\Standard\fonts\museo300-regular-webfont.eot" />
+    <Content Include="Content\Themes\Standard\fonts\museo300-regular-webfont.ttf" />
+    <Content Include="Content\Themes\Standard\fonts\museo300-regular-webfont.woff" />
+    <Content Include="Content\DataInitializer\Translations\TranslationsAdmin.csv" />
+    <Content Include="Content\DataInitializer\Translations\Translations.csv" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\demo.cart42.com.pubxml" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\globalize\globalize.culture.af-ZA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.af.js" />
+    <Content Include="Scripts\globalize\globalize.culture.am-ET.js" />
+    <Content Include="Scripts\globalize\globalize.culture.am.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-AE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-BH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-DZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-EG.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-IQ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-JO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-KW.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-LB.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-LY.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-MA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-OM.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-QA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-SA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-SY.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-TN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar-YE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ar.js" />
+    <Content Include="Scripts\globalize\globalize.culture.arn-CL.js" />
+    <Content Include="Scripts\globalize\globalize.culture.arn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.as-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.as.js" />
+    <Content Include="Scripts\globalize\globalize.culture.az-Cyrl-AZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.az-Cyrl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.az-Latn-AZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.az-Latn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.az.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ba-RU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ba.js" />
+    <Content Include="Scripts\globalize\globalize.culture.be-BY.js" />
+    <Content Include="Scripts\globalize\globalize.culture.be.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bg-BG.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bg.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bn-BD.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bn-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bo-CN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bo.js" />
+    <Content Include="Scripts\globalize\globalize.culture.br-FR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.br.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bs-Cyrl-BA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bs-Cyrl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bs-Latn-BA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bs-Latn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.bs.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ca-ES.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ca.js" />
+    <Content Include="Scripts\globalize\globalize.culture.co-FR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.co.js" />
+    <Content Include="Scripts\globalize\globalize.culture.cs-CZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.cs.js" />
+    <Content Include="Scripts\globalize\globalize.culture.cy-GB.js" />
+    <Content Include="Scripts\globalize\globalize.culture.cy.js" />
+    <Content Include="Scripts\globalize\globalize.culture.da-DK.js" />
+    <Content Include="Scripts\globalize\globalize.culture.da.js" />
+    <Content Include="Scripts\globalize\globalize.culture.de-AT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.de-CH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.de-DE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.de-LI.js" />
+    <Content Include="Scripts\globalize\globalize.culture.de-LU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.de.js" />
+    <Content Include="Scripts\globalize\globalize.culture.dsb-DE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.dsb.js" />
+    <Content Include="Scripts\globalize\globalize.culture.dv-MV.js" />
+    <Content Include="Scripts\globalize\globalize.culture.dv.js" />
+    <Content Include="Scripts\globalize\globalize.culture.el-GR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.el.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-029.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-AU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-BZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-CA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-GB.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-IE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-JM.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-MY.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-NZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-PH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-SG.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-TT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-US.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-ZA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.en-ZW.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-AR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-BO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-CL.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-CO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-CR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-DO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-EC.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-ES.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-GT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-HN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-MX.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-NI.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-PA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-PE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-PR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-PY.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-SV.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-US.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-UY.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es-VE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.es.js" />
+    <Content Include="Scripts\globalize\globalize.culture.et-EE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.et.js" />
+    <Content Include="Scripts\globalize\globalize.culture.eu-ES.js" />
+    <Content Include="Scripts\globalize\globalize.culture.eu.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fa-IR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fa.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fi-FI.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fi.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fil-PH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fil.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fo-FO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fo.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fr-BE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fr-CA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fr-CH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fr-FR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fr-LU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fr-MC.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fr.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fy-NL.js" />
+    <Content Include="Scripts\globalize\globalize.culture.fy.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ga-IE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ga.js" />
+    <Content Include="Scripts\globalize\globalize.culture.gd-GB.js" />
+    <Content Include="Scripts\globalize\globalize.culture.gd.js" />
+    <Content Include="Scripts\globalize\globalize.culture.gl-ES.js" />
+    <Content Include="Scripts\globalize\globalize.culture.gl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.gsw-FR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.gsw.js" />
+    <Content Include="Scripts\globalize\globalize.culture.gu-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.gu.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ha-Latn-NG.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ha-Latn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ha.js" />
+    <Content Include="Scripts\globalize\globalize.culture.he-IL.js" />
+    <Content Include="Scripts\globalize\globalize.culture.he.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hi-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hi.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hr-BA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hr-HR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hr.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hsb-DE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hsb.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hu-HU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hu.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hy-AM.js" />
+    <Content Include="Scripts\globalize\globalize.culture.hy.js" />
+    <Content Include="Scripts\globalize\globalize.culture.id-ID.js" />
+    <Content Include="Scripts\globalize\globalize.culture.id.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ig-NG.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ig.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ii-CN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ii.js" />
+    <Content Include="Scripts\globalize\globalize.culture.is-IS.js" />
+    <Content Include="Scripts\globalize\globalize.culture.is.js" />
+    <Content Include="Scripts\globalize\globalize.culture.it-CH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.it-IT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.it.js" />
+    <Content Include="Scripts\globalize\globalize.culture.iu-Cans-CA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.iu-Cans.js" />
+    <Content Include="Scripts\globalize\globalize.culture.iu-Latn-CA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.iu-Latn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.iu.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ja-JP.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ja.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ka-GE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ka.js" />
+    <Content Include="Scripts\globalize\globalize.culture.kk-KZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.kk.js" />
+    <Content Include="Scripts\globalize\globalize.culture.kl-GL.js" />
+    <Content Include="Scripts\globalize\globalize.culture.kl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.km-KH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.km.js" />
+    <Content Include="Scripts\globalize\globalize.culture.kn-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.kn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ko-KR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ko.js" />
+    <Content Include="Scripts\globalize\globalize.culture.kok-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.kok.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ky-KG.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ky.js" />
+    <Content Include="Scripts\globalize\globalize.culture.lb-LU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.lb.js" />
+    <Content Include="Scripts\globalize\globalize.culture.lo-LA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.lo.js" />
+    <Content Include="Scripts\globalize\globalize.culture.lt-LT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.lt.js" />
+    <Content Include="Scripts\globalize\globalize.culture.lv-LV.js" />
+    <Content Include="Scripts\globalize\globalize.culture.lv.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mi-NZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mi.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mk-MK.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mk.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ml-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ml.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mn-Cyrl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mn-MN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mn-Mong-CN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mn-Mong.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.moh-CA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.moh.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mr-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mr.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ms-BN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ms-MY.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ms.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mt-MT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.mt.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nb-NO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nb.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ne-NP.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ne.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nl-BE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nl-NL.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nn-NO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.no.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nso-ZA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.nso.js" />
+    <Content Include="Scripts\globalize\globalize.culture.oc-FR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.oc.js" />
+    <Content Include="Scripts\globalize\globalize.culture.or-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.or.js" />
+    <Content Include="Scripts\globalize\globalize.culture.pa-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.pa.js" />
+    <Content Include="Scripts\globalize\globalize.culture.pl-PL.js" />
+    <Content Include="Scripts\globalize\globalize.culture.pl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.prs-AF.js" />
+    <Content Include="Scripts\globalize\globalize.culture.prs.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ps-AF.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ps.js" />
+    <Content Include="Scripts\globalize\globalize.culture.pt-BR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.pt-PT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.pt.js" />
+    <Content Include="Scripts\globalize\globalize.culture.qut-GT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.qut.js" />
+    <Content Include="Scripts\globalize\globalize.culture.quz-BO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.quz-EC.js" />
+    <Content Include="Scripts\globalize\globalize.culture.quz-PE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.quz.js" />
+    <Content Include="Scripts\globalize\globalize.culture.rm-CH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.rm.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ro-RO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ro.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ru-RU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ru.js" />
+    <Content Include="Scripts\globalize\globalize.culture.rw-RW.js" />
+    <Content Include="Scripts\globalize\globalize.culture.rw.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sa-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sa.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sah-RU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sah.js" />
+    <Content Include="Scripts\globalize\globalize.culture.se-FI.js" />
+    <Content Include="Scripts\globalize\globalize.culture.se-NO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.se-SE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.se.js" />
+    <Content Include="Scripts\globalize\globalize.culture.si-LK.js" />
+    <Content Include="Scripts\globalize\globalize.culture.si.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sk-SK.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sk.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sl-SI.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sma-NO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sma-SE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sma.js" />
+    <Content Include="Scripts\globalize\globalize.culture.smj-NO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.smj-SE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.smj.js" />
+    <Content Include="Scripts\globalize\globalize.culture.smn-FI.js" />
+    <Content Include="Scripts\globalize\globalize.culture.smn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sms-FI.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sms.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sq-AL.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sq.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Cyrl-BA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Cyrl-CS.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Cyrl-ME.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Cyrl-RS.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Cyrl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Latn-BA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Latn-CS.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Latn-ME.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Latn-RS.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr-Latn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sr.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sv-FI.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sv-SE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sv.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sw-KE.js" />
+    <Content Include="Scripts\globalize\globalize.culture.sw.js" />
+    <Content Include="Scripts\globalize\globalize.culture.syr-SY.js" />
+    <Content Include="Scripts\globalize\globalize.culture.syr.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ta-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ta.js" />
+    <Content Include="Scripts\globalize\globalize.culture.te-IN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.te.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tg-Cyrl-TJ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tg-Cyrl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tg.js" />
+    <Content Include="Scripts\globalize\globalize.culture.th-TH.js" />
+    <Content Include="Scripts\globalize\globalize.culture.th.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tk-TM.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tk.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tn-ZA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tr-TR.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tr.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tt-RU.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tt.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tzm-Latn-DZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tzm-Latn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.tzm.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ug-CN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ug.js" />
+    <Content Include="Scripts\globalize\globalize.culture.uk-UA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.uk.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ur-PK.js" />
+    <Content Include="Scripts\globalize\globalize.culture.ur.js" />
+    <Content Include="Scripts\globalize\globalize.culture.uz-Cyrl-UZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.uz-Cyrl.js" />
+    <Content Include="Scripts\globalize\globalize.culture.uz-Latn-UZ.js" />
+    <Content Include="Scripts\globalize\globalize.culture.uz-Latn.js" />
+    <Content Include="Scripts\globalize\globalize.culture.uz.js" />
+    <Content Include="Scripts\globalize\globalize.culture.vi-VN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.vi.js" />
+    <Content Include="Scripts\globalize\globalize.culture.wo-SN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.wo.js" />
+    <Content Include="Scripts\globalize\globalize.culture.xh-ZA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.xh.js" />
+    <Content Include="Scripts\globalize\globalize.culture.yo-NG.js" />
+    <Content Include="Scripts\globalize\globalize.culture.yo.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-CHS.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-CHT.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-CN.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-Hans.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-Hant.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-HK.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-MO.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-SG.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh-TW.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zh.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zu-ZA.js" />
+    <Content Include="Scripts\globalize\globalize.culture.zu.js" />
+    <Content Include="Scripts\globalize\globalize.cultures.js" />
+    <Content Include="Scripts\html5Upload.js" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Content\Themes\Default\js\jquery.magnific-popup.js" />
+    <Content Include="Content\Themes\Default\js\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\jquery.magnific-popup.js" />
+    <Content Include="Scripts\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\jquery.treegrid.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.globalize.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\misc.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Content\Themes\Default\js\style.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\Product\Related.js" />
+    <Content Include="Views\Shared\Product\Index.js" />
+    <Content Include="Views\Shared\Product\Details.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Storage\Web.config" />
+    <Content Include="Views\Standard\_ViewStart.cshtml" />
+    <Content Include="Views\Standard\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Standard\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Standard\Account\_Login.cshtml" />
+    <Content Include="Views\Standard\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Standard\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Standard\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Standard\Account\DisplayTemplates\AddressViewModel.cshtml" />
+    <Content Include="Views\Standard\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Standard\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Standard\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Standard\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Standard\Account\Index.cshtml" />
+    <Content Include="Views\Standard\Account\Login.cshtml" />
+    <Content Include="Views\Standard\Account\Manage.cshtml" />
+    <Content Include="Views\Standard\Account\Order.cshtml" />
+    <Content Include="Views\Standard\Account\Register.cshtml" />
+    <Content Include="Views\Standard\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Standard\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Standard\Blog\_Links.cshtml" />
+    <Content Include="Views\Standard\Blog\Index.cshtml" />
+    <Content Include="Views\Standard\Blog\Post.cshtml" />
+    <Content Include="Views\Standard\Category\_CategoriesDropdown.cshtml" />
+    <Content Include="Views\Standard\Category\_CategoriesMenu.cshtml" />
+    <Content Include="Views\Standard\Category\Details.cshtml" />
+    <Content Include="Views\Standard\ContentPage\_FooterLinks.cshtml" />
+    <Content Include="Views\Standard\ContentPage\_HeaderLinks.cshtml" />
+    <Content Include="Views\Standard\ContentPage\Details.cshtml" />
+    <Content Include="Views\Standard\Home\_Carousel.cshtml" />
+    <Content Include="Views\Standard\Home\Index.cshtml" />
+    <Content Include="Views\Standard\Option\_FiltersMenu.cshtml" />
+    <Content Include="Views\Standard\Order\Completed.cshtml" />
+    <Content Include="Views\Standard\Order\Payment.cshtml" />
+    <Content Include="Views\Standard\Product\_Options.cshtml" />
+    <Content Include="Views\Standard\Product\_ProductsGrid.cshtml" />
+    <Content Include="Views\Standard\Product\_ProductsGridSmall.cshtml" />
+    <Content Include="Views\Standard\Product\Details.cshtml" />
+    <Content Include="Views\Standard\Search\_SearchBox.cshtml" />
+    <Content Include="Views\Standard\Search\Results.cshtml" />
+    <Content Include="Views\Standard\settings.json" />
+    <Content Include="Views\Standard\Shared\_AccountLayout.cshtml" />
+    <Content Include="Views\Standard\Shared\_Alerts.cshtml" />
+    <Content Include="Views\Standard\Shared\_Breadcrumb.cshtml" />
+    <Content Include="Views\Standard\Shared\_Layout.cshtml" />
+    <Content Include="Views\Standard\Shared\Error.cshtml" />
+    <Content Include="Views\Standard\ShoppingCart\_Preview.cshtml" />
+    <Content Include="Views\Standard\ShoppingCart\Checkout.cshtml" />
+    <Content Include="Views\Standard\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Standard\Blog\_AddPostComment.cshtml" />
+    <Content Include="Views\Standard\NewsletterSubscription\_AddSubscription.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Logs\web.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54670</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:54670/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,32 @@
+﻿@model IList<Estream.Cart42.Web.Domain.Category>
+
+@if (Model.Any())
+{
+    <div id="pav-verticalmenu" class="box pav-verticalmenu highlighted hidden-xs hidden-sm">
+        <div class="box-heading">
+            <span class="fa fa-bars"></span>@Html.T("Categories")
+            <span class="shapes round"><em class="shapes bottom"></em></span>
+        </div>
+        <div class="box-content">
+            <div class="navbar navbar-default">
+                <div id="verticalmenu" class="verticalmenu" role="navigation">
+                    <div class="navbar-header">
+                        <a href="javascript:;" data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="icon-bar"></span>
+                        </a>
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav verticalmenu">
+                                @foreach (var category in Model)
+                                {
+                                    <li class="home">
+                                        <a href="@Url.Action("Details", "Category", new { id = @category.Id, slug = @category.Name.ToSlug() })"><span class="menu-title">@category.Name</span></a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

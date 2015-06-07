@@ -1,0 +1,49 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.BlogsViewModel
+
+@{ ViewBag.Title = "Delete Blog".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Blog")">@Html.TA("Blog")</a>
+                </li>
+                <li class="active">
+                    <strong>@Html.TA("Delete")</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Please review and confirm the deletion of the listed blogs")</h5>
+    </div>
+    <div class="ibox-content">
+        <ul>
+            @foreach (var blog in Model.Blogs)
+            {
+                <li>@blog.Title</li>
+            }
+        </ul>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Index")" class="btn btn-default">@Html.TA("Cancel")</a>
+                <button type="submit" class="btn btn-danger">@Html.TA("Delete")</button>
+            </div>
+        }
+    </div>
+</div>

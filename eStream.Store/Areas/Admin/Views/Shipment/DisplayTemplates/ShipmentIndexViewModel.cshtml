@@ -1,0 +1,23 @@
+﻿@using Estream.Cart42.Web.Areas.Admin.Models
+@model ShipmentIndexViewModel
+
+<div class="col-md-4">
+    <div><strong>@Html.TA("Shipping Address")</strong></div>
+    <div>
+        @Html.DisplayFor(m => m.Order.ShippingAddress)
+    </div>
+</div>
+
+<div class="col-md-8">
+    <div><strong>@Html.TA("Shipped Items")</strong></div>
+    <div>
+        @foreach (var item in Model.Items)
+        {
+            var orderItem = Model.Order.Items.Single(i => i.Id == item.OrderItemId);
+            <div class="col-md-12" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden">
+                @item.Quantity x
+                <a href="@Url.Action("Details", "Product", new { id = orderItem.ProductId, area = "" })" target="_blank" title="@orderItem.ProductName">@orderItem.ProductName</a>
+            </div>
+        }
+    </div>
+</div>

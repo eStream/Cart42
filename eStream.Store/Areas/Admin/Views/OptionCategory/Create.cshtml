@@ -1,0 +1,96 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.OptionCategoryEditViewModel
+
+@{ ViewBag.Title = "Add Option Category".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "OptionCategory")">@Html.TA("Option Categories")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>@Html.TA("Option Category Details")</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.EditorForModel()
+                <div class="hr-line-dashed"></div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-primary">@Html.TA("Save")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Settings.Get<bool>(SettingField.ShowOptionTutorial))
+{
+    <script>
+        function startIntro() {
+            var intro = introJs();
+
+            intro.setOptions({
+                steps: [
+                {
+                    intro: "@Html.TA("Product options can add selectable properties to your products. Let's add one")"
+                    },
+                    {
+                        element: '#@Html.IdFor(m => m.Name)',
+                        intro: "@Html.TA("Enter the option category name - e.g. Color, Size, etc.")"
+                    },
+                    {
+                        element: '#@Html.IdFor(m => m.Type)',
+                        intro: "@Html.TA("Select the type of the option and how users would select it")"
+                    },
+                    {
+                        element: '#tabOptions',
+                        intro: "@Html.TA("Now let's switch to the options tab and add a few options")"
+                    },
+                    {
+                        element: '#optionInputs',
+                        intro: "@Html.TA("Add two options for a start - e.g. Red, Blue, Small, Large, XS, etc")"
+                    },
+                    {
+                        element: document.querySelector('[type=submit]'),
+                        intro: "@Html.TA("That's all the info needed to create an option category. Save it")",
+                        position: 'right'
+                    }
+                ],
+                exitOnOverlayClick: false
+            });
+
+            intro.start();
+        }
+
+        $(function () {
+            startIntro();
+        });
+    </script>
+}

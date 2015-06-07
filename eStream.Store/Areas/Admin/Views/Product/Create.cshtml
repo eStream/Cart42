@@ -1,0 +1,97 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.ProductEditViewModel
+@{ ViewBag.Title = "Add Product".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Product")">@Html.TA("Products")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>@Html.TA("Product Details")</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.EditorForModel()
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.EditorFor(m => m.OnCompleteAction)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Settings.Get<bool>(SettingField.ShowProductTutorial))
+{
+    <script>
+        var intro = null;
+
+        function startIntro() {
+            var intro = introJs();
+
+            intro.setOptions({
+                steps: [
+                    {
+                        intro: "@Html.TA("Here's the real deal - adding your products. The page may look big and complex but it's actually quite easy to use")"
+                    },
+                    {
+                        element: '#@Html.IdFor(m => m.Sku)',
+                        intro: "@Html.TA("SKU comes from \\\"stock keeping unit\\\" and is basically a unique code for the product - e.g. ABC123.")"
+                    },
+                    {
+                        element: '#btnSelectCategories',
+                        intro: "@Html.TA("Select one or more categories for your product")"
+                    },
+                    {
+                        element: '#@Html.IdFor(m => m.Name)',
+                        intro: "@Html.TA("Enter the product name as it would appear on the store page")"
+                    },
+                    {
+                        element: '#@Html.IdFor(m => m.Price)',
+                        intro: "@Html.TA("Enter the product price")"
+                    },
+                    {
+                        element: '#@Html.IdFor(m => m.Weight)',
+                        intro: "@Html.TA("Enter the product shipping weight. You can skip this field if you plan to offer free or flat rate shipping")"
+                    },
+                    {
+                        intro: "@Html.TA("That covers the basic product fields. You can save the product now or play with the other fields. The tabs above offer the ability select product options, generate option-specific SKUs and upload product photos")"
+                    }
+                ]
+            });
+
+            intro.start();
+            return intro;
+        }
+
+        $(function () {
+            intro = startIntro();
+        });
+    </script>
+}

@@ -1,0 +1,28 @@
+﻿@model IList<Estream.Cart42.Web.Domain.Category>
+
+@if (Model.Any())
+{
+    <li class="parent dropdown ">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="menu-title">@Html.T("Categories")</span><b class="caret"></b>
+        </a>
+        <div class="dropdown-menu level1">
+            <div class="dropdown-menu-inner">
+                <div class="row">
+                    <div class="mega-col col-xs-12 col-sm-12 col-md-12" data-type="menu">
+                        <div class="mega-col-inner">
+                            <ul>
+                                @foreach (var category in Model)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Details", "Category", new {id = @category.Id, slug = @category.Name.ToSlug() })"><span class="menu-title">@category.Name</span></a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+}

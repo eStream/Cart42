@@ -1,0 +1,10 @@
+﻿@using Forloop.HtmlHelpers
+@model string
+
+@{
+    Html.BeginScriptContext();
+    Html.AddScriptBlock(@"$(function() { $('#" + Html.IdFor(m => m) + "').summernote({ height: 200 }) } );");
+    Html.EndScriptContext();
+}
+
+@Html.TextAreaFor(m => m)

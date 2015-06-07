@@ -1,0 +1,24 @@
+﻿@model  Estream.Cart42.Web.Models.BlogIndexViewModel
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.NoSidebar = true;
+}
+<div class="container">
+    <div class="row">
+        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="content">
+                <h1>@Model.Title</h1>
+                <div class="wrapper">
+                    @foreach (var post in Model.BlogPosts)
+                    {
+                        <h2>@post.Title</h2>
+                        <p>@post.PublishDate.ToShortDateString()</p>
+                        <p>@Html.Raw(post.Content.Shorten(700))</p>
+
+                        <a href="@Url.Action("Post", new { id = post.Id })">@Html.T("Full Post")</a>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

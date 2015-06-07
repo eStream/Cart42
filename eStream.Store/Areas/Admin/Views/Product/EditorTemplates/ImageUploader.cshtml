@@ -1,0 +1,202 @@
+﻿@using Forloop.HtmlHelpers
+@model string
+
+@{
+    Html.BeginScriptContext();
+    Html.AddScriptFile("/Scripts/html5Upload.js");
+    Html.EndScriptContext();
+}
+
+@Html.HiddenFor(m => m)
+
+<div id="dragDropContainer" data-bind="with: $root.uploads">
+
+    <div id="pad-wrapper" class="gallery">
+        <div class="gallery-wrapper">
+            <div class="row">
+                <!-- ko foreach: uploads -->
+                <!-- ko ifnot: uploadCompleted() -->
+                <div class="col-md-3 img-container">
+                    <div class="img-box">
+                        <img src="/Content/img/new-gallery-img.png" class="img-responsive" alt="picture" />
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: uploadCompleted() -->
+                <div class="col-md-3 img-container">
+                    <div class="img-box" data-bind="attr: {id : 'edit-' + guid()}">
+                        <span class="icon edit">
+                            <a href="#" data-bind="click: $parent.edit">
+                                <span class="badge">@Html.TA("EDIT")</span>
+                            </a>
+                        </span>
+                        <span class="icon trash">
+                            <span class="badge" data-bind="click: $parent.remove">@Html.TA("DELETE")</span>
+                            </span>
+                        <img data-bind="attr: { src: '/api/Upload/' + guid() }" class="img-responsive" style="max-height: 150px" alt="picture" />
+                        <!-- <p class="title">pic title</p> -->
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+                <div class="col-md-3 img-container">
+                    <div class="img-box">
+                        <img src="/Content/img/new-gallery-img.png" class="img-responsive" alt="picture" onclick=" $('#uploadFiles').click() " />
+                        <!-- <p class="title">pic title</p> -->
+                        <input type="file" multiple="multiple" name="uploadFiles" id="uploadFiles" class="hide" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divUploadSkuSelector" style="display: none">
+        <input id="hidUploadGuid" value="test" type="hidden" />
+        <div id="divGenerateSkusOptions" data-bind="foreach: $root.skus.skus" style="max-height: 500px; overflow: auto">
+            <label><input id="cbUploadSkus" type="checkbox" />&nbsp;<!-- ko text: sku --><!-- /ko --></label>
+            <span class="small" data-bind="html: $root.skus.formatOptions(options())"></span><br />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-default btn-sm" type="button">@Html.TA("close")</button>
+        </div>
+    </div>
+
+</div>
+
+<script language="javascript">
+    function FileViewModel(file) {
+        this.file = file;
+        this.uploadProgress = ko.observable(0);
+        this.uploadCompleted = ko.observable(false);
+        this.uploadSpeedFormatted = ko.observable();
+        if (file != null)
+            this.fileName = file.fileName;
+        this.guid = ko.observable();
+    }
+
+    function UploadsViewModel() {
+        var self = this;
+        this.uploads = ko.observableArray([]);
+        this.showTotalProgress = ko.observable();
+        this.uploadSpeedFormatted = ko.observable();
+        this.timeRemainingFormatted = ko.observable();
+        this.totalProgress = ko.observable();
+
+        self.remove = function () {
+            self.uploads.remove(this);
+            saveChanges(self.uploads());
+        };
+
+        self.edit = function () {
+            for (var j = 0; j < self.uploads().length; j++) {
+                $('#edit-' + self.uploads()[j].guid()).popover('destroy');
+            }
+
+            var editGuid = this.guid();
+            $('#edit-' + editGuid).popover({
+                html: true,
+                placement: 'auto right',
+                title: 'Targetting',
+                trigger: 'manual',
+                container: 'body',
+                content: function () {
+                    $('#divUploadSkuSelector button').attr('onclick', 'saveUploadSkus("' + editGuid + '")');
+                    $('#cbUploadSkus[type=checkbox]').attr('value', editGuid);
+                    var html = $('#divUploadSkuSelector').html();
+                    $('#cbUploadSkus[type=checkbox]').attr('value', '');
+                    return html;
+                }
+            });
+            $('#edit-' + this.guid()).popover('show');
+
+            $('#cbUploadSkus[type=checkbox]').prop('checked', false);
+            for (var i = 0; i < window.ViewModel.skus.skus().length; i++) {
+                var sku = window.ViewModel.skus.skus()[i];
+                var guids = JSON.parse(sku.uploadIds());
+                for (var k = 0; k < guids.length; k++) {
+                    if (guids[k] == editGuid) {
+                        $($('#cbUploadSkus[type=checkbox]').filter(function () {
+                            return $(this).val() == editGuid;
+                        })[i]).prop('checked', true);
+                    }
+                }
+            }
+        };
+
+        self.saveSkus = function (guid) {
+            $('#cbUploadSkus[type=checkbox]').filter(function () {
+                return $(this).val() == guid;
+            }).each(function(index) {
+                var sku = window.ViewModel.skus.skus()[index];
+                var uploadIds = JSON.parse(sku.uploadIds());
+                if ($(this).is(':checked')) {
+                    if (uploadIds.indexOf(guid) < 0)
+                        uploadIds.push(guid);
+                } else {
+                    if (uploadIds.indexOf(guid) >= 0)
+                        uploadIds.splice(uploadIds.indexOf(guid), 1);
+                }
+                sku.uploadIds(JSON.stringify(uploadIds));
+            });
+
+            $('#edit-' + guid).popover('destroy');
+        }
+    }
+
+    function saveChanges(uploads) {
+        var ids = "";
+        uploads.forEach(function (e) {
+            ids += e.guid() + ",";
+        });
+        $('#@Html.IdFor(m => m)').val(ids);
+    }
+
+    function saveUploadSkus(guid) {
+        window.ViewModel.uploads.saveSkus(guid);
+    }
+
+    $(function () {
+        if (html5Upload.fileApiSupported()) {
+            var uploadsModel = new UploadsViewModel();
+
+            html5Upload.initialize({
+                uploadUrl: '/api/Upload',
+                dropContainer: document.getElementById('dragDropContainer'),
+                inputField: document.getElementById('uploadFiles'),
+                key: 'File',
+                //data: { ProjectId: 1, ProjectName: 'Test' },
+                maxSimultaneousUploads: 2,
+
+                onFileAdded: function (file) {
+                    var fileModel = new FileViewModel(file);
+                    uploadsModel.uploads.push(fileModel);
+
+                    file.on({
+                        onCompleted: function (response) {
+                            fileModel.guid(eval(response));
+                            fileModel.uploadCompleted(true);
+                            saveChanges(uploadsModel.uploads());
+                        },
+                        onProgress: function (progress, fileSize, uploadedBytes) {
+                            fileModel.uploadProgress(parseInt(progress, 10));
+                        }
+                    });
+                }
+            });
+
+            if ($('#@Html.IdFor(m => m)').val() != '') {
+                var selectedIds = $('#@Html.IdFor(m => m)').val().split(',');
+                selectedIds.forEach(function (e) {
+                    if (e != '') {
+                        var file = new FileViewModel(null);
+                        file.guid(e);
+                        file.uploadCompleted(true);
+                        uploadsModel.uploads.push(file);
+                    }
+                });
+            }
+
+            window.ViewModel.uploads = uploadsModel;
+        }
+    });
+</script>

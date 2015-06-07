@@ -1,0 +1,386 @@
+﻿@model Estream.Cart42.Web.Models.ShoppingCartCheckoutViewModel
+@{
+    ViewBag.Title = "Checkout".T();
+    ViewBag.NoSidebar = true;
+}
+
+<div class="container">
+    <div class="row" data-bind="with: checkoutDetails">
+        <form id="formCheckout">
+            <section class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <div id="content">
+                    <h1>@Html.T("Checkout")</h1>
+                    <div class="checkout wrapper">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div id="checkout">
+                                <div class="checkout-heading">@Html.T("Customer Information")</div>
+                                <div class="form-forizontal" >
+                                    <div class="form-group">
+                                        @Html.T("Returning customer?") <a href="#" onclick=" $('#modalSignin').modal(); return false; ">@Html.T("Sign In")</a>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">@Html.T("Email")</label>
+                                        <div class="col-md-8">
+                                            <input data-bind="value: email, uniqueName: true" class="form-control" type="email" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        }
+                        <div id="checkout">
+                            <div class="checkout-heading">@Html.T("Billing Information")</div>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("First Name")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: billingAddress.firstName, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Last Name")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: billingAddress.lastName, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Company")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: billingAddress.company, uniqueName: true" class="form-control" type="text" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Address")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: billingAddress.address1, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"></label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: billingAddress.address2, uniqueName: true" class="form-control" type="text" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("City")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: billingAddress.city, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Country")</label>
+                                    <div class="col-md-8">
+                                        <select data-bind="value: billingAddress.countryCode, uniqueName: true" class="form-control">
+                                            @foreach (dynamic country in ViewBag.Countries)
+                                            {
+                                                <option value="@country.Code">@country.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("State / Region")</label>
+                                    <div class="col-md-8">
+                                        <select id="selectBillingRegion" name="selectBillingRegion" data-bind="value: billingAddress.regionId" class="form-control" required></select>
+                                        <input id="txtBillingRegion" data-bind="value: billingAddress.regionOther" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Zip / Postal Code")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: billingAddress.zipPostal, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Phone Number")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: billingAddress.phone, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="checkout">
+                            <div class="checkout-heading">@Html.T("Shipping Information")</div>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-12 checkbox">
+                                        <label>
+                                            <input type="checkbox" data-bind="checked: sameShippingAddress, uniqueName: true" />
+                                            @Html.T("Shipping address is same as billing address")
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- ko ifnot: sameShippingAddress -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("First Name")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: shippingAddress.firstName, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Last Name")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: shippingAddress.lastName, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Company")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: shippingAddress.company, uniqueName: true" class="form-control" type="text" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Address")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: shippingAddress.address1, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"></label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: shippingAddress.address2, uniqueName: true" class="form-control" type="text" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("City")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: shippingAddress.city, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Country")</label>
+                                    <div class="col-md-8">
+                                        <select data-bind="value: shippingAddress.countryCode, uniqueName: true" class="form-control">
+                                            @foreach (dynamic country in ViewBag.Countries)
+                                            {
+                                                <option value="@country.Code">@country.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("State / Region")</label>
+                                    <div class="col-md-8">
+                                        <select id="selectShippingRegion" name="selectShippingRegion" data-bind="value: shippingAddress.regionId" class="form-control" required></select>
+                                        <input id="txtShippingRegion" data-bind="value: shippingAddress.regionOther" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Zip / Postal Code")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: shippingAddress.zipPostal, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Phone Number")</label>
+                                    <div class="col-md-8">
+                                        <input data-bind="value: shippingAddress.phone, uniqueName: true" class="form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                        <br />
+                        <div id="checkout">
+                            <div class="checkout-heading">@Html.T("Shipping Choices")</div>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Shipping Method")</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control" data-bind="options: shippingMethods, optionsText: function(item) { return item.name + ' (' + window.formatCurrency(item.amount) + ')' }, optionsValue: 'id', value: shippingMethodId, uniqueName: true"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="checkout">
+                            <div class="checkout-heading">@Html.T("Payment")</div>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">@Html.T("Payment Method")</label>
+                                    <div class="col-md-8">
+                                        <select id="selectPaymentMethod" class="form-control" data-bind="value: paymentMethodId, uniqueName: true" required></select>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div><hr />
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-theme-default">@Html.T("Place Order")</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div id="content">
+                    <h1>@Html.T("Your Order")</h1>
+                    <div class="checkout wrapper">
+                        <div id="checkout clearfix">
+                            <table data-bind="foreach: shoppingCartItems" class="table table-bordered tbl-cart">
+                                <tr>
+                                    <td data-bind="text: productName"></td>
+                                    <td data-bind="text: quantity"></td>
+                                    <td data-bind="html: formatCurrency(quantity() * itemPrice())"></td>
+                                </tr>
+                            </table>
+                            <div>
+                                @Html.T("Subtotal"): <span data-bind="html: formatCurrency(subtotal())"></span>
+                            </div>
+                            <div>
+                                @Html.T("Shipping & Handling"): <span data-bind="html: formatCurrency(shippingAmount())"></span>
+                            </div>
+                            <div data-bind="if: taxAmount() > 0">
+                                <span data-bind="html: taxName() + ' (' + taxRate() + '%)'">@Html.T("Tax")</span>: <span data-bind="text: formatCurrency(taxAmount())"></span>
+                            </div>
+                            <div>
+                                @Html.T("Total"): <span data-bind="html: formatCurrency(total())"></span>
+                            </div>
+                            <br />
+                            <div>
+                                @Html.T("Order comments (optional)"):
+                                <br />
+                                <textarea data-bind="value: userComments, uniqueName: true" class="form-control"></textarea>
+                            </div>
+                            <div class="clearfix"></div><hr />
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-theme-default">@Html.T("Place Order")</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+</div>
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <div id="modalSignin" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Html.T("Close")</span></button>
+                    <h4 class="modal-title">@Html.T("Sign In")</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Action("LoginPartial", "Account")
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    @* DO NOT MODIFY BELOW THIS LINE *@
+
+    <script type="text/javascript">
+        $(function () {
+            function checkoutModel(data) {
+                var self = this;
+                ko.mapping.fromJS(data, {}, self);
+
+                self.total = ko.computed({
+                    read: function () {
+                        return this.subtotal() + this.shippingAmount();
+                    },
+                    owner: self
+                });
+                self.billingAddress.countryCode.subscribe(function (newValue) {
+                    loadRegions($('#selectBillingRegion'), newValue);
+                    loadPaymentMethods(newValue);
+                    if (self.sameShippingAddress()) {
+                        updateTax(self.subtotal(), newValue);
+                        updateShipping();
+                    }
+                });
+                self.shippingAddress.countryCode.subscribe(function (newValue) {
+                    loadRegions($('#selectShippingRegion'), newValue);
+                    updateTax(self.subtotal(), newValue);
+                    updateShipping();
+                });
+                self.sameShippingAddress.subscribe(function (newValue) {
+                    updateTax(self.subtotal(), newValue ? self.billingAddress.countryCode() : self.shippingAddress.countryCode());
+                    updateShipping();
+                });
+                self.shippingMethodId.subscribe(function (newValue) {
+                    for (var i = 0; i < self.shippingMethods().length; i++) {
+                        if (self.shippingMethods()[i].id == newValue)
+                            self.shippingAmount(self.shippingMethods()[i].amount);
+                    }
+                });
+
+                return self;
+            }
+
+            // Create model
+            var model = new checkoutModel(@Html.Json(Model));
+            window.ViewModel.checkoutDetails = model;
+
+            // Trigger bindings
+            model.billingAddress.countryCode.valueHasMutated();
+            if (!model.sameShippingAddress())
+                model.shippingAddress.countryCode.valueHasMutated();
+
+            $('#formCheckout').validate({
+                submitHandler: function () { placeOrder(); }
+            });
+        });
+
+        function updateTax(subtotal, countryCode) {
+            $.post("/ShoppingCart/CalculateTax", { subtotal: Globalize.format(subtotal || 0, "n"), countryCode: countryCode },
+                function (json) {
+                    window.ViewModel.checkoutDetails.taxName(json.taxName);
+                    window.ViewModel.checkoutDetails.taxRate(json.taxRate);
+                    window.ViewModel.checkoutDetails.taxAmount(json.taxAmount);
+                }, "json");
+        }
+
+        function updateShipping() {
+            $.post("/ShoppingCart/GetShippingMethods", JSON.parse(ko.toJSON(window.ViewModel.checkoutDetails)),
+                function (json) {
+                    window.ViewModel.checkoutDetails.shippingMethods(json);
+                }, "json");
+        }
+
+        function loadRegions(selectRegion, country) {
+            $.post("/Region/List", { countryCode: country },
+                function (json) {
+                    selectRegion.html("<option></option>");
+                    if (json.length > 0) {
+                        for (var i = 0; i < json.length; i++) {
+                            selectRegion.append("<option value=\"" + json[i].id + "\">" + json[i].name + "</option>");
+                        }
+                        selectRegion.show();
+                        selectRegion.next('input').hide();
+                    } else {
+                        selectRegion.hide();
+                        selectRegion.next('input').show();
+                    }
+                }, "json");
+        }
+
+        function loadPaymentMethods(country) {
+            $.post("/PaymentMethod/List", { countryCode: country },
+                function (json) {
+                    $('#selectPaymentMethod').html("<option></option>");
+                    if (json.length > 0) {
+                        for (var i = 0; i < json.length; i++) {
+                            $('#selectPaymentMethod').append("<option value=\"" + json[i].id + "\">" + json[i].name + "</option>");
+                        }
+                    }
+                }, "json");
+        }
+
+        function placeOrder() {
+            $.post("/ShoppingCart/Checkout", JSON.parse(ko.toJSON(window.ViewModel.checkoutDetails)),
+                    function (json) {
+                        window.location.href = '@(Url.Action("Payment", "Order"))?orderId=' + json.orderId + '&paymentMethodId=' + json.paymentMethodId;
+                    }, "json")
+                .error(function (data) {
+                    if (data.responseJSON && data.responseJSON.errorMessage) {
+                        alerts.error(data.responseJSON.errorMessage);
+                    }
+                });
+        }
+    </script>

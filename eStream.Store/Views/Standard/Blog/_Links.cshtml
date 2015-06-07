@@ -1,0 +1,9 @@
+﻿@model Estream.Cart42.Web.Models.BlogLinksViewModels
+
+<h4>@Model.BlogName</h4>
+<ul>
+    @foreach (var post in Model.BlogPosts)
+    {
+        <li><a href="@Url.Action("Post", "Blog", new { id = post.Key })">@post.Value</a></li>
+    }
+</ul>

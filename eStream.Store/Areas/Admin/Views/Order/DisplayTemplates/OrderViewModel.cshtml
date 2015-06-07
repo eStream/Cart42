@@ -1,0 +1,83 @@
+﻿@using Estream.Cart42.Web.Areas.Admin.Models
+@using Estream.Cart42.Web.Helpers
+@model OrderViewModel
+
+<div class="col-md-3">
+    <div><strong>@Html.TA("Billing")</strong></div>
+    <div>
+        @Html.DisplayFor(m => m.BillingAddress)
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div><strong>@Html.TA("Shipping")</strong></div>
+    <div>
+        @Html.DisplayFor(m => m.ShippingAddress)
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div><strong>@Html.TA("Order Items")</strong></div>
+    <div>
+        @foreach (OrderItemViewModel item in Model.Items)
+        {
+            <div class="col-md-8" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden">
+                @item.Quantity x
+                @if (item.ProductSku != null)
+                {
+                    <strong>[@item.ProductSku]</strong><br />
+                }
+                <a href="@Url.Action("Details", "Product", new {id = item.ProductId, area = ""})" target="_blank" title="@item.ProductName">@item.ProductName</a>
+            </div>
+            <div class="col-md-4 text-right">
+                @item.ItemPrice.ToCurrencyString()
+            </div>
+        }
+    </div>
+    <hr />
+    <div>
+        <div class="col-md-8">
+            @Html.TA("Subtotal")
+        </div>
+        <div class="col-md-4 text-right">
+            @Model.Subtotal.ToCurrencyString()
+        </div>
+    </div>
+    @if (Model.Discount != 0)
+    {
+        <div>
+            <div class="col-md-8">
+                @Html.TA("Discount")
+            </div>
+            <div class="col-md-4 text-right">
+                @Model.Discount.ToCurrencyString()
+            </div>
+        </div>
+    }
+    <div>
+        <div class="col-md-8">
+            @Html.TA("Shipping")
+        </div>
+        <div class="col-md-4 text-right">
+            @Model.ShippingAmount.ToCurrencyString()
+        </div>
+    </div>
+    <div>
+        <div class="col-md-8">
+            @(Settings.Get<string>(SettingField.TaxLabel))
+        </div>
+        <div class="col-md-4 text-right">
+            @Model.TaxAmount.ToCurrencyString()
+        </div>
+    </div>
+    <div>
+        <div class="col-md-8">
+            <strong>@Html.TA("Total")</strong>
+        </div>
+        <div class="col-md-4 text-right">
+            <strong>
+                @Model.Total.ToCurrencyString()
+            </strong>
+        </div>
+    </div>
+</div>

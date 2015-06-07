@@ -1,0 +1,169 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.ProductEditViewModel
+
+<div id="divProductDetails" data-bind="with: product">
+    
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#details" role="tab" data-toggle="tab">@Html.TA("Details")</a></li>
+        <li><a href="#options" role="tab" data-toggle="tab">@Html.TA("Options")</a></li>
+        <li><a href="#skus" role="tab" data-toggle="tab">@Html.TA("Skus")</a></li>
+        <li><a href="#media" role="tab" data-toggle="tab">@Html.TA("Media")</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="details">
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sku, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Sku, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sku, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryIds, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CategoryIds, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CategoryIds, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-8">
+                    @if (Settings.Get<bool>(SettingField.TaxIncludedInPrices))
+                    {
+                        <span class="label label-info">@Html.TA("inclusive of tax")</span>
+                    }
+                    else
+                    {
+                        <span class="label label-info">@Html.TA("tax not included")</span>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CostPrice, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.CostPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CostPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RetailPrice, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.RetailPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RetailPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SalePrice, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.SalePrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TaxClassId, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("TaxClassId", null, "Default", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Weight, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-8">
+                    @if (Settings.Get<bool>(SettingField.UseMetric))
+                    {
+                        <span class="label label-info">@Html.TA("kg")</span>
+                    }
+                    else
+                    {
+                        <span class="label label-info">@Html.TA("lbs")</span>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsVisible, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.IsVisible, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsFeatured, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.IsFeatured, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sections, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Sections, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="options">
+            <br />
+            @Html.EditorFor(model => model.OptionIds, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="tab-pane" id="skus">
+            <br/>
+            @Html.EditorFor(model => model.Skus, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="tab-pane" id="media">
+            <div class="form-group">
+                @Html.EditorFor(model => model.UploadIds, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        function productEditViewModel(data) {
+            var self = this;
+            ko.mapping.fromJS(data, {}, self);
+            return self;
+        };
+
+        var model = new productEditViewModel(@Html.Json(Model));
+        window.ViewModel.product = model;
+    });
+</script>

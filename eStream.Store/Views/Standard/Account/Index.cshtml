@@ -1,0 +1,45 @@
+﻿@using Glimpse.Core.Extensions
+@model Estream.Cart42.Web.Models.AccountIndexViewModel
+@{
+    ViewBag.Title = "My Orders".T();
+    Layout = "../Shared/_AccountLayout.cshtml";
+}
+
+<div class="col-lg-9 col-md-9 col-sm-12">
+    <div id="content">
+        <h1>@ViewBag.Title</h1>
+        <div class="wrapper hero-feature">
+            <div class="alert alert-info">@Html.T("The status of your recent orders is shown below. Click") <strong>@Html.T("View Order")</strong> @Html.T("to see complete details.")</div>
+            @foreach (var order in Model.Orders)
+            {
+                <div>
+                    <a class="btn btn-theme-default pull-right" href="@Url.Action("Order", new { id = order.Id })">@Html.T("View Order")</a>
+                    <h4>Order #@order.Id</h4>
+                    <p class="small">@Html.T("Order Date:") @order.DatePlaced.ToShortDateString()</p>
+                    <p>@Html.T("This order is marked as") <strong>@order.Status.DisplayName().T()</strong></p>
+                    <p><strong>@Html.T("Your Order Contains:")</strong></p>
+                    <ul>
+                        @foreach (var item in order.Items)
+                        {
+                            <li>
+                                @item.Quantity
+                                @if (!string.IsNullOrEmpty(item.ProductSku))
+                                {
+                                    <strong>[@item.ProductSku]</strong>
+                                }
+                                x
+                                @item.ProductName
+                                @if (!string.IsNullOrEmpty(item.OptionsDisplay))
+                                {
+                                    <br />
+                                    @Html.Raw(@item.OptionsDisplay)
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <hr />
+            }
+        </div>
+    </div>
+</div>

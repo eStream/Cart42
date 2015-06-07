@@ -1,0 +1,112 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.OperatorViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+    </div>
+</div>
+           
+<div class="form-group">
+    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.NewPassword, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+<h4>@Html.TA("Access Control")</h4>
+<table class="table table-striped">
+    <tr>
+        <th><input type="checkbox"/></th>
+        <th>@Html.TA("Read Access")</th>
+        <th>@Html.TA("Write Access")</th>
+        <th>@Html.TA("Delete Access")</th>
+    </tr>
+    <tbody>
+        <tr>
+            <td><span class="fa fa-cubes"></span> @Html.TA("Inventory")</td>
+            <td><input type="checkbox" value="@OperatorRoles.INVENTORY" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.INVENTORY) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.INVENTORY + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.INVENTORY + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.INVENTORY + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.INVENTORY + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-shopping-cart"></span> @Html.TA("Orders")</td>
+            <td><input type="checkbox" value="@OperatorRoles.ORDERS" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.ORDERS) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.ORDERS + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.ORDERS + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.ORDERS + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.ORDERS + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-truck"></span> @Html.TA("Shipments")</td>
+            <td><input type="checkbox" value="@OperatorRoles.SHIPMENTS" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.SHIPMENTS) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.SHIPMENTS + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.SHIPMENTS + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.SHIPMENTS + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.SHIPMENTS + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-users"></span> @Html.TA("Customers")</td>
+            <td><input type="checkbox" value="@OperatorRoles.CUSTOMERS" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.CUSTOMERS) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.CUSTOMERS + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.CUSTOMERS + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.CUSTOMERS + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.CUSTOMERS + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-gears"></span> @Html.TA("Settings")</td>
+            <td><input type="checkbox" value="@OperatorRoles.SETTINGS" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.SETTINGS) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.SETTINGS + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.SETTINGS + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.SETTINGS + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.SETTINGS + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-photo"></span> @Html.TA("Templates")</td>
+            <td><input type="checkbox" value="@OperatorRoles.TEMPLATES" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.TEMPLATES) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.TEMPLATES + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.TEMPLATES + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.TEMPLATES + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.TEMPLATES + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-sitemap"></span> @Html.TA("Content")</td>
+            <td><input type="checkbox" value="@OperatorRoles.CONTENT" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.CONTENT) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.CONTENT + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.CONTENT + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.CONTENT + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.CONTENT + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-rss"></span> @Html.TA("Blogs")</td>
+            <td><input type="checkbox" value="@OperatorRoles.BLOGS" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.BLOGS) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.BLOGS + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.BLOGS + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.BLOGS + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.BLOGS + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-lock"></span> @Html.TA("Operators")</td>
+            <td><input type="checkbox" value="@OperatorRoles.OPERATORS" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.OPERATORS) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.OPERATORS + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.OPERATORS + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.OPERATORS + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.OPERATORS + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-database"></span> @Html.TA("Database")</td>
+            <td><input type="checkbox" value="@OperatorRoles.DATABASE" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.DATABASE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.DATABASE + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.DATABASE + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.DATABASE + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.DATABASE + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+        <tr>
+            <td><span class="fa fa-bar-chart-o"></span> @Html.TA("Reports")</td>
+            <td><input type="checkbox" value="@OperatorRoles.REPORTS" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.REPORTS) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.REPORTS + OperatorRoles.WRITE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.REPORTS + OperatorRoles.WRITE) ? "checked" : "") /></td>
+            <td><input type="checkbox" value="@(OperatorRoles.REPORTS + OperatorRoles.DELETE)" id="@Html.IdFor(m => m.Roles)" name="@Html.NameFor(m => m.Roles)" @(Model.Roles.Contains(OperatorRoles.REPORTS + OperatorRoles.DELETE) ? "checked" : "") /></td>
+        </tr>
+    </tbody>
+</table>

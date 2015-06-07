@@ -1,0 +1,51 @@
+﻿@using Estream.Cart42.Web.Domain
+@model Estream.Cart42.Web.Areas.Admin.Models.TaxRateEditViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+@Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+<div class="col-md-10">
+    <div class="checkbox">
+        @Html.EditorFor(model => model.IsActive)
+    </div>
+</div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Order, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Order, new { htmlAttributes = new { @class = "form-control", min = "0" } })
+        @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.TaxZoneName, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("TaxZoneId", null, "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.TaxZoneId, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+    </div>
+</div>
+@for (int i = 0; i < Model.ClassRates.Count; i++)
+{
+    @Html.HiddenFor(model => Model.ClassRates[i].TaxClassId)
+    @Html.HiddenFor(model => Model.ClassRates[i].TaxClassName)
+    <div class="form-group">
+        @Html.LabelFor(model => Model.ClassRates[i].TaxClassName, string.Format("{0} Rate".TA(), Model.ClassRates[i].TaxClassName), new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => Model.ClassRates[i].Amount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => Model.ClassRates[i].Amount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+}

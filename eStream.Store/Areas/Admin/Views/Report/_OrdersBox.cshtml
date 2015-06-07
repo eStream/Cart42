@@ -1,0 +1,16 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.OrdersBoxViewModel
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <span class="label label-info pull-right">@Html.TA("Monthly")</span>
+        <h5>@Html.TA("Orders")</h5>
+    </div>
+    <div class="ibox-content">
+        <h1 class="no-margins">@Model.Number.ToString("N0")</h1>
+        @if (Model.Difference > 0)
+        {
+            <div class="stat-percent font-bold text-info" title="@Html.TA("Compared to last month average")">@Model.Difference% <i class="fa fa-level-up"></i></div>
+        }
+        <small>@Html.TA("New orders for {0}", DateTime.Now.ToString("MMMM"))</small>
+    </div>
+</div>

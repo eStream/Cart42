@@ -1,0 +1,32 @@
+﻿@model  Estream.Cart42.Web.Models.BlogPostViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+<div class="container">
+    <div class="row">
+        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="content">
+                <h1>@Model.Title </h1>
+                <div class="wrapper">
+                    <p>@Model.PublishDate.ToShortDateString()</p>
+                    <p>@Html.Raw(Model.Content)</p>
+                    <a href="@Url.Action("Index", new { id = Model.BlogId })">Back</a>
+                    @if (Model.AllowComments)
+                    {
+                        <div>
+                            <h2>Comments</h2>
+                        </div>
+                        foreach (var comment in Model.Comments)
+                        {
+                            <p>@comment.Name</p>
+                            <p>@comment.DatePosted.ToShortDateString()</p>
+                            <p>@comment.Message</p>
+                        }
+
+                        Html.RenderAction("AddPostComment", "Blog");
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

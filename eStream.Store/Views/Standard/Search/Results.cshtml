@@ -1,0 +1,17 @@
+﻿@model Estream.Cart42.Web.Models.SearchResultsViewModel
+@{
+    ViewBag.Title = Model.Keywords;
+    ViewBag.NoSidebar = true;
+}
+
+    <section>
+        <header>
+            @{ Html.RenderAction("Breadcrumb", "Search", new { categoryId = Model.CategoryId, keywords = Model.Keywords }); }
+            <div class="container"><h4>@Html.T("Search results for \"{0}\"", @Model.Keywords)</h4></div>
+        </header>
+        <article>
+            <div class="container">
+                @{ Html.RenderAction("Index", "Product", new { categoryId = Model.CategoryId, viewName = "_ProductsGrid", keywords = Model.Keywords }); }
+            </div>
+        </article>
+    </section>

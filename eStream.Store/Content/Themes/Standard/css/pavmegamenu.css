@@ -1,0 +1,16 @@
+.widget-product-list img{
+    border: 0;
+}
+.widget-banner .w-banner{
+    margin: 5px;
+    float: left;
+} 
+.sub-menu-hidden .menu-title{
+    display: none;
+}
+.no-magrin .menu-title{
+    margin-bottom: 0;
+}
+.w-product:last-child{
+    margin-bottom: 0;
+}

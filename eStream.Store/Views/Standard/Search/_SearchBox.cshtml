@@ -1,0 +1,13 @@
+﻿@model Estream.Cart42.Web.Models.SearchViewModel
+
+@using (Html.BeginForm("Results", "Search", FormMethod.Get))
+{
+    @Html.HiddenFor(m => m.CategoryId)
+
+    <div class="input-group">
+        @Html.EditorFor(m => m.Keywords, new { htmlAttributes = new { @class = "form-control input-search", placeholder = "Search".T() } })
+        <span class="input-group-btn">
+            <button class="button-search" type="submit"><em class="fa fa-search"></em></button>
+        </span>
+    </div>
+}

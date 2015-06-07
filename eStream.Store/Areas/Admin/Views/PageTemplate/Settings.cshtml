@@ -1,0 +1,118 @@
+﻿@using Estream.Cart42.Web.Areas.Admin.Models
+@model ThemeSettingsEditViewModel
+
+@{ ViewBag.Title = "Edit Template Settings".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "PageTemplate")">@Html.TA("Page Templates")</a>
+                </li>
+                <li class="active">
+                    <strong>@Model.Name</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+                <a href="@Url.Action("ResetSettings", new { name = Model.Name })" onclick="return confirm('Are you sure?')" class="btn btn-default"><span class="fa fa-refresh"></span>&nbsp;@Html.TA("Reset Defaults")</a>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.Sections.Any())
+{
+    using (Html.BeginForm("Settings", "PageTemplate", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.Name)
+        for (int i = 0; i < Model.Sections.Count; i++)
+        {
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>@Model.Sections[i].Name</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @for (int j = 0; j < Model.Sections[i].Items.Count; j++)
+                        {
+                            var item = Model.Sections[i].Items[j];
+                            <div class="form-group">
+                                @Html.HiddenFor(m => Model.Sections[i].Items[j].Key)
+                                @Html.HiddenFor(m => Model.Sections[i].Items[j].Type)
+                                <label class="col-sm-2 control-label">@item.Description</label>
+                                <div class="col-sm-10">
+                                    @switch (item.Type)
+                                    {
+                                        case ThemeSettingItemType.Checkbox:
+                                            <input type="checkbox" id="@Html.IdFor(m => Model.Sections[i].Items[j].ValueBool)" name="@Html.NameFor(m => Model.Sections[i].Items[j].ValueBool)" value="True" @(item.ValueBool ? "checked" : "") />
+                                            break;
+                                        case ThemeSettingItemType.Upload:
+                                        <input type="file" id="@Html.IdFor(m => Model.Sections[i].Items[j].ValueFile)" name="@Html.NameFor(m => Model.Sections[i].Items[j].ValueFile)" />
+                                            break;
+                                        case ThemeSettingItemType.Dropdown:
+                                        <select id="@Html.IdFor(m => Model.Sections[i].Items[j].Value)" name="@Html.NameFor(m => Model.Sections[i].Items[j].Value)" class="form-control">
+                                            @foreach (var option in item.Options)
+                                            {
+                                                <option value="@option.Value" @(item.Value == option.Value ? "selected" : "")>@option.Description</option>
+                                            }
+                                        </select>
+                                            break;
+                                        case ThemeSettingItemType.Color:
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control pick-a-color" id="@Html.IdFor(m => Model.Sections[i].Items[j].Value)" name="@Html.NameFor(m => Model.Sections[i].Items[j].Value)" value="@item.Value" />
+                                        </div>
+                                            break;
+                                        case ThemeSettingItemType.Multiline:
+                                        <input type="text" class="form-control" id="@Html.IdFor(m => Model.Sections[i].Items[j].Value)" name="@Html.NameFor(m => Model.Sections[i].Items[j].Value)" value="@item.Value" />
+                                            break;
+                                        case ThemeSettingItemType.Html:
+                                        <input type="text" class="form-control" id="@Html.IdFor(m => Model.Sections[i].Items[j].Value)" name="@Html.NameFor(m => Model.Sections[i].Items[j].Value)" value="@item.Value" />
+                                            break;
+                                        default:
+                                        case ThemeSettingItemType.Textbox:
+                                        <input type="text" class="form-control" id="@Html.IdFor(m => Model.Sections[i].Items[j].Value)" name="@Html.NameFor(m => Model.Sections[i].Items[j].Value)" value="@item.Value" />
+                                            break;
+                                    }
+                                    @if (!string.IsNullOrEmpty(item.Hint))
+                                    {
+                                        <span class="help-block m-b-none">@item.Hint</span>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save Settings" class="btn btn-primary" />
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning">@Html.TA("There are no settings to edit")</div>
+}
+
+<script src="@Url.Content("~/Content/admin/js/tinycolor.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/admin/js/pick-a-color.min.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('.pick-a-color').pickAColor({ inlineDropdown: true });
+    });
+</script>

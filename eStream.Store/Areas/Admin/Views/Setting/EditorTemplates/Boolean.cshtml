@@ -1,0 +1,6 @@
+﻿@model string
+@{
+    bool value;
+    bool.TryParse(Model, out value);
+}
+<input type="checkbox" id="@Html.IdForModel()" name="@Html.NameForModel()" @(value ? "checked" : "") value="True" />

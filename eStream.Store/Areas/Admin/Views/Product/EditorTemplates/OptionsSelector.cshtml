@@ -1,0 +1,145 @@
+﻿@model string
+
+@Html.HiddenFor(m => m)
+
+<div id="divOptionsSelector" data-bind="with: $root.options">
+    <ul class="list-group" data-bind="visible: anySelected(), foreach: categories">
+        <!-- ko if: anySelected() -->
+        <li class="list-group-item">
+            <!-- ko text: name --><!-- /ko -->
+            <!-- ko foreach: selectedOptions -->
+            <span data-bind="text: name()" class="label label-default"></span>
+            <!-- /ko -->
+            <button data-bind="click: $parent.removeCategory" class="btn btn-danger badge"><span class="fa fa-times"></span></button>
+        </li>
+        <!-- /ko -->
+    </ul>
+
+    <button type="button" class="btn btn-default btn-outline" data-toggle="modal" data-target="#modalOptions"><span class="fa fa-sliders"></span> @Html.TA("Select options")</button>
+
+    <div class="modal fade" id="modalOptions">
+        <div class="modal-dialog" id="modalOptionsDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">@Html.TA("Option Selector")</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-group" id="accordionOptions" data-bind="foreach: categories">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-bind="attr: { href: '#collapseOptionCategory' + id() }, text: name()" data-toggle="collapse" data-parent="#accordionOptions"></a>
+                                </h4>
+                            </div>
+                            <div data-bind="attr: { id: 'collapseOptionCategory' + id() }" class="panel-collapse collapse">
+                                <div class="panel-body" data-bind="foreach: options">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-bind="value: id, checked: selected">
+                                            <!-- ko text: name --><!-- /ko -->
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">@Html.TA("Close")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script language="javascript">
+    function Option(data) {
+        this.id = ko.observable(data.Id.toString());
+        this.name = ko.observable(data.Name);
+        this.selected = ko.observable(data.Selected);
+    }
+
+    function OptionCategory(data) {
+        var self = this;
+        self.id = ko.observable(data.Id.toString());
+        self.name = ko.observable(data.Name);
+        self.options = ko.observableArray([]);
+
+        self.selectedOptions = ko.computed(function () {
+            return ko.utils.arrayFilter(self.options(), function (option) {
+                return option.selected();
+            });
+        }).extend({ rateLimit: 100 });
+
+        self.anySelected = ko.computed(function () {
+            return self.selectedOptions().length > 0;
+        }).extend({ rateLimit: 100 });
+    }
+
+    function OptionSelectorViewModel() {
+        var self = this;
+        self.categories = ko.observableArray([]);
+        self.options = ko.observableArray([]);
+
+        self.removeCategory = function (category) {
+            for (var i = 0; i < category.options().length; i++) {
+                category.options()[i].selected(false);
+            }
+        };
+
+        self.anySelected = function () {
+            return self.selectedOptions().length > 0;
+        };
+
+        self.selectedOptions = ko.computed(function () {
+            return ko.utils.arrayFilter(self.options(), function (option) {
+                return option.selected();
+            });
+        }).extend({ rateLimit: 100 });
+
+        self.save = function () {
+            var ids = "";
+            for (var i = 0; i < self.options().length; i++) {
+                if (self.options()[i].selected())
+                    ids += self.options()[i].id() + ",";
+            }
+            $('#@Html.IdFor(m => m)').val(ids);
+        };
+        var selectedIds = $('#@Html.IdFor(m => m)').val().split(',');
+
+        $.getJSON("/Admin/OptionCategory/ListJson", function (data) {
+            var mappedCategories = $.map(data, function (item) {
+                var category = new OptionCategory(item);
+                return category;
+            });
+
+            self.categories(mappedCategories);
+
+            $.getJSON("/Admin/OptionCategory/ListOptionsJson", function (data2) {
+                var mappedOptions = $.map(data2, function (item) {
+                    item.Selected = $.inArray(item.Id.toString(), selectedIds) >= 0;
+                    var option = new Option(item);
+                    option.selected.subscribe(function () {
+                        self.save();
+                    });
+
+                    self.categories().forEach(function (c) {
+                        if (c.id() == item.CategoryId.toString())
+                            c.options.push(option);
+                    });
+
+                    return option;
+                });
+
+                self.options(mappedOptions);
+            });
+        });
+    }
+
+    $(function () {
+        var model = new OptionSelectorViewModel();
+        window.ViewModel.options = model;
+        //ko.applyBindings(model, document.getElementById('divOptionsSelector'));
+    });
+</script>

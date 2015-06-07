@@ -1,0 +1,22 @@
+﻿@model string
+
+<h2>@Html.TA("Import from Solytron")</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <label for="category">@Html.TA("Category Guid"):</label>
+    <input type="text" name="categoryGuid" id="categoryGuid" />
+    <br/>
+    <label for="category">@Html.TA("Category Name"):</label>
+    <input type="text" name="categoryName" id="categoryName" />
+    <br />
+    <label for="category">@Html.TA("Username"):</label>
+    <input type="text" name="username" id="username" />
+    <br />
+    <label for="category">@Html.TA("Password"):</label>
+    <input type="text" name="password" id="password" />
+    <br />
+    <input type="submit" />
+</form>
+<div>
+    @Html.Raw(Model.NL2BR())
+</div>

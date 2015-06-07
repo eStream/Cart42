@@ -1,0 +1,33 @@
+﻿@using Estream.Cart42.Web.Models
+@{
+    ViewBag.Title = "Manage Account".T();
+    Layout = "../Shared/_AccountLayout.cshtml";
+}
+
+<div class="col-lg-9 col-md-9 col-sm-12">
+    <div id="content">
+        <h1>@ViewBag.Title</h1>
+        <div class="wrapper hero-feature" >
+            @if (!string.IsNullOrEmpty(ViewBag.StatusMessage))
+            {
+                <p class="alert alert-success">@ViewBag.StatusMessage</p>
+            }
+
+            @if (ViewBag.HasLocalPassword)
+            {
+                @Html.Partial("_ChangePasswordPartial")
+            }
+            else
+            {
+                @Html.Partial("_SetPasswordPartial")
+            }
+
+            @*
+                <section id="externalLogins">
+                    @Html.Action("RemoveAccountList")
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+            *@
+        </div>
+    </div>
+</div>

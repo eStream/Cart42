@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Home Page".T();
+}
+
+<section id="pav-slideshow" class="hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                @{ Html.RenderAction("Index", "Category", new { viewName = "_CategoriesMenu", includeSubcategories = false }); }
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="hidden-xs">
+                    <div style="padding: 0;margin: 0;">
+                        @Html.Partial("_Carousel")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="box productcarousel orange nopadding">
+                    <div class="box-heading">
+                        <span class="title">@Html.T("Featured Products")</span>
+                    </div>
+                        <div class="box-products" id="productcarousel24">
+                            @{ Html.RenderAction("Index", "Product", new { viewName = "_ProductsGridSmall", featured = true, count = 6 }); }
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

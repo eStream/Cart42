@@ -1,0 +1,40 @@
+﻿@{ ViewBag.Title = "Import Data".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Data Import Source")</h5>
+    </div>
+    <div class="ibox-content">
+        <p>
+            <a href="@Url.Action("ProductsJson")"><span class="fa fa-upload"></span>&nbsp;@Html.TA("Import Products") (JSON)</a>
+        </p>
+        <p>
+            <a href="@Url.Action("TranslationsCsv")"><span class="fa fa-upload"></span>&nbsp;@Html.TA("Import Translations") (CSV)</a>
+        </p>
+        @*
+            <p>
+                @Html.ActionLink("Import from IT4profit XML file", "IT4profit")
+            </p>
+        *@
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav pull-right hidden-xs">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
+                @User.Identity.Name
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="@Url.Action("Account", "Manage")">Account settings</a></li>
+                <li><a href="#">Billing</a></li>
+                <li><a href="#">Export your data</a></li>
+                <li><a href="#">Send feedback</a></li>
+            </ul>
+        </li>
+        <li class="notification-dropdown hidden-xs hidden-sm">
+            <a class="trigger" href="#">
+                <i class="fa fa-warning-sign"></i>
+                <span class="count">8</span>
+            </a>
+            <div class="pop-dialog">
+                <div class="pointer right">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <div class="body">
+                    <a class="close-icon" href="#"><i class="fa fa-remove-sign"></i></a>
+                    <div class="notifications">
+                        <h3>You have 6 new notifications</h3>
+                        <a class="item" href="#">
+                            <i class="fa fa-signin"></i> New user registration
+                            <span class="time"><i class="fa fa-time"></i> 13 min.</span>
+                        </a>
+                        <a class="item" href="#">
+                            <i class="fa fa-signin"></i> New user registration
+                            <span class="time"><i class="fa fa-time"></i> 18 min.</span>
+                        </a>
+                        <a class="item" href="#">
+                            <i class="fa fa-envelope-alt"></i> New message from Alejandra
+                            <span class="time"><i class="fa fa-time"></i> 28 min.</span>
+                        </a>
+                        <a class="item" href="#">
+                            <i class="fa fa-signin"></i> New user registration
+                            <span class="time"><i class="fa fa-time"></i> 49 min.</span>
+                        </a>
+                        <a class="item" href="#">
+                            <i class="fa fa-download-alt"></i> New order placed
+                            <span class="time"><i class="fa fa-time"></i> 1 day.</span>
+                        </a>
+                        <div class="footer">
+                            <a class="logout" href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="settings hidden-xs hidden-sm">
+            <a title="Settings" role="button" href="#">
+                <i class="fa fa-cog"></i>
+            </a>
+        </li>
+        <li class="settings hidden-xs hidden-sm">
+            <a role="button" title="LogOff" href="@Url.Action("LogOff", "Account", new {area = ""})">
+                <i class="fa fa-off"></i>
+            </a>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav pull-right hidden-xs">
+        <li class="@(((string) ViewContext.RouteData.Values["Controller"] == "Account" && (string) ViewContext.RouteData.Values["Action"] == "Register") ? "active" : "")">
+            @Html.ActionLink("Register", "Register", "Account", null, new {id = "registerLink"})
+        </li>
+        <li>
+            @Html.ActionLink("Log in", "Login", "Account", null, new {id = "loginLink", @class = ""})
+        </li>
+    </ul>
+}

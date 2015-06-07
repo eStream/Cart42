@@ -1,0 +1,138 @@
+﻿@model Estream.Cart42.Web.Models.ProductDetailsViewModel
+@{
+    ViewBag.Title = Model.Name;
+    ViewBag.NoSidebar = true;
+}
+
+<section id="columns">
+    @{ Html.RenderAction("Breadcrumb", "Product", new { id = Model.Id }); }
+    <div class="container">
+        <div class="row">
+            <section class="col-md-12">
+                <div id="content" class="product-detail" data-bind="with: productDetails">
+                    <div class="product-info">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 image-container" data-bind="if: photoIdsFiltered().length > 0">
+                                <div class="image-additional slide carousel col-lg-2 col-md-12 " id="image-additional">
+                                    <a class="left carousel-control" href="#image-additional" data-slide="next">
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </a>
+                                    <div id="image-additional-carousel" class="carousel-inner">
+                                        <!-- ko foreach: photoIdsFiltered().inChunksOf(4) -->
+                                        <div class="item clearfix" data-bind="foreach: $data">
+                                            <a data-bind="attr: { href: '/api/Upload/' + $data, 'data-image': '/api/Upload/' + $data, title: $parent.name }, carousel: 1">
+                                                <img class="product-image-zoom img-responsive" data-bind="attr: {src : '/api/Upload/' + $data + '?width=75&height=75&crop=true'}" style="max-width:75px" />
+                                            </a>
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                    <a class="right carousel-control" href="#image-additional" data-slide="prev">
+                                        <i class="fa  fa-angle-double-right"></i>
+                                    </a>
+                                </div>
+
+                                <div class="image col-lg-10 col-md-12">
+                                    <a>
+                                        <img data-bind="attr: { src: '/api/Upload/' + photoIdsFiltered()[0] + '?width=500&height=500&crop=1', 'data-zoom-image': '/api/Upload/' + photoIdsFiltered()[0] }, elevateZoom: 1" id="image" class="product-image-zoom img-responsive" />
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 product-view">
+                                <h1 data-bind="text: name"></h1>
+                                <div class="description">
+                                    <p data-bind="if: sku">
+                                        <i class="fa fa-chevron-down"></i>
+                                        <b>Product Code:</b>
+                                        <span data-bind="text: sku"></span>
+                                    </p>
+                                    <p data-bind="visible: displayQty() != null">
+                                        <i class="fa fa-chevron-down"></i>
+                                        <b>Availability:</b>
+                                        <span data-bind="text: displayQty() ? displayQty() + ' @Html.T("items in stock")' : '@Html.T("out of stock")'"></span>
+                                    </p>
+                                </div>
+                                <div data-bind="with: optionCategories">
+                                    @Html.Partial("_Options")
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="price">
+                                    <div class="price-gruop">
+                                        <span class="text-price">Price:</span>
+                                        <span data-bind="html: displayPrice()"></span>
+                                    </div>
+                                </div>
+
+                                <div class="product-extra">
+                                    @if (SettingTrue("show_qty_box"))
+                                    {
+                                        <div class="quantity-adder pull-left">
+                                            <div class="quantity-number pull-left">
+                                                <span>Qty:</span>
+                                                <input id="txtAddToCartQty" type="number" size="2" value="1" min="1" style="width: 57px!important" />
+                                            </div>
+                                            <input type="hidden" name="product_id" value="51" />
+                                        </div>
+                                    }
+                                    <div class="cart pull-left">
+                                        <button data-bind="click: addToCart" id="button-cart" class="btn btn-shopping-cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>@Html.T("Add to Cart")</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tabs-group box">
+                        <div id="tabs" class="htabs heighlight">
+                            <ul class="nav clearfix">
+                                <li><a href="#tab-description">@Html.T("Description")</a></li>
+                                @*<li><a href="#tab-customtab">Custom Tab</a></li>*@
+                            </ul>
+                        </div>
+                        <div id="tab-description" class="tab-content" data-bind="html: description"></div>
+                        @*<div id="tab-customtab" class="tab-content custom-tab">
+                                <div class="inner">
+                                    <p>Sapiente rerum magni voluptates accusantium sequi molestias deleniti aliquid facilis commodi aut. Ea ab facere voluptatem cum beatae vero dolorem doloribus itaque culpa. Molestiae, optio, libero inventore ducimus natus incidunt qui dolor adipisci tempore tempora quo minima distinctio eligendi laborum ex quaerat eos! Unde suscipit porro est amet quis nostrum enim. Asperiores, ad, hic, culpa, rerum delectus similique minus facilis reprehenderit quisquam debitis dolores suscipit!</p>
+                                    <p>Qui laboriosam maiores ad. Enim, autem, beatae, sapiente minima non atque maiores maxime natus corporis possimus reprehenderit id blanditiis sequi repudiandae saepe reiciendis consequatur mollitia aspernatur cum!</p>
+                                </div>
+                            </div>*@
+                    </div>
+
+                    <div class="box product-related clearfix" data-bind="with: $parent">
+                        <div class="box-heading heighlight"><span>@Html.T("Related Products")</span></div>
+                        @{ Html.RenderAction("Related", "Product", new { viewName = "_ProductsGridSmall", productId = Model.Id, count = 6 }); }
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+@Html.LoadScript()
+<script type="text/javascript">
+    $(function () {
+        ko.bindingHandlers.elevateZoom = {
+            init: function (element) {
+                $(element).elevateZoom({
+                    gallery: 'image-additional-carousel',
+                    cursor: 'pointer',
+                    galleryActiveClass: 'active'
+                });
+            }
+        }
+        ko.bindingHandlers.carousel = {
+            init: function (element) {
+                $('#image-additional .item:first').addClass('active');
+                $('#image-additional').carousel({ interval: false });
+            }
+        }
+
+        $('#tabs a').tabs();
+
+        var model = new ProductDetailsModel(@Html.Json(Model));
+        window.ViewModel.productDetails = model;
+    });
+</script>

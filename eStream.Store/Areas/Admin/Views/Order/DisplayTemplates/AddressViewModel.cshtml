@@ -1,0 +1,27 @@
+﻿@model Estream.Cart42.Web.Models.AddressViewModel
+
+<address>
+    <div>
+        <span class="fa fa-user"></span>&nbsp;
+        @Model.FirstName
+        @Model.LastName
+    </div>
+    <div>
+        <span class="fa fa-building"></span>&nbsp;@Model.Company
+    </div>
+    <div>
+        <span class="fa fa-map-marker"></span>&nbsp;
+        @Model.Address1<br />
+        @Model.Address2
+    </div>
+    <div>
+        @Model.City, @Model.RegionName @Model.ZipPostal
+    </div>
+    <div>
+        @Model.CountryName
+    </div>
+    <div>
+        <span class="fa fa-phone"></span>&nbsp;
+        @Model.Phone
+    </div>
+</address>

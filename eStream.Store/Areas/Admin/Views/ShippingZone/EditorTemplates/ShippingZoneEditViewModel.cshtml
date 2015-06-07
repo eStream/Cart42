@@ -1,0 +1,111 @@
+﻿@using Estream.Cart42.Web.Domain
+@model Estream.Cart42.Web.Areas.Admin.Models.ShippingZoneEditViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CountryCodesJson, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10" style="overflow:auto; max-height:200px;">
+        <div class="checkbox">
+            @Html.HiddenFor(model => model.CountryCodesJson)
+            <div id="divCountrySelector">
+                @foreach (Country country in ViewBag.Countries)
+                {
+                    <div>
+                        <label><input type="checkbox" value="@country.Code" data-country="@country.Name" />@country.Name</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group" id="divRegionsEditor" style="display: none">
+    @Html.LabelFor(model => model.RegionIdsJson, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10" style="overflow:auto; max-height:200px;">
+        <div class="checkbox">
+            @Html.HiddenFor(model => model.RegionIdsJson)
+            <div id="divRegionSelector">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="checkbox">
+            @Html.EditorFor(model => model.IsActive)
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#divCountrySelector input[type=checkbox]').change(function () {
+        var countryCodes = [];
+
+        if ($(this).is(':checked'))
+        {
+            loadRegions($(this).val(), $(this).attr('data-country'));
+        }
+        else
+        {
+            $('#divRegionSelector' + $(this).val()).remove();
+            if ($('#divRegionSelector div').length == 0)
+                $('#divRegionsEditor').hide();
+        }
+
+        $('#divCountrySelector input[type=checkbox]:checked').each(function () {
+            countryCodes.push($(this).val());
+        });
+        $('#@Html.IdFor(model => model.CountryCodesJson)').val(JSON.stringify(countryCodes));
+    });
+
+    function loadRegions(countryCode, countryName) {
+        $.post("/Region/List", { countryCode: countryCode },
+            function (json) {
+                if (json.length > 0) {
+                    $('#divRegionSelector').append('<div id="divRegionSelector' + countryCode + '"></div>');
+                    $('#divRegionSelector' + countryCode).append('<div><label><input type="checkbox" onclick="checkAllRegions(\'' + countryCode + '\',this)"><strong>' + countryName + '</strong></labe></div>');
+
+                    var regionIds = JSON.parse($('#@Html.IdFor(model => model.RegionIdsJson)').val() || '[]');
+                    for (var i = 0; i < json.length; i++) {
+                        $('#divRegionSelector' + countryCode).append("<div><label><input type=\"checkbox\" value=\"" + json[i].id + "\" " +
+                            ((regionIds.indexOf(json[i].id) > -1) ? "checked" : "")
+                            + " />" + json[i].name + "</label></div>");
+                    }
+                }
+
+                $('#divRegionSelector' + countryCode + ' input[type=checkbox][value]').change(function () {
+                    var regionIds = [];
+                    $('#divRegionSelector input[type=checkbox]:checked').each(function () {
+                        regionIds.push($(this).val() * 1);
+                    });
+                    $('#@Html.IdFor(model => model.RegionIdsJson)').val(JSON.stringify(regionIds));
+                });
+                if ($('#divRegionSelector div').length > 0)
+                    $('#divRegionsEditor').show();
+            }, "json");
+    }
+
+    function checkAllRegions(countryCode, sender)
+    {
+        $('#divRegionSelector' + countryCode + ' input[type=checkbox][value]').prop('checked', $(sender).prop('checked')).change();
+    }
+
+    $(function () {
+        var countryCodes = JSON.parse($('#@Html.IdFor(model => model.CountryCodesJson)').val() || '[]');
+        $('#divCountrySelector input[type=checkbox]').each(function () {
+            if (countryCodes.indexOf($(this).val()) > -1) {
+                $(this).prop('checked', true);
+                loadRegions($(this).val(), $(this).attr('data-country'));
+            }
+        });
+    });
+</script>

@@ -1,0 +1,71 @@
+@prime: #85b964;
+
+a {
+  color: @prime;
+}
+.btn-primary {
+  color: #fff;
+  background-color: @prime;
+  border-color: darken(@prime, 5%);
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: darken(@prime, 5%);
+  border-color: darken(@prime, 10%);
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: lighten(@prime, 5%);
+  border-color: @prime;
+}
+.btn-primary .badge {
+  color: @prime;
+  background-color: #fff;
+}
+.form-control:focus {
+  border-color: lighten(@prime, 5%);
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: @prime;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: @prime;
+  border-color: darken(@prime, 5%);
+}
+.thumb-icons {
+  background-color: fade(@prime, 90%);
+}
+.thumb-icons a:hover {
+  color: darken(@prime, 15%);
+}

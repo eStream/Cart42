@@ -1,0 +1,61 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.CustomersDeleteViewModel
+
+@{ ViewBag.Title = "Delete Customers".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Customer")">Customers</a>
+                </li>
+                <li class="active">
+                    <strong>@Html.TA("Delete")</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Please review and confirm the deletion of the listed customers")</h5>
+    </div>
+    <div class="ibox-content">
+        <div class="alert alert-danger" role="alert"><strong>@Html.TA("WARNING!")</strong> @Html.TA("Deleting a customer will also delete all related information such as the customer orders.")</div>
+        @foreach (var customer in Model.Customers)
+        {
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => customer.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => customer.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => customer.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => customer.Email)
+                </dd>
+            </dl>
+        }
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Index")" class="btn btn-default">@Html.TA("Cancel")</a>
+                <button type="submit" class="btn btn-danger">@Html.TA("Delete")</button>
+            </div>
+        }
+    </div>
+</div>

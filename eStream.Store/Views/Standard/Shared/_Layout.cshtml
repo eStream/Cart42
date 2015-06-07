@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - @(Settings.Get<string>(SettingField.StoreName))</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    @Styles.Render("~/bundles/CommonStyles")
+    @Styles.Render("~/bundles/Themes/" + ViewBag.Theme + "/Styles")
+    @Scripts.Render("~/bundles/Modernizr")
+    @Scripts.Render("~/bundles/Jquery")
+
+    <!--[if lt IE 9]>
+        @Scripts.Render("~/bundles/OldBrowsers")
+    <![endif]-->
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <script type="text/javascript">
+            $(document).ajaxError(function (e, jqxhr, settings, exception) {
+                e.stopPropagation();
+                if (jqxhr != null)
+                    bootbox.alert(jqxhr.responseText);
+            });
+            window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObject) {
+                if (errorObject && /<omitted>/.test(errorMsg)) {
+                    console.error('Full exception message: ' + errorObject.message);
+                }
+            }
+        </script>
+    }
+
+    <script type="text/javascript">
+        window.ViewModel = {};
+    </script>
+    <style>
+        body { background: #@Setting("outer_background_color") }
+        #topbar { background: #@Setting("topbar_background_color") }
+        .box.highlighted .box-heading { background: #@Setting("categories_header_background_color") }
+        .pav-megamenu .navbar-nav > li > a { color: #@Setting("navbar_text_color")}
+        .pav-megamenu .navbar-nav > li > a:hover, .pav-megamenu .navbar-nav > li > a:focus { color: #@Setting("navbar_texthover_color"); border-color:#@Setting("navbar_texthover_border_color") }
+        footer { background: #@Setting("footer_background_color") }
+    </style>
+</head>
+<body class="@ViewContext.RouteData.Values["Controller"] @ViewContext.RouteData.Values["Action"]">
+    <section id="page" class="offcanvas-pusher" role="main">
+        <header id="header">
+            <div id="topbar">
+                <div class="container">
+                    <div>
+                        <div class="btn-group btn-top pull-left">
+                            <button type="button" class="form-control" data-toggle="dropdown">
+                                <span>
+                                    @Html.T("My Account") <span class="fa fa-sort-desc"></span>
+                                </span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <ul class="links">
+                                    <li><a href="@Url.Action("Index", "Account")"><span class="fa fa-user"></span>@Html.T("My Account")</a></li>
+                                    <li><a href="@Url.Action("Index", "ShoppingCart")"><span class="fa fa-shopping-cart"></span>@Html.T("Shopping Cart")</a></li>
+                                    <li><a href="@Url.Action("Checkout", "ShoppingCart")"><span class="fa fa-credit-card"></span>@Html.T("Checkout")</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="welcome pull-right hidden-sm hidden-xs">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                @Html.T("Welcome visitor you can {0} or {1}.", string.Format("<a href=\"{0}\">{1}</a>", @Url.Action("Login", "Account"), "login".T()), string.Format("<a href=\"{0}\">{1}</a>", @Url.Action("Register", "Account"), "create an account".T()))
+                            }
+                        </div>
+                    </div>
+                    <div class="show-mobile hidden-lg hidden-md">
+                        <div class="btn-top quick-user pull-left">
+                            <div class="form-control quickaccess-toggle">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="inner-toggle dropdown-menu">
+                                <div class="login links">
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+                                        @Html.T("Welcome visitor you can {0} or {1}.", string.Format("<a href=\"{0}\">{1}</a>", @Url.Action("Login", "Account"), "login".T()), string.Format("<a href=\"{0}\">{1}</a>", @Url.Action("Register", "Account"), "create an account".T()))
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quick-cart btn-top pull-left">
+                            <div class="quickaccess-toggle form-control">
+                                <a href="@Url.Action("Index", "ShoppingCart")"><i class="fa fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="header-main">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 logo">
+                            <div id="logo-theme">
+                                <a href="@Url.Action("Index", "Home")">
+                                    @if (Setting("logo_file") != null)
+                                    {
+                                        <img src="/api/Upload/@Setting("logo_file")" style="max-height: 56px" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/Content/img/logo.png" style="max-height: 56px" />
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hidden-xs hidden-sm inner pull-left">
+                            <div class="support">
+                                <div class="box-services">
+                                    <span class="pull-left"><i class="fa fa-truck">&nbsp;</i></span>
+                                    <div class="media-body">
+                                        <h3>@Setting("shipping_label")</h3>
+                                        <small>@Setting("shipping_hint")</small>
+                                    </div>
+                                </div>
+
+                                <div class="box-services">
+                                    <span class="pull-left"><i class="fa fa-refresh">&nbsp;</i></span>
+
+                                    <div class="media-body">
+                                        <h3>@Setting("return_label")</h3>
+                                        <small>@Setting("return_hint")</small>
+                                    </div>
+                                </div>
+
+                                <div class="box-services">
+                                    <span class="pull-left"><i class="fa fa-phone">&nbsp;</i></span>
+
+                                    <div class="media-body">
+                                        <h3>@Setting("phone_label")</h3>
+                                        <small>@Setting("phone_hint")</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="pull-right shopping-cart hidden-xs hidden-sm">
+                            <div class="cart-top">
+                                @Html.Action("Preview", "ShoppingCart")
+                            </div>
+                        </div>
+                        <div id="search">
+                            @{ Html.RenderAction("SearchBox", "Search", new { categoryId = ViewBag.CategoryId, keywords = ViewBag.SearchKeywords }); }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="custom-menu">
+                <div id="pav-mainnav">
+                    <div class="container">
+                        <div class="pav-megamenu">
+                            <div class="navbar navbar-default">
+                                <div id="mainmenutop" class="megamenu" role="navigation">
+                                    <div class="navbar-header">
+                                        <a class="navbar-toggle hidden-lg hidden-md" href="javascript:;" data-target=".navbar-collapse" data-toggle="collapse">
+                                            <span class="fa fa-bars"></span>
+                                        </a>
+                                        <div class="collapse navbar-collapse navbar-ex1-collapse hidden-sm hidden-xs">
+                                            <ul class="nav navbar-nav megamenu">
+                                                <li class="home">
+                                                    <a href="@Url.Action("Index", "Home")"><span class="menu-title">@Html.T("Home")</span></a>
+                                                </li>
+                                                @{ Html.RenderAction("Index", "Category", new { viewName = "_CategoriesDropdown", includeSubcategories = false }); }
+                                                <li><a href="@Url.Action("Index", "ShoppingCart")"><span class="menu-title">@("Shopping Cart".T())</span></a></li>
+
+                                                <li class="parent dropdown ">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                        <span class="menu-title">@Html.T("Information")</span><b class="caret"></b>
+                                                    </a>
+                                                    <div class="dropdown-menu level1">
+                                                        <div class="dropdown-menu-inner">
+                                                            <div class="row">
+                                                                <div class="mega-col col-xs-12 col-sm-12 col-md-12" data-type="menu">
+                                                                    <div class="mega-col-inner">
+                                                                        <ul>
+                                                                            @{ Html.RenderAction("HeaderLinks", "ContentPage"); }
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        @RenderBody()
+
+        <footer id="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="custom">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="box pav-custom  ">
+                                    <div class="box-heading"><span>@Html.T("About Us")</span></div>
+                                    <div class="box-content">
+                                        <div class="">
+                                            <p>@Setting("about_us_text")</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                <div class="box pav-custom  ">
+                                    <div class="box-heading"><span>@Html.T("Information")</span></div>
+                                    <div class="box-content">
+                                        <div class="">
+                                            <ul class="list">
+                                                @{ Html.RenderAction("FooterLinks", "ContentPage"); }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                <div class="box pav-custom  ">
+                                    <div class="box-heading"><span>@Html.T("MY ACCOUNT")</span></div>
+                                    <div class="box-content">
+                                        <div class="">
+                                            <ul class="list">
+                                                <li><a href="@Url.Action("Login", "Account")">@Html.T("Sign In")</a></li>
+                                                <li><a href="@Url.Action("Index","ShoppingCart")">@Html.T("View Cart")</a></li>
+                                                <li><a href="@Url.Action("Checkout","ShoppingCart")">@Html.T("Check out")</a></li>
+                                                <li><a href="@Url.Action("Index","Account")">@Html.T("My Orders")</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                <div class="box pav-custom  ">
+                                    <div class="box-heading"><span>@Setting("links_column1_title")</span></div>
+                                    <div class="box-content">
+                                        <div class="">
+                                            <ul class="list">
+                                                @if (!string.IsNullOrEmpty(Setting("link1_column1_title")))
+                                                {
+                                                    <li><a href="@Setting("link1_column1_url")">@Setting("link1_column1_title")</a></li>
+                                                }
+                                                @if (!string.IsNullOrEmpty(Setting("link2_column1_title")))
+                                                {
+                                                    <li><a href="@Setting("link2_column1_url")">@Setting("link2_column1_title")</a></li>
+                                                }
+                                                @if (!string.IsNullOrEmpty(Setting("link3_column1_title")))
+                                                {
+                                                    <li><a href="@Setting("link3_column1_url")">@Setting("link3_column1_title")</a></li>
+                                                }
+                                                @if (!string.IsNullOrEmpty(Setting("link4_column1_title")))
+                                                {
+                                                    <li><a href="@Setting("link4_column1_url")">@Setting("link4_column1_title")</a></li>
+                                                }                                               
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                <div class="box pav-custom  ">
+                                    <div class="box-heading"><span>@Setting("links_column2_title")</span></div>
+                                    <div class="box-content">
+                                        <div class="">
+                                            <ul class="list">
+                                                @if (!string.IsNullOrEmpty(Setting("link1_column2_title")))
+                                                {
+                                                    <li><a href="@Setting("link1_column2_url")">@Setting("link1_column2_title")</a></li>
+                                                }
+                                                @if (!string.IsNullOrEmpty(Setting("link2_column2_title")))
+                                                {
+                                                    <li><a href="@Setting("link2_column2_url")">@Setting("link2_column2_title")</a></li>
+                                                }
+                                                @if (!string.IsNullOrEmpty(Setting("link3_column2_title")))
+                                                {
+                                                    <li><a href="@Setting("link3_column2_url")">@Setting("link3_column2_title")</a></li>
+                                                }
+                                                @if (!string.IsNullOrEmpty(Setting("link4_column2_title")))
+                                                {
+                                                    <li><a href="@Setting("link4_column2_url")">@Setting("link4_column2_title")</a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="box pav-custom  ">
+                                <div class="box-heading"><span>@Html.T("Contact Us")</span></div>
+                                <div class="box-content">
+                                    <div class="">
+                                        <ul class="social">
+                                            @if (!string.IsNullOrEmpty(Setting("contact_address")))
+                                            {
+                                                <li><a href="#"><span class="fa fa-map-marker">&nbsp;</span>@Html.T("Head Office:") @Setting("contact_address")</a></li>
+                                            }
+                                            @if (!string.IsNullOrEmpty(Setting("contact_address")))
+                                            {
+                                                <li><a href="#"><span class="fa fa-mobile-phone">&nbsp;</span>@Html.T("Phone:") @Setting("contact_phone")</a></li>
+                                            }
+                                            @if (!string.IsNullOrEmpty(Setting("contact_address")))
+                                            {
+                                                <li><a href="#"><span class="fa fa-envelope">&nbsp;</span>@Html.T("Email:") @Setting("contact_email")</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="box pav-custom">
+                                <div class="box-heading"><span>@Html.T("Follow Us")</span></div>
+                                <div class="box-content">
+                                    <div class="">
+                                        <ul class="social">
+                                            @if (!string.IsNullOrEmpty(Setting("facebook_url")))
+                                            {
+                                                <li><a href="@Setting("facebook_url")"><span class="fa fa-facebook">&nbsp;</span>Facebook</a></li>
+                                            }
+                                            @if (!string.IsNullOrEmpty(Setting("twitter_url")))
+                                            {
+                                                <li><a href="#"><span class="fa fa-twitter">&nbsp;</span>Twitter</a></li>
+                                            }
+                                            @if (!string.IsNullOrEmpty(Setting("googleplus_url")))
+                                            {
+                                                <li><a href="#"><span class="fa fa-google-plus">&nbsp;</span>Google+</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @{ Html.RenderAction("AddSubscription", "NewsletterSubscription"); }
+                    </div>
+                </div>
+            </div>
+            <div id="powered">
+                <div class="container">
+                    <div class="copyright pull-left">
+                        @Html.T("Powered By") <a href="http://www.cart42.com" target="_blank">Cart42</a> &copy; @DateTime.Now.Year
+                    </div>
+                    <div class="paypal pull-right">
+                        <p><img alt="" src="@ThemeUrl/images/paypal.png" /></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    @Scripts.Render("~/bundles/CommonScripts")
+    @Scripts.Render("~/bundles/Themes/" + ViewBag.Theme + "/Scripts")
+    <script type="text/javascript">
+        function formatCurrency(value) {
+            return '@(Settings.Get<string>(SettingField.CurrencyPrefix))' + Globalize.format(value || 0, "n") + '@(Settings.Get<string>(SettingField.CurrencySuffix))';
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("li:first-child").addClass('first');
+            $("li:last-child").addClass('last');
+            $(".box-product .row:last-child").addClass('last');
+            $("#image-additional a:last-child").addClass('last');
+            $(".product-items:last-child").addClass('last');
+            $('.product-cols:last-child').addClass('last');
+            $(".product-cols:first-child").addClass('first');
+            $(".product-grid div[class^='col-']:last-child").addClass('last');
+            $(".product-grid .row:last-child").addClass('last');
+            $(function () {
+                $('#header .links li').last().addClass('last');
+                $('.breadcrumb a').last().addClass('last');
+                $('.cart tr').eq(0).addClass('first');
+            });
+        });
+    </script>
+
+    <script src="@Url.Content(GlobalizeUrls.Globalize)" type="text/javascript"></script>
+    <script src="@Url.Content(GlobalizeUrls.GlobalizeCulture)" type="text/javascript"></script>
+    @Html.RenderScripts()
+    <script src="@Url.Content("~/scripts/jquery.validate.globalize.js")" type="text/javascript"></script>
+    <script>Globalize.culture('@UICulture');</script>
+    @Html.Partial("_Alerts")
+    @Html.Action("Track", "Visitor")
+</body>
+</html>

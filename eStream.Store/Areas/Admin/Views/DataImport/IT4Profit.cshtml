@@ -1,0 +1,13 @@
+﻿@model string
+
+<h2>@Html.TA("Import from IT4profit XML file")</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <label for="file">@Html.TA("Filename"):</label>
+    <input type="file" name="file" id="file" />
+
+    <input type="submit" />
+</form>
+<div>
+    @Html.Raw(Model.NL2BR())
+</div>

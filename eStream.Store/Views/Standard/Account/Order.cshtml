@@ -1,0 +1,110 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.OrderViewModel
+@{
+    ViewBag.Title = "My Orders".T();
+    Layout = "../Shared/_AccountLayout.cshtml";
+}
+
+<div class="col-lg-9 col-md-9 col-sm-12">
+    <div id="content">
+        <h1>@ViewBag.Title</h1>
+        <div class="wrapper hero-feature">
+            <div>
+                <h4>Order #@Model.Id</h4>
+                <p class="small">@Html.T("Order Date:") @Model.DatePlaced.ToShortDateString()</p>
+                <p>@Html.T("This order is marked as") <strong>@Model.Status.DisplayName().T()</strong></p>
+                <table class="table table-bordered tbl-cart table-responsive">
+                    <thead>
+                        <tr>
+                            <td class="hidden-xs">@Html.T("Image")</td>
+                            <td>@Html.T("Product Name")</td>
+                            <td>@Html.T("Options")</td>
+                            <td class="td-qty">@Html.T("Quantity")</td>
+                            <td>@Html.T("Unit Price")</td>
+                            <td>@Html.T("Sub Total")</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Items.Count; i++)
+                        {
+                            <tr>
+                                <td class="hidden-xs">
+                                    <img src="/Upload/View/?width=100&height=100&crop=true&productId=@Model.Items[i].ProductId" alt="@Model.Items[i].ProductName" title="" width="47" height="47" />
+                                </td>
+                                <td>
+                                    @if (Model.Items[i].ProductSku != null)
+                                    {
+                                        <strong>[@Model.Items[i].ProductSku]</strong><br />
+                                    }
+                                    <a href="@Url.Action("Details", "Product", new { id = @Model.Items[i].ProductId })">@Model.Items[i].ProductName</a>
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(Model.Items[i].OptionsDisplay))
+                                    {
+                                        @Html.Raw(Model.Items[i].OptionsDisplay)
+                                    }
+                                </td>
+                                <td>
+                                    @Model.Items[i].Quantity
+                                </td>
+                                <td class="price">@Model.Items[i].ItemPrice.ToCurrencyString()</td>
+                                <td>@((Model.Items[i].ItemPrice * Model.Items[i].Quantity).ToCurrencyString())</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="hidden-xs"></td>
+                            <td colspan="4" align="right">Subtotal</td>
+                            <td class="total" colspan="2">
+                                <b>@Model.Items.Sum(item => item.ItemPrice * item.Quantity).ToCurrencyString()</b>
+                            </td>
+                        </tr>
+                        @if (Model.Discount != 0)
+                        {
+                            <tr>
+                                <td class="hidden-xs"></td>
+                                <td colspan="4" align="right">@Html.T("Discount")</td>
+                                <td class="total" colspan="2">
+                                    <b>@Model.Discount.ToCurrencyString()</b>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="hidden-xs"></td>
+                            <td colspan="4" align="right">@Html.T("Shipping")</td>
+                            <td class="total" colspan="2">
+                                <b>@Model.ShippingAmount.ToCurrencyString()</b>
+                            </td>
+                        </tr>
+                        @if (Model.TaxAmount > 0)
+                        {
+                            <tr>
+                                <td class="hidden-xs"></td>
+                                <td colspan="4" align="right">@(Settings.Get<string>(SettingField.TaxLabel))</td>
+                                <td class="total" colspan="2">
+                                    <b>@Model.TaxAmount.ToCurrencyString()</b>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="hidden-xs"></td>
+                            <td colspan="4" align="right"><b>@Html.T("Total")</b></td>
+                            <td class="total" colspan="2">
+                                <b>@Model.Total.ToCurrencyString()</b>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>Billing Address</h4>
+                        @Html.DisplayFor(m => m.BillingAddress)
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h4>Shipping Address</h4>
+                        @Html.DisplayFor(m => m.BillingAddress)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

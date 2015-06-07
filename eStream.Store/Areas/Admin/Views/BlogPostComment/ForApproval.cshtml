@@ -1,0 +1,123 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.BlogPostCommentsViewModel
+
+@{ ViewBag.Title = "Approve Comments".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">               
+                    <a href="@Url.Action("Index")" class="btn btn-primary">@Html.TA("View All Comments")</a>                
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="ibox-content">
+        @if (Model.BlogPostComments.Any())
+        {
+            <table class="table" id="tableBlogPostComments">
+                <tr>
+                    <th><input type="checkbox" /></th>
+                    <th>
+                        @Html.TA("Poster")
+                    </th>
+                    <th>
+                        @Html.TA("Message")
+                    </th>
+                    <th>
+                        @Html.TA("Email")
+                    </th>
+                    <th>
+                        @Html.TA("Publish Date")
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.BlogPostComments)
+                {
+                    <tr>
+                        <td><input type="checkbox" value="@item.Id" /></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Message)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatePosted)
+                        </td>
+                        <td class="text-right">
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="fa fa-gear"></i>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+
+                                    @if (User.HasAccess(OperatorRoles.BLOGS + OperatorRoles.WRITE))
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Approve", new {ids = item.Id})"><span class="fa fa-check"></span>&nbsp;@Html.TA("Approve")</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Delete", new {ids = item.Id, fromAction = "ForApproval" })"><span class="fa fa-times"></span>&nbsp;@Html.TA("Delete")</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="input-group">
+                        <div class="dropdown">
+                            <button class="btn btn-default btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                                <i class="fa fa-gears"></i>&nbsp;@Html.TA("Batch Actions")
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                @if (User.HasAccess(OperatorRoles.BLOGS + OperatorRoles.WRITE))
+                                {
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="postSelectedComments('@Url.Action("Approve")')"><span class="fa fa-check"></span>&nbsp;@Html.TA("Approve Selected")</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="postSelectedComments('@Url.Action("Delete")')"><span class="fa fa-times"></span>&nbsp;@Html.TA("Delete Selected")</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">@Html.TA("There are no comments waiting approval")</div>
+        }
+    </div>
+</div>
+<script language="javascript">
+    function postSelectedComments(url) {
+        var ids = '?';
+        $('#tableBlogPostComments input:checked').each(function () {
+            var id = $(this).val();
+            if (!isNaN(id)) ids += 'ids=' + id + '&';
+        });
+        if (ids != '?')
+            window.location.href = url + ids;
+    }
+</script>

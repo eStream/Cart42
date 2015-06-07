@@ -1,0 +1,27 @@
+﻿@model Estream.Cart42.Web.Domain.Category
+@{ ViewBag.Title = Model.Name; }
+
+<div class="container">
+    <div class="row">
+        <aside class="col-md-3">
+            <div id="column-left" class="sidebar">
+                @{ Html.RenderAction("Index", "Category", new { parentId = Model.Id, viewName = "_CategoriesMenu" }); }
+                @{ Html.RenderAction("FiltersMenu", "Option", new { categoryId = Model.Id, optionIds = ViewBag.OptionIds, viewName = "_FiltersMenu" }); }
+            </div>
+        </aside>
+        <section class="col-md-9 main-column">
+            <div id="content">
+                <div class="category-info clearfix hidden-xs hidden-sm">
+                    <h1>@Model.Name</h1>
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        <div>
+                            @Html.Raw(Model.Description)
+                        </div>
+                    }
+                </div>
+                @{ Html.RenderAction("Index", "Product", new { categoryId = Model.Id, optionIds = ViewBag.OptionIds, viewName = "_ProductsGrid" }); }
+            </div>
+        </section>
+    </div>
+</div>

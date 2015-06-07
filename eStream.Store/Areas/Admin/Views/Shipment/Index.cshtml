@@ -1,0 +1,97 @@
+﻿@model List<Estream.Cart42.Web.Areas.Admin.Models.ShipmentIndexViewModel>
+
+@{ ViewBag.Title = "Shipments".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="ibox-content">
+        @if (Model.Any())
+        {
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>
+                        @Html.TA("Shipment #")
+                    </th>
+                    <th>
+                        @Html.TA("Order #")
+                    </th>
+                    <th>
+                        @Html.TA("Tracking #")
+                    </th>
+                    <th>
+                        @Html.TA("Date")
+                    </th>
+                    <th></th>
+                </tr>
+
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    <tr>
+                        <td data-toggle="expand" style="cursor: pointer" class="text-navy"><i class="fa fa-plus-square"></i></td>
+                        <td>
+                            @Model[i].Id
+                        </td>
+                        <td>
+                            #@Model[i].Order.Id
+                        </td>
+                        <td>
+                            @Model[i].TrackingNo
+                        </td>
+                        <td>
+                            @Model[i].Date
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr style="display: none">
+                        <td colspan="42">
+                            @Html.DisplayFor(m => m[i])
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">@Html.TA("There are no shipments yet. Add new shipments by using the {0} button above", "<strong>" + @Html.TA("Ship Package") + "</strong>") </div>
+        }
+    </div>
+</div>
+
+<script language="javascript">
+    $(function () {
+        $('*[data-toggle="expand"]').click(function () {
+            $(this).parent().next('tr').toggle();
+
+            if ($(this).data('expanded') != true) {
+                $(this).data('expanded', true);
+                $(this).html('<i class="fa fa-minus-square"></i>');
+            } else {
+                $(this).data('expanded', false);
+                $(this).html('<i class="fa fa-plus-square"></i>');
+            }
+        });
+    });
+</script>

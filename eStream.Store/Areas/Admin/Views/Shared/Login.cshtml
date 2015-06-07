@@ -1,0 +1,58 @@
+﻿@model Estream.Cart42.Web.Models.LoginViewModel
+@using Forloop.HtmlHelpers
+@{
+    ViewBag.Title = "Log in".TA();
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @(Settings.Get<string>(SettingField.StoreName))</title>
+    @Styles.Render("~/bundles/CommonStyles")
+    @Styles.Render("~/bundles/AdminStyles")
+    @Scripts.Render("~/bundles/Modernizr")
+    @Scripts.Render("~/bundles/Jquery")
+
+    <!--[if lt IE 9]>
+        @Scripts.Render("~/bundles/OldBrowsers")
+    <![endif]-->
+</head>
+
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name"><img src="@Url.Content("~/Content/img/cart42logo.png")" /></h1>
+            </div>
+            <h3>@Html.TA("Welcome to {0} Administrative Panel.", "<span class=\"text-navy\">" + Settings.Get<string>(SettingField.StoreName) + "</span>")</h3>
+            @using (Html.BeginForm(new { ViewBag.ReturnUrl }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email".T() })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password".T() })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">@Html.TA("Login")</button>
+            }
+        </div>
+    </div>
+
+    <script src="@Url.Content(GlobalizeUrls.Globalize)" type="text/javascript"></script>
+    <script src="@Url.Content(GlobalizeUrls.GlobalizeCulture)" type="text/javascript"></script>
+    @Html.RenderScripts()
+    <script src="@Url.Content("~/scripts/jquery.validate.globalize.js")" type="text/javascript"></script>
+    @Html.Partial("_Alerts")
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.PaymentMethodsViewModel
+
+@{ ViewBag.Title = "Payment Methods".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="ibox-content">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.TA("Name")
+                </th>
+
+                <th>
+                    @Html.TA("Type")
+                </th>
+                <th>
+                    @Html.TA("Active")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.PaymentMethods)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Name, "Edit", new { id = item.Id }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td class="text-right">
+                        <div class="dropdown">
+                            <button class="btn btn-default btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                                <i class="fa fa-gear"></i>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                @if (User.HasAccess(OperatorRoles.SETTINGS + OperatorRoles.WRITE))
+                                {
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Edit", new {id = item.Id})"><span class="fa fa-pencil"></span>&nbsp;@Html.TA("Edit")</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.OrdersMapBoxViewModel
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@Html.TA("Orders Worldwide")</h5>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div id="ordersMap" style="height: 300px;"></div>
+        </div>
+    </div>
+</div>
+
+<link href="/Content/admin/js/jvectormap/jquery-jvectormap-1.2.2.css" type="text/css" rel="stylesheet" />
+<script src="/Content/admin/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="/Content/admin/js/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+
+        var mapData = {};
+        var json = @Html.Json(Model.OrdersData);
+        for (var i = 0; i < json.length; i++) {
+            mapData[json[i].code] = json[i].value;
+        }
+
+        $('#ordersMap').vectorMap({
+            map: 'world_mill_en',
+            backgroundColor: "transparent",
+            regionStyle: {
+                initial: {
+                    fill: '#e4e4e4',
+                    "fill-opacity": 0.9,
+                    stroke: 'none',
+                    "stroke-width": 0,
+                    "stroke-opacity": 0
+                }
+            },
+
+            series: {
+                regions: [{
+                    values: mapData,
+                    scale: ["#1ab394", "#22d6b1"],
+                    normalizeFunction: 'polynomial'
+                }]
+            },
+            onRegionLabelShow: function (e, el, code) {
+                if (mapData[code])
+                    el.html(el.html() + ' (' + mapData[code] + ')');
+            }
+        });
+    });
+</script>

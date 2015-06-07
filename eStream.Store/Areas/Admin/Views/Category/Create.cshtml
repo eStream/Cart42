@@ -1,0 +1,84 @@
+﻿@using Estream.Cart42.Web.Areas.Admin.Models
+@model CategoryEditViewModel
+
+@{ ViewBag.Title = "Add Category".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Category")">@Html.TA("Categories")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>@Html.TA("Category Details")</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+                @Html.EditorForModel()
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.EditorFor(m => m.OnCompleteAction)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Settings.Get<bool>(SettingField.ShowCategoryTutorial))
+{
+    <script>
+        function startIntro() {
+            var intro = introJs();
+
+            intro.setOptions({
+                steps: [
+                    {
+                        intro: "@Html.TA("Product categories are used to group your products so that they are easier to manage and find.")"
+                    },
+                    {
+                        element: '#@Html.IdFor(m => m.Name)',
+                        intro: "@Html.TA("Enter your first category name - e.g. Clothes, Books, Phones, etc.")"
+                    },
+                    {
+                        element: document.querySelector('[type=submit]'),
+                        intro: "@Html.TA("That's all the info needed to create a category. Save it")",
+                        position: 'right'
+                    }
+                ],
+                exitOnOverlayClick: false
+            });
+
+            intro.start();
+        }
+
+        $(function() {
+            startIntro();
+        });
+    </script>
+}

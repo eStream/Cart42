@@ -1,0 +1,69 @@
+﻿@using Estream.Cart42.Web.Domain
+
+<div class="row" id="productOptions" data-bind="foreach: $data">
+
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <span data-bind="text: name"></span>
+        <!-- ko if: type() == '@OptionCategoryType.Dropdown' -->
+        <div data-bind="template: 'option-dropdown-template'"></div>
+        <!-- /ko -->
+        <!-- ko if: type() == '@OptionCategoryType.Checkbox' -->
+        <div data-bind="template: 'option-checkbox-template'"></div>
+        <!-- /ko -->
+        <!-- ko if: type() == '@OptionCategoryType.Text' -->
+        <div data-bind="template: 'option-text-template'"></div>
+        <!-- /ko -->
+        <!-- ko if: type() == '@OptionCategoryType.Radiobutton' -->
+        <div data-bind="template: 'option-radio-template'"></div>
+        <!-- /ko -->
+        <!-- ko if: type() == '@OptionCategoryType.Boxes' -->
+        <div data-bind="template: 'option-boxes-template'"></div>
+        <!-- /ko -->
+        <!-- ko if: type() == '@OptionCategoryType.Colors' -->
+        <div data-bind="template: 'option-colors-template'"></div>
+        <!-- /ko -->
+    </div>
+ 
+</div>
+
+<script type="text/html" id="option-dropdown-template">
+    <select data-bind="foreach: options, value: selectedOption">
+        <option data-bind="attr: { value: id }, text: displayName"></option>
+    </select>
+</script>
+
+<script type="text/html" id="option-checkbox-template">
+    <!-- ko foreach: options -->
+    <label><input type="checkbox" data-bind="attr: { value: id }, checked: selected" />&nbsp;<!-- ko text: displayName --><!--/ko--></label>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="option-radio-template">
+    <!-- ko foreach: options -->
+    <label><input type="radio" data-bind="attr: { value: id }, checked: $parent.selectedOption" />&nbsp;<!-- ko text: displayName --><!--/ko--></label>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="option-text-template">
+    <!-- ko foreach: options -->
+    <span data-bind="html: displayName"></span>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="option-boxes-template">
+    <div class="btn-group btn-group-sm" data-toggle="buttons" data-bind="foreach: options">
+        <label class="btn btn-default">
+            <input type="radio" data-bind="attr: { value: id }, bsChecked: $parent.selectedOption" />
+            <!-- ko text: displayName --><!--/ko-->
+        </label>
+    </div>
+</script>
+
+<script type="text/html" id="option-colors-template">
+    <div data-toggle="buttons" data-bind="foreach: options">
+        <label class="btn btn-default btn-sm" style="width: 3em; overflow: hidden" data-toggle="tooltip" data-bind="attr: { title: displayName }, style: { color: '#' + description(), backgroundColor: '#' + description() }">
+            <input type="radio" data-bind="attr: { value: id }, bsChecked: $parent.selectedOption" />
+            <!-- ko text: displayName --><!--/ko-->
+        </label>
+    </div>
+</script>

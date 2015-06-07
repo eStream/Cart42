@@ -1,0 +1,60 @@
+﻿@model Estream.Cart42.Web.Models.ProductGridViewModel
+
+<div data-bind="with: productsGrid">
+    <!-- ko if: products().length > 0 -->
+    <!-- ko foreach: products().inChunksOf(6) -->
+    <div class="product-grid">
+        <div class="products-block">
+            <div class="row product-items" data-bind="foreach: $data">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 product-cols">
+                    <div class="product-block">
+                        <div class="image">
+                            <a data-bind="attr: { href: url }" class="img">
+                                <img class="img-responsive" data-bind="attr: { src: '/api/Upload/' + primaryPhotoId() + '?width=300&height=250&crop=true' }" alt="">
+                            </a>
+                        </div>
+                        <div class="product-meta">
+                            <div class="left">
+                                <h3 class="name"><a data-bind="text: name().trunc(50), attr: { href: url, title: name }"></a></h3>
+                                <div class="price">
+                                    @*<span class="price-old">$</span>*@
+                                    <span class="price-new" data-bind="html: window.formatCurrency(price())"></span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="action">
+                                    <div class="cart">
+                                        <a data-bind="attr: { href: url }" class="btn btn-shopping-cart">
+                                            <i class="fa fa-shopping-cart"></i><span>@Html.T("Buy")</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <div class="tclearfix" data-bind="if: totalPages() > 1">
+        <ul class="pagination catalogue-pagination">
+            <li><a data-bind="click: goToPage.bind($data, page() - 1)" href="#">@Html.T("Prev")</a></li>
+            <!-- ko foreach: new Array(totalPages()) -->
+            <li data-bind="css: { active: $index()+1 == $parent.page() }">
+                <a data-bind="text: $index()+1, click: $parent.goToPage.bind($data, $index()+1)" href="#"></a>
+            </li>
+            <!-- /ko -->
+            <li><a data-bind="click: goToPage.bind($data, page() + 1)" href="#">@Html.T("Next")</a></li>
+        </ul>
+    </div>
+    <!-- /ko -->
+</div>
+
+@Html.LoadScript()
+<script language="javascript">
+    $(function () {
+        var model = new ProductIndexViewModel(@Html.Json(Model));
+        window.ViewModel.productsGrid = model;
+    });
+</script>

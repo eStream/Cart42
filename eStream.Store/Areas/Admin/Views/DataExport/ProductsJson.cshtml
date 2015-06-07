@@ -1,0 +1,73 @@
+﻿@using Estream.Cart42.Web.Domain
+@model string
+
+@{ ViewBag.Title = "Export Products".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "DataExport")">@Html.TA("Data Export")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="ibox-content">
+        <div>
+            @Html.TA("Existing exports")
+        </div>
+        <div id="divBackups">
+            <ul data-bind="foreach: $data">
+                <li><a data-bind="text: name, attr: { href: url }"></a></li>
+            </ul>
+        </div>
+        @{ Html.RenderAction("Index", "WorkProcess", new { type = WorkProcessType.Export }); }
+        <div class="hr-line-dashed"></div>
+        <div>
+            <button id="btnBackup" type="button" class="btn btn-primary"><span class="fa fa-upload"></span> @Html.TA("Export")</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#btnBackup').click(function () {
+            $.post('@Url.Action("ProductsJsonStart")', {},
+                function () {
+                    alerts.success('@Html.TA("Data backup has been initiated")');
+                });
+        });
+
+        var data = ko.observableArray();
+
+        var checkBackups = function () {
+            $.post('@Url.Action("ProductExportsList")', {},
+                function (result) {
+                    ko.mapping.fromJS(result, {}, data);
+                    setTimeout(function () { checkBackups(); }, 10 * 1000);
+                }
+            );
+        };
+
+        ko.applyBindings(data, document.getElementById('divBackups'));
+        checkBackups();
+    });
+</script>

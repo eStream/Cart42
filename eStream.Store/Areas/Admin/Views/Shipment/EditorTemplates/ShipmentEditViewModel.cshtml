@@ -1,0 +1,50 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.ShipmentEditViewModel
+
+@Html.HiddenFor(m => m.OrderId)
+
+<table class="table">
+    <tr>
+        <th>@Html.TA("Product")</th>
+        <th></th>
+        <th>@Html.TA("Ship Quantity")</th>
+    </tr>
+    <tbody>
+        @for (int i = 0; i < Model.Items.Count; i++)
+        {
+            var orderItem = Model.Order.Items.Single(item => item.Id == Model.Items[i].OrderItemId);
+            <tr>
+                <td>
+                    @Html.HiddenFor(m => m.Items[i].Id)
+                    @Html.HiddenFor(m => m.Items[i].OrderItemId)
+                    @if (orderItem.ProductSku != null)
+                    {
+                        <strong>[@orderItem.ProductSku]</strong><br />
+                    }
+                    @orderItem.ProductName
+                </td>
+                <td>@Html.Raw(orderItem.OptionsDisplay)</td>
+                <td>
+                    <select id="@Html.IdFor(m => m.Items[i].Quantity)" name="@Html.NameFor(m => m.Items[i].Quantity)">
+                        @for (int j = 0; j <= Model.Items[i].Quantity; j++)
+                        {
+                            <option value="@j" @(orderItem.Quantity == Model.Items[i].Quantity ? "selected" : "")>@j</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="form-group">
+    @Html.LabelFor(model => model.TrackingNo, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.TrackingNo, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.UpdateOrderStatus, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.UpdateOrderStatus, new { htmlAttributes = new { @class = "form-control" } })
+        Update the order status to <strong>Shipped</strong>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@model IList<Estream.Cart42.Web.Areas.Admin.Models.SettingsViewModel>
+@{ ViewBag.Title = "Settings".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>@Html.TA("Site Settings")</h5>
+        </div>
+        <div class="ibox-content">
+            <ul class="nav nav-tabs" role="tablist">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <li class="@(i == 0 ? "active" : "")">
+                        <a href="#@i" role="tab" data-toggle="tab">@Model[i].Category</a>
+                    </li>
+                }
+            </ul>
+
+            <div class="tab-content">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="tab-pane @(i == 0 ? "active" : "")" id="@i">
+                        <div class="form-horizontal">
+                            <br/>
+                            @for (int k = 0; k < Model[i].Settings.Count(); k++)
+                            {
+                                <div class="form-group">
+                                    @Html.HiddenFor(m => m[i].Settings[k].Key)
+                                    @Html.HiddenFor(m => m[i].Settings[k].Name)
+                                    @Html.HiddenFor(m => m[i].Settings[k].EditorType)
+                                    @Html.Label("m[i].Settings[k].Name", Model[i].Settings[k].Name,
+                                        new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(m => m[i].Settings[k].Value, Model[i].Settings[k].EditorType,
+                                            new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-primary">@Html.TA("Save")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

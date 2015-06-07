@@ -1,0 +1,18 @@
+﻿@model Estream.Cart42.Web.Models.BreadcrumbViewModel
+           
+<div id="breadcrumb">
+    <ol class="breadcrumb container">
+        <li><a href="@Url.Action("Index", "Home")"><span>@Html.T("Home")</span></a></li>
+        @for (int i = 0; i < Model.Nodes.Count; i++)
+        {
+            if (i < Model.Nodes.Count - 1)
+            {
+                <li><a href="@Model.Nodes[i].Item1"><span>@Model.Nodes[i].Item2 </span></a></li>
+            }
+            else
+            {
+                <li class="active"><span>@Model.Nodes[i].Item2</span></li>
+            }
+        }
+    </ol>
+</div>

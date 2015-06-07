@@ -1,0 +1,271 @@
+﻿@using System.Threading
+@using Forloop.HtmlHelpers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - @(Settings.Get<string>(SettingField.StoreName))</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @Styles.Render("~/bundles/CommonStyles")
+    @Styles.Render("~/bundles/AdminStyles")
+    @Scripts.Render("~/bundles/Modernizr")
+    @Scripts.Render("~/bundles/Jquery")
+
+    <!--[if lt IE 9]>
+        @Scripts.Render("~/bundles/OldBrowsers")
+    <![endif]-->
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <script type="text/javascript">
+            $(document).ajaxError(function (e, jqxhr, settings, exception) {
+                e.stopPropagation();
+                if (jqxhr != null)
+                    bootbox.alert(jqxhr.responseText);
+            });
+            window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObject) {
+                if (errorObject && /<omitted>/.test(errorMsg)) {
+                    console.error('Full exception message: ' + errorObject.message);
+                }
+            }
+        </script>
+    }
+    else
+    {
+        @Scripts.Render("~/bundles/Pace")
+    }
+    <script type="text/javascript">
+        window.ViewModel = {};
+    </script>
+</head>
+<body class="@ViewContext.RouteData.Values["Controller"] @ViewContext.RouteData.Values["Action"]" lang="@UICulture">
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a href="@Url.Action("Index", "Home")">
+                                <span>
+                                    <img src="@Url.Content("~/Content/img/cart42logo.png")" />
+                                </span>
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">@(Settings.Get<string>(SettingField.StoreName))</strong>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            <img src="@Url.Content("~/Content/img/cart42icon.png")" />
+                        </div>
+                    </li>
+
+                    <li class="@(IsAny("Home", "Report") ? "active" : "")">
+                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">@Html.TA("Reports")</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li class="@(Is("Home") ? "active" : "")"><a href="@Url.Action("Index", "Home")">@Html.TA("Dashboard")</a></li>
+                        </ul>
+                    </li>
+                    @if (User.HasAccess(OperatorRoles.INVENTORY))
+                    {
+                        <li class="@(IsAny("Category", "Product", "OptionCategory", "Option") ? "active" : "")">
+                            <a href="@Url.Action("Index", "Product", new {area = "Admin"})"><i class="fa fa-cubes"></i> <span class="nav-label">@Html.TA("Inventory") </span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li class="@(Is("Category") ? "active" : "")"><a href="@Url.Action("Index", "Category", new {area = "Admin"})">@Html.TA("Categories")</a></li>
+                                <li class="@(Is("Product") ? "active" : "")"><a href="@Url.Action("Index", "Product", new {area = "Admin"})">@Html.TA("Products") @*<span class="label label-info pull-right">150</span>*@</a></li>
+                                <li class="@(IsAny("OptionCategory", "Option") ? "active" : "")"><a href="@Url.Action("Index", "OptionCategory", new {area = "Admin"})">@Html.TA("Options")</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.HasAccess(OperatorRoles.SHIPMENTS) || User.HasAccess(OperatorRoles.ORDERS))
+                    {
+                        <li class="@(IsAny("Order", "Shipment", "Return") ? "active" : "")">
+                            <a href="@Url.Action("Index", "Order", new {area = "Admin"})"><i class="fa fa-shopping-cart"></i> <span class="nav-label">@Html.TA("Orders") </span><span class="fa arrow"></span>@*<span class="label label-warning pull-right">NEW</span>*@</a>
+                            <ul class="nav nav-second-level">
+                                @if (User.HasAccess(OperatorRoles.ORDERS))
+                                {
+                                    <li class="@(Is("Order") ? "active" : "")"><a href="@Url.Action("Index", "Order", new {area = "Admin"})">@Html.TA("View Orders")</a></li>
+                                }
+                                @if (User.HasAccess(OperatorRoles.SHIPMENTS))
+                                {
+                                    <li class="@(Is("Shipment") ? "active" : "")"><a href="@Url.Action("Index", "Shipment", new {area = "Admin"})">@Html.TA("View Shipments")</a></li>
+                                }
+                                @*
+                                    <li class="@(Is("Return") ? "active" : "")"><a href="@Url.Action("Index", "Return", new {area = "Admin"})">@Html.TA("View Return Requests")</a></li>
+                                *@
+                            </ul>
+                        </li>
+                    }
+                    @if (User.HasAccess(OperatorRoles.CUSTOMERS))
+                    {
+                        <li class="@(Is("Customer") ? "active" : "")">
+                            <a href="@Url.Action("Index", "Customer", new {area = "Admin"})"><i class="fa fa-users"></i> <span class="nav-label">@Html.TA("Customers") </span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li class="@(Is("Customer") ? "active" : "")"><a href="@Url.Action("Index", "Customer", new {area = "Admin"})">@Html.TA("View Customers")</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.HasAccess(OperatorRoles.SETTINGS))
+                    {
+                        <li class="@(IsAny("Setting", "TaxZone", "TaxClass", "TaxRate", "ShippingZone", "ShippingMethod", "Country", "PaymentMethod") ? "active" : "")">
+                            <a href="#"><i class="fa fa-gears"></i> <span class="nav-label">@Html.TA("Site Configuration") </span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li class="@(Is("Setting") ? "active" : "")"><a href="@Url.Action("Index", "Setting", new {area = "Admin"})">@Html.TA("Site Settings")</a></li>
+                                <li><a href="@Url.Action("Settings", "PageTemplate", new {area = "Admin", name = ViewBag.Theme})">@Html.TA("Template Settings")</a></li>
+                                <li class="@(Is("PaymentMethod") ? "active" : "")"><a href="@Url.Action("Index", "PaymentMethod", new {area = "Admin"})">@Html.TA("Payment Methods")</a></li>
+                                <li class="@(IsAny("TaxZone", "TaxClass", "TaxRate") ? "active" : "")">
+                                    <a href="#">@Html.TA("Tax Settings") <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li class="@(Is("TaxZone") ? "active" : "")">
+                                            <a href="@Url.Action("Index", "TaxZone")">@Html.TA("Edit Tax Zones")</a>
+                                        </li>
+                                        <li class="@(Is("TaxClass") ? "active" : "")">
+                                            <a href="@Url.Action("Index", "TaxClass")">@Html.TA("Edit Tax Classes")</a>
+                                        </li>
+                                        <li class="@(Is("TaxRate") ? "active" : "")">
+                                            <a href="@Url.Action("Index", "TaxRate")">@Html.TA("Edit Tax Rates")</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="@(IsAny("ShippingZone", "ShippingMethod") ? "active" : "")">
+                                    <a href="#">@Html.TA("Shipping Settings") <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li class="@(Is("ShippingZone") ? "active" : "")">
+                                            <a href="@Url.Action("Index", "ShippingZone")">@Html.TA("Edit Shipping Zones")</a>
+                                        </li>
+                                        <li class="@(Is("ShippingMethod") ? "active" : "")">
+                                            <a href="@Url.Action("Index", "ShippingMethod")">@Html.TA("Edit Shipping Methods")</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="@(Is("Country") ? "active" : "")">
+                                    <a href="#">@Html.TA("Regional Settings") <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li class="@(Is("Country") ? "active" : "")">
+                                            <a href="@Url.Action("Index", "Country")">@Html.TA("Edit Countries")</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="https://www.cart42.com/Account" target="_blank">@Html.TA("Domain Settings")</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.HasAccess(OperatorRoles.CONTENT) || User.HasAccess(OperatorRoles.TEMPLATES))
+                    {
+                        <li class="@(IsAny("ContentPage", "EmailTemplate", "PageTemplate") ? "active" : "")">
+                            <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">@Html.TA("Content Management")</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                @if (User.HasAccess(OperatorRoles.TEMPLATES))
+                                {
+                                    <li class="@(Is("PageTemplate") ? "active" : "")"><a href="@Url.Action("Index", "PageTemplate", new { area = "Admin" })">@Html.TA("Edit Page Templates")</a></li>
+                                    <li class="@(Is("EmailTemplate") ? "active" : "")"><a href="@Url.Action("Index", "EmailTemplate", new { area = "Admin" })">@Html.TA("Edit Email Templates")</a></li>
+                                }
+                                @if (User.HasAccess(OperatorRoles.CONTENT))
+                                {
+                                    <li class="@(Is("ContentPage") ? "active" : "")"><a href="@Url.Action("Index", "ContentPage", new {area = "Admin"})">@Html.TA("Edit Content Pages")</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    @if (User.HasAccess(OperatorRoles.BLOGS))
+                    {
+                        <li class="@(IsAny("Blog", "BlogPost", "BlogPostComment") ? "active" : "")">
+                            <a href="#"><i class="fa fa-rss"></i> <span class="nav-label">@Html.TA("Blogs ")</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li class="@(Is("Blog") ? "active" : "")"><a href="@Url.Action("Index", "Blog", new { area = "Admin" })">@Html.TA("Manage Blog")</a></li>
+                                <li class="@(Is("BlogPost") ? "active" : "")"><a href="@Url.Action("Index", "BlogPost", new { area = "Admin" })">@Html.TA("Manage Blog Posts")</a></li>
+                                <li class="@(Is("BlogPostComment") ? "active" : "")"><a href="@Url.Action("ForApproval", "BlogPostComment", new { area = "Admin" })">@Html.TA("Moderate Comments")</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.HasAccess(OperatorRoles.OPERATORS))
+                    {
+                        <li class="@(IsAny("Operator") ? "active" : "")">
+                            <a href="@Url.Action("Index", "Operator")"><i class="fa fa-lock"></i> <span class="nav-label">@Html.TA("Access Control")</span></a>
+                        </li>
+                    }
+                    @if (User.HasAccess(OperatorRoles.DATABASE))
+                    {
+                        <li class="@(IsAny("DataImport", "DataExport") ? "active" : "")">
+                            <a href="#"><i class="fa fa-database"></i> <span class="nav-label">@Html.TA("Database") </span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                @if (User.HasAccess(OperatorRoles.DATABASE + OperatorRoles.WRITE))
+                                {
+                                    <li class="@(Is("DataImport") ? "active" : "")"><a href="@Url.Action("Index", "DataImport", new {area = "Admin"})">@Html.TA("Import Data")</a></li>
+                                }
+                                <li class="@(Is("DataExport") ? "active" : "")"><a href="@Url.Action("Index", "DataExport", new { area = "Admin" })">@Html.TA("Export Data")</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                        @*
+                            <form role="search" class="navbar-form-custom" method="post">
+                                <div class="form-group">
+                                    <input type="text" placeholder="@Html.TA("Search for something...")" class="form-control" name="top-search" id="top-search">
+                                </div>
+                            </form>
+                        *@
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">
+                                @Html.TA("Welcome to {0} Administrative Panel.", "<span class=\"text-navy\">" + Settings.Get<string>(SettingField.StoreName) + "</span>")
+                            </span>
+                        </li>
+                        @{ Html.RenderAction("Index", "AdminAlert"); }
+                        @{ Html.RenderAction("LanguageSelector", "Translation"); }
+                        <li>
+                            <a href="@Url.Action("LogOff", "Account", new { area = "" })">
+                                <i class="fa fa-sign-out"></i> @Html.TA("Log out")
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    @RenderSection("Heading", false)
+                    <div class="wrapper wrapper-content">
+                        <div class="alert-container"></div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    <img src="@Url.Content("~/Content/img/cart42footer.png")" alt="&copy; @DateTime.Now.Year Cart42" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/CommonScripts")
+    @Scripts.Render("~/bundles/AdminScripts")
+    <script type="text/javascript">
+        function formatCurrency(value) {
+            return '@(Settings.Get<string>(SettingField.CurrencyPrefix))' + Globalize.format(value || 0, "n") + '@(Settings.Get<string>(SettingField.CurrencySuffix))';
+        }
+        $(function () {
+            moment.locale('@UICulture');
+        });
+    </script>
+    <script src="@Url.Content(GlobalizeUrls.Globalize)" type="text/javascript"></script>
+    <script src="@Url.Content(GlobalizeUrls.GlobalizeCulture)" type="text/javascript"></script>
+    @Html.RenderScripts()
+    <script src="@Url.Content("~/scripts/jquery.validate.globalize.js")" type="text/javascript"></script>
+    <script>Globalize.culture('@UICulture');</script>
+    @Html.Partial("_Alerts")
+</body>
+</html>

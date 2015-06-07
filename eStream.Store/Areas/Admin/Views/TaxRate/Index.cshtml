@@ -1,0 +1,126 @@
+﻿@using Estream.Cart42.Web.Areas.Admin.Models
+@model IEnumerable<TaxRateIndexViewModel>
+
+@{ ViewBag.Title = "Tax Rates".TA(); }
+@section Heading
+{
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Html.TA("Home")</a>
+                </li>
+                <li class="active">
+                    <strong>@ViewBag.Title</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+            <div class="title-action">
+                @if (User.HasAccess(OperatorRoles.SETTINGS + OperatorRoles.WRITE))
+                {
+                    <a href="@Url.Action("Create")" class="btn btn-primary"><span class="fa fa-plus"></span>&nbsp;@Html.TA("Add Tax Rate")</a>
+                }
+            </div>
+        </div>
+    </div>
+}
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="ibox-content">
+        @if (Model.Any())
+        {
+            <table class="table" id="tableTaxRates">
+                <tr>
+                    <th><input type="checkbox" /></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TaxZoneName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (TaxRateIndexViewModel item in Model)
+                {
+                    <tr>
+                        <td><input type="checkbox" value="@item.Id" /></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TaxZoneName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)%
+                        </td>
+                        <td class="text-right">
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="fa fa-gear"></i>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                    @if (User.HasAccess(OperatorRoles.SETTINGS + OperatorRoles.WRITE))
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Edit", new {id = item.Id})"><span class="fa fa-pencil"></span>&nbsp;@Html.TA("Edit")</a></li>
+                                    }
+                                    @if (User.HasAccess(OperatorRoles.SETTINGS + OperatorRoles.DELETE))
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Delete", new {ids = item.Id})"><span class="fa fa-times"></span>&nbsp;@Html.TA("Delete")</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="input-group">
+                        <div class="dropdown">
+                            <button class="btn btn-default btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                                <i class="fa fa-gears"></i>&nbsp;@Html.TA("Batch Actions")
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                @if (User.HasAccess(OperatorRoles.SETTINGS + OperatorRoles.DELETE))
+                                {
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="deleteSelectedTaxRates()"><span class="fa fa-times"></span>&nbsp;@Html.TA("Delete Selected")</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">@Html.TA("There are no tax rates yet. Add new tax rate by clicking on the {0} button above", "<strong>" + @Html.TA("Add Tax Rate") + "</strong>") </div>
+        }
+    </div>
+</div>
+
+<script language="javascript">
+    function deleteSelectedTaxRates() {
+        var ids = '?';
+        $('#tableTaxRates input:checked').each(function () {
+            var id = $(this).val();
+            if (!isNaN(id)) ids += 'ids=' + id + '&';
+        });
+        if (ids != '?')
+            window.location.href = '@Url.Action("Delete")' + ids;
+    }
+</script>

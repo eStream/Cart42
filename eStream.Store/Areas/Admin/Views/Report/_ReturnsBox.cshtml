@@ -1,0 +1,20 @@
+﻿@model Estream.Cart42.Web.Areas.Admin.Models.ReturnsBoxViewModel
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <span class="label label-danger pull-right">@Html.TA("All time")</span>
+        <h5>@Html.TA("Return Rate")</h5>
+    </div>
+    <div class="ibox-content">
+        <h1 class="no-margins">@Model.Rate%</h1>
+        @if (Model.Difference > 0)
+        {
+            <div class="stat-percent font-bold text-danger" title="Return rate">@Model.Difference% <i class="fa fa-level-up"></i></div>
+        }
+        else if (Model.Difference < 0)
+        {
+            <div class="stat-percent font-bold text-navy" title="Return rate">@Model.Difference% <i class="fa fa-level-down"></i></div>
+        }
+        <small>@Html.TA("Returned orders")</small>
+    </div>
+</div>
