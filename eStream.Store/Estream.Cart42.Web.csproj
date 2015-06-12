@@ -958,6 +958,8 @@
     <Content Include="Content\admin\js\style.js" />
     <Content Include="Content\admin\js\summernote.min.js" />
     <Content Include="Content\admin\js\tinycolor.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\cart42footer.png" />
@@ -972,9 +974,6 @@
     <Content Include="Content\img\btn-setting.png" />
     <Content Include="Content\img\btn-shuffle.png" />
     <Content Include="Content\img\btn-tool.png" />
-    <Content Include="Content\img\contact-img.png" />
-    <Content Include="Content\img\contact-img2.png" />
-    <Content Include="Content\img\contact-profile.png" />
     <Content Include="Content\img\datatables\back_disabled.png" />
     <Content Include="Content\img\datatables\back_enabled.png" />
     <Content Include="Content\img\datatables\back_enabled_hover.png" />
@@ -997,12 +996,10 @@
     <Content Include="Content\img\ico-table-edit.png" />
     <Content Include="Content\img\ico-table-new.png" />
     <Content Include="Content\img\lens.png" />
-    <Content Include="Content\img\logo-white.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\maintenance.png" />
     <Content Include="Content\img\new-gallery-img.png" />
     <Content Include="Content\img\no-img-gallery.png" />
-    <Content Include="Content\img\personal-info.png" />
     <Content Include="Content\img\select-bg.png" />
     <Content Include="Content\img\select2\select2.png" />
     <Content Include="Content\img\select2\select2x2.png" />
@@ -1199,6 +1196,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\demo.cart42.com.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1557,6 +1555,7 @@
     <Content Include="Scripts\globalize\globalize.culture.zu.js" />
     <Content Include="Scripts\globalize\globalize.cultures.js" />
     <Content Include="Scripts\html5Upload.js" />
+    <None Include="Properties\PublishProfiles\WebDeploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
