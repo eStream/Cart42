@@ -196,3 +196,4 @@ FakesAssemblies/
 *.opt
 eStream.Store/Logs/
 eStream.Store/Storage/
+eStream.Store/Import/
