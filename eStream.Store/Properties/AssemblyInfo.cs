@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("eStream Ltd")]
 [assembly: AssemblyProduct("Estream.Cart42.Web")]
-[assembly: AssemblyCopyright("Copyright © 2014 eStream Ltd")]
+[assembly: AssemblyCopyright("Copyright © 2015 eStream Ltd")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
