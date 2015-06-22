@@ -14,6 +14,10 @@ namespace Estream.Cart42.Web.Helpers
     {
         public static void GenerateScreenshot(string url, string filename)
         {
+            // Skip if running in Azure
+            if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("WEBSITE_SITE_NAME"))) return;
+
+
             using (var bitmap = GenerateScreenshot(url))
             {
                 bitmap.Save(filename, ImageFormat.Png);

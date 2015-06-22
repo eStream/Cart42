@@ -1102,6 +1102,7 @@
     <Content Include="Content\Themes\Standard\js\jquery.bxslider.js" />
     <Content Include="Content\Themes\Standard\js\jquery.bxslider.min.js" />
     <Content Include="Content\Themes\Standard\js\tabs.js" />
+    <Content Include="Content\Themes\Standard\screenshot.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
