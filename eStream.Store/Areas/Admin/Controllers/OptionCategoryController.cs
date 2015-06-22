@@ -141,32 +141,47 @@ namespace Estream.Cart42.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        // GET: Admin/OptionCategory/Delete/5
         [AccessAuthorize(OperatorRoles.INVENTORY + OperatorRoles.DELETE)]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int[] ids)
         {
-            if (id == null)
+            if (ids == null || !ids.Any())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OptionCategory optionCategory = optionCategoryService.Find(id.Value);
-            if (optionCategory == null)
+            var model = new OptionCategoriesDeleteViewModel();
+            model.OptionsCategories = new List<OptionCategoryDeleteViewModel>();
+
+            foreach (int id in ids)
             {
-                return HttpNotFound();
+                OptionCategory optionCategory = optionCategoryService.Find(id);
+                if (optionCategory == null) continue;
+
+                model.OptionsCategories.Add(new OptionCategoryDeleteViewModel
+                {
+                    Id = optionCategory.Id,
+                    Name = optionCategory.Name,
+                });
             }
-            var model = Mapper.Map<OptionCategoryDeleteViewModel>(optionCategory);
             return View(model);
         }
 
-        // POST: Admin/OptionCategory/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [AccessAuthorize(OperatorRoles.INVENTORY + OperatorRoles.DELETE)]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int[] ids)
         {
-            optionCategoryService.Delete(id);
+            if (ids == null || !ids.Any())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            foreach (int id in ids)
+            {
+                optionCategoryService.Delete(id);
+            }
+
             return RedirectToAction("Index")
-                .WithWarning(string.Format("Option category has been deleted".TA()));
+                .WithWarning(string.Format("The option categories have been deleted".TA()));
         }
     }
 }

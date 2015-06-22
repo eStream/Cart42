@@ -54,6 +54,11 @@ namespace Estream.Cart42.Web.Areas.Admin.Models
         public List<OptionCategoryIndexViewModel> OptionsCategories { get; set; }
     }
 
+    public class OptionCategoriesDeleteViewModel
+    {
+        public List<OptionCategoryDeleteViewModel> OptionsCategories { get; set; }
+    }
+
     public class OptionCategoryIndexViewModel : IHaveCustomMappings
     {
         public int Id { get; set; }
