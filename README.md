@@ -2,7 +2,11 @@
 
 ## Description
 
-Cart42 is a fully featured shopping cart software for ASP.NET MVC that you can install on your server. Cart42 aims to be a Free alternative to Shopify with a focus on performance and scalability.
+Cart42 is a fully featured shopping cart software for ASP.NET MVC that you can install on your server. Cart42 aims to be a free alternative to Shopify with a focus on performance and scalability.
+
+## Demo
+
+A demo version is available here: http://www.cart42.com/Home/Demo
 
 ## License
 
