@@ -1053,6 +1053,9 @@
     <Content Include="Content\Themes\Standard\images\arrow-down.png" />
     <Content Include="Content\Themes\Standard\images\arrows.png" />
     <Content Include="Content\Themes\Standard\images\attention.png" />
+    <Content Include="Content\Themes\Standard\images\banner_slider_1.png" />
+    <Content Include="Content\Themes\Standard\images\banner_slider_2.png" />
+    <Content Include="Content\Themes\Standard\images\banner_slider_3.png" />
     <Content Include="Content\Themes\Standard\images\bullet-1.png" />
     <Content Include="Content\Themes\Standard\images\bullet.png" />
     <Content Include="Content\Themes\Standard\images\bullets.png" />
@@ -1083,9 +1086,6 @@
     <Content Include="Content\Themes\Standard\images\remove.png" />
     <Content Include="Content\Themes\Standard\images\reorder.png" />
     <Content Include="Content\Themes\Standard\images\return.png" />
-    <Content Include="Content\Themes\Standard\images\banner_slider-1.jpg" />
-    <Content Include="Content\Themes\Standard\images\banner_slider-2.jpg" />
-    <Content Include="Content\Themes\Standard\images\banner_slider-3.jpg" />
     <Content Include="Content\Themes\Standard\images\split.png" />
     <Content Include="Content\Themes\Standard\images\stars-0.png" />
     <Content Include="Content\Themes\Standard\images\stars-1.png" />
