@@ -13,14 +13,14 @@ namespace Estream.Cart42.Web.Controllers
         {
             this.newsletterSubscriptionService = newsletterSubscriptionService;
         }
-        // GET: NewsletterSubscription
-        [HttpGet]
-        public ActionResult AddSubscription()
+
+        public PartialViewResult AddSubscriptionPartial()
         {
             var model = new NewsletterSubscriptionViewModel();
 
             return PartialView("_AddSubscription", model);
         }
+
         [HttpPost]
         public ActionResult AddSubscription(NewsletterSubscriptionViewModel model)
         {

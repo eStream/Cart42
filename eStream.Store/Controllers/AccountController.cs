@@ -129,6 +129,8 @@ namespace Estream.Cart42.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            if (returnUrl != null && returnUrl.ToLower().StartsWith("/admin"))
+                return View("~/Areas/Admin/Views/Shared/Login.cshtml");
             return View(model);
         }
 
